@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles requests for the application home page.
@@ -36,4 +37,33 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/mainp")
+	public ModelAndView mainpage(ModelAndView mv) {
+		mv.setViewName("mytarget/mainpage");
+		return mv;
+	}
+	
+	@RequestMapping(value="/mloginf")
+	public ModelAndView mloginf(ModelAndView mv) {
+		mv.setViewName("mytarget/mloginForm");
+		return mv;
+	}
+	
+	@RequestMapping(value="/bloginf")
+	public ModelAndView bloginf(ModelAndView mv) {
+		mv.setViewName("mytarget/bloginForm");
+		return mv;
+	}
+	
+	@RequestMapping(value="/mjoinf")
+	public ModelAndView mjoinf(ModelAndView mv) {
+		mv.setViewName("mytarget/mjoinForm");
+		return mv;
+	}
+	
+	@RequestMapping(value="/bjoinf")
+	public ModelAndView bjoinf(ModelAndView mv) {
+		mv.setViewName("mytarget/bjoinForm");
+		return mv;
+	}
 }

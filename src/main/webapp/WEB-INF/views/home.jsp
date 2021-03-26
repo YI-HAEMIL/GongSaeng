@@ -10,34 +10,28 @@
 </head>
 <body>
 	<div id="topmenu">
-		<img src="resources/image/gstitle.png" id="logo">
+		<a href="home"><img src="resources/image/gstitle.png" id="logo"></a>
 		<ul>
 			<li><a href="" target="section">All Places</a>
 			<li><a href="" target="section">Search</a>
 			<li><a href="" target="section">My Page</a>
-			<li><a href="" class="loginmenu">Login</a>&nbsp;&nbsp; | &nbsp;&nbsp; <a href="">Join Us</a>
+			<li><a href="mloginf" target="section">Login</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+			<a href="mjoinf" target="section">Join Us</a>
 			<!--<c:if test="${loginID = null}"></c:if>-->
 			<c:if test="${loginID != null}"> 
-			<li><a href="" class="loginmenu">Logout</a>
+			<li><a href="logout">Logout</a>
 			</c:if>
 		</ul>
 	</div>
-	
-	<div id="main">
-		<div id="circle"></div>
-		<img src="resources/image/gstext.png" id="txt"><br>
-		<img src="resources/image/gstext2.png" id="txt2">
-	</div>
-	<div id="vertical"></div>
 	<div id="section">
-		<p style="font-family:Roboto; margin-top:130px; font-size: larger; font-weight: bold">Recommendation</p>
-		<p style="font-family:Spoqa Han Sans Neo Regular; margin-top:-10px;">오늘의 추천 공간, 이런 공간은 어때요?✨<p>
-		<div class="placecard"><hr></div>
-		<div class="placecard"><hr></div>
-		<div class="placecard"><hr></div>
+		<iframe src="mainp" name="section"></iframe>
 	</div>
+	<!-- 
 	<div id="footer">
-		
+		<hr style="border:0.3px solid #d9d9d9"><br>
+		COPYRIGHT (C) 2021 GONGSAENG RIGHTS RESERVED / DESIGNED BY HAEMIL YI
+		<br>   
 	</div>
+	 -->
 </body>
 </html>
