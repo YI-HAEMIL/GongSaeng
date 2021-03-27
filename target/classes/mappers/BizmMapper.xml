@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.BizmMapper">
+	
+	<select id = "selectList" resultType="vo.BizmVO">
+		SELECT * FROM bizmember
+		ORDER BY bizm_seq
+	</select>
+	<select id="selectOne" resultType="vo.BizmVO">
+		SELECT * FROM bizmember
+		WHERE bizm_id=#{bizm_id}
+	</select>
+	<insert id="insert">
+		<selectKey keyProperty="bizm_seq" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(bizm_seq),0)+1 FROM bizmember
+		</selectKey>
+		INSERT INTO bizmember VALUES(#{bizm_seq},#{bizm_id},#{bizm_pwd},#{bizm_nm},#{bizm_pnum},#{bizm_email},#{bizm_licnum})
+	</insert>
+	<update id="update">
+		UPDATE bizmember SET
+		bizm_pwd=#{bizm_pwd},bizm_nm=#{bizm_nm},
+		bizm_pnum=#{bizm_pnum},bizm_email=#{bizm_email}, bizm_licnum=#{bizm_licnum}
+		WHERE bizm_id=#{bizm_id}
+	</update>
+	<delete id="delete">
+		DELETE FROM bizmember WHERE bizm_id=#{bizm_id}
+	</delete>
+
+</mapper>

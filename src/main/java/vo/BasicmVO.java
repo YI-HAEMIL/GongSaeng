@@ -10,14 +10,13 @@ import lombok.Data;
 // MultipartFile (Interface)
 // -> CommonsMultipartFile
 @Data
-public class BasicMVO {
-
+public class BasicmVO {
 	
-	private int	   BASICM_SEQ;
-	private String BASICM_ID;
-	private String BASICM_PWD;
-	private String BASICM_NM;
-	private String BASICM_PNUM;
-	private String BASICM_EMAIL;
+	private int basicm_seq;
+	private String basicm_id;
+	private String basicm_pwd;
+	private String basicm_nm;
+	private String basicm_pnum;
+	private String basicm_email;
 
 } // vo

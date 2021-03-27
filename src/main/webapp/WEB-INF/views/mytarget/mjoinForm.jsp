@@ -16,44 +16,38 @@
 	MEMBER SIGN IN
 	<hr width=150px><br><br>
 	<div id="joinbox">
-	<form action="minsert" method="post" id="myForm" enctype="multipart/form-data">
+	<form action="minsert" method="post" id="myForm">
 		<table id="joint">
 			<tr>
 				<td class="th">I D</td>
 				<td>
 					<input type="text" name="basicm_id" id="basicm_id">&nbsp;&nbsp;
-					<input type="button" value="ID중복확인" id="idDup" class="button" onclick="idDupCheck()"><br>
-					<span id=iMessage class="message"></span>
+					<input type="button" value="ID중복확인" id="idDup" class="button" onclick="idDupCheck()">
 				</td>
 			</tr>
 			<tr>
 				<td class="th">PASSWORD</td>
-				<td><input type="password" name="basicm_pwd" id="basicm_pwd" size="10"><br>
-					<span id="pMessage" class="message"></span>
+				<td><input type="password" name="basicm_pwd" id="basicm_pwd" size="10">
 				</td>
 			</tr>
 			<tr>
 				<td class="th">PW CONFIRM</td>
-				<td><input type="password" name="pwcheck" id="pwcheck" size="10"><br>
-					<span id="ppMessage" class="message"></span>
+				<td><input type="password" name="pwcheck" id="pwcheck" size="10">
 				</td>
 			</tr>
 			<tr>
 				<td class="th">NAME</td>
-				<td><input type="text" name="basicm_nm" id="basicm_nm" value="" size="10"><br>
-					<span id="nMessage" class="message"></span>
+				<td><input type="text" name="basicm_nm" id="basicm_nm" value="" size="10">
 				</td>
 			</tr>
 			<tr>
 				<td class="th">PHONE NUMBER</td>
-				<td><input type="text" name="basicm_pnum" id="basicm_pnum" value="" size="10" placeholder="- 없이 11자리 입력"><br>
-					<span id="nMessage" class="message"></span>
+				<td><input type="text" name="basicm_pnum" id="basicm_pnum" value="" size="10" placeholder="- 없이 11자리 입력">
 				</td>
 			</tr>
 			<tr>
 				<td class="th">EMAIL</td>
-				<td><input type="text" name="basicm_email" id="basicm_email" placeholder="member@gongsaeng.com"><br>
-					<span id="bMessage" class="message"></span>
+				<td><input type="text" name="basicm_email" id="basicm_email" placeholder="member@gongsaeng.com">
 				</td>
 			</tr>
 			<tr>

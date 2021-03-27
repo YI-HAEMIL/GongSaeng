@@ -11,6 +11,7 @@
 </head>
 <body>
 	<br><p>회원정보를 확인 및 수정하는 공간입니다.</p>
+	<form action = "bupdate" method="post">
 	<table id="updatet">
 		<tr>
 			<td style="text-align:left; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;기본 정보</td>
@@ -18,7 +19,7 @@
 		</tr>
 		<tr>
 			<td class="th">I D *</td>
-			<td><input type="text" name="bizm_id" id="bizm_id" value="${mVO.bizm_id}" readonly="readonly"><br> 
+			<td><input type="text" name="bizm_id" id="bizm_id" value="${bVO.bizm_id}" readonly="readonly"><br> 
 				<span id=iMessage class="message"></span>
 			</td>
 		</tr>
@@ -36,32 +37,33 @@
 		</tr>
 		<tr>
 			<td class="th">NAME *</td>
-			<td><input type="text" name="bizm_nm" id="bizm_nm" value="${mVO.bizm_nm}"><br>
+			<td><input type="text" name="bizm_nm" id="bizm_nm" value="${bVO.bizm_nm}"><br>
 			<span id="nMessage" class="message"></span>
 			</td>
 		</tr>
 		<tr>
 			<td class="th">PHONE NUMBER *</td>
-			<td><input type="text" name="bizm_pnum" id="bizm_pnum" value="${mVO.bizm_pnum}"><br>
+			<td><input type="text" name="bizm_pnum" id="bizm_pnum" value="${bVO.bizm_pnum}"><br>
 				<span id="nMessage" class="message"></span>
 			</td>
 		</tr>
 		<tr>
 			<td class="th">EMAIL *</td>
-			<td><input type="text" name="bizm_email" id="bizm_email" value="${mVO.bizm_email}"><br>
+			<td><input type="text" name="bizm_email" id="bizm_email" value="${bVO.bizm_email}"><br>
 				<span id="nMessage" class="message"></span>
 			</td>
 		</tr>
 		<tr>
 			<td class="th" style="border-bottom:1px solid #c3cbe0">LICENCE NUMBER *</td>
 			<td style="border-bottom:1px solid #c3cbe0">
-				<input type="text" name="bizm_licnum" id="bizm_licnum" value="${mVO.bizm_licnum}" readonly="readonly"><br>
+				<input type="text" name="bizm_licnum" id="bizm_licnum" value="${bVO.bizm_licnum}" readonly="readonly"><br>
 				<span id="bMessage" class="message"></span>
 			</td>
 		</tr>
-		</table>
-		<br>
-		<input type="submit" class="button" style="text-align: center;" src="bupdate" value="회원 정보 수정">&nbsp;&nbsp;
-		<input type="text" class="button" src="bdelete" value="회원 탈퇴" style="text-align: center;">
+	</table>
+	<br>
+	<input type="submit" class="button" style="text-align: center;" value="회원 정보 수정">&nbsp;&nbsp;
+	<a href="bdelete"><input type="button" class="button" src="bdelete" value="회원 탈퇴" style="text-align: center;"></a>
+	</form>
 </body>
 </html>

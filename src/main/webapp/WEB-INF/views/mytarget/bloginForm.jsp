@@ -22,12 +22,12 @@
 		<form action="blogin" method="post">
 			<table id="logint">
 				<tr>
-					<td><input type="text" name="id" id="id" placeholder="ID"><br>
+					<td><input type="text" name="bizm_id" id="bizm_id" placeholder="ID"><br>
 					<span id="iMessage" class="message"></span></td>
 					<td><input type="submit" class="button" value="LOGIN" onclick="return inCheck()"></td>
 				</tr>
 				<tr>
-					<td><input type="password" name="password" id="password" placeholder="PASSWORD"><br>
+					<td><input type="password" name="bizm_pwd" id="bizm_pwd" placeholder="PASSWORD"><br>
 						<span id="pMessage" class="message"></span></td>
 					<td><input type="reset" class="button" value="RESET"></td>
 				</tr>

@@ -43,45 +43,9 @@ public class HomeController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/mloginf")
-	public ModelAndView mloginf(ModelAndView mv) {
-		mv.setViewName("mytarget/mloginForm");
-		return mv;
-	}
-	
-	@RequestMapping(value="/bloginf")
-	public ModelAndView bloginf(ModelAndView mv) {
-		mv.setViewName("mytarget/bloginForm");
-		return mv;
-	}
-	
-	@RequestMapping(value="/mjoinf")
-	public ModelAndView mjoinf(ModelAndView mv) {
-		mv.setViewName("mytarget/mjoinForm");
-		return mv;
-	}
-	
-	@RequestMapping(value="/bjoinf")
-	public ModelAndView bjoinf(ModelAndView mv) {
-		mv.setViewName("mytarget/bjoinForm");
-		return mv;
-	}
-	
 	@RequestMapping(value="/mypage")
 	public ModelAndView mypage(ModelAndView mv) {
 		mv.setViewName("mytarget/mypage");
-		return mv;
-	}
-	
-	@RequestMapping(value="/minfo")
-	public ModelAndView minfo(ModelAndView mv) {
-		mv.setViewName("mybox/minfoForm");
-		return mv;
-	}
-	
-	@RequestMapping(value="/binfo")
-	public ModelAndView binfo(ModelAndView mv) {
-		mv.setViewName("mybox/binfoForm");
 		return mv;
 	}
 }

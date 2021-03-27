@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,9 @@
 <script src="resources/myLib/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+<c:if test="${msg!=null}">
+	<script>alert('${msg}');</script>
+</c:if>
 	<div id="main">
 		<div id="circle"></div>
 		<img src="resources/image/gstext.png" id="txt"><br>

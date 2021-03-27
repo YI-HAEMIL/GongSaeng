@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.BasicmMapper">
+	
+	<select id = "selectList" resultType="vo.BasicmVO">
+		SELECT * FROM basicmember
+		ORDER BY basicm_seq
+	</select>
+	<select id="selectOne" resultType="vo.BasicmVO">
+		SELECT * FROM basicmember
+		WHERE basicm_id=#{basicm_id}
+	</select>
+	<insert id="insert">
+		<selectKey keyProperty="basicm_seq" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(basicm_seq),0)+1 FROM basicmember
+		</selectKey>
+		INSERT INTO basicmember VALUES(
+		#{basicm_seq},#{basicm_id, jdbcType=VARCHAR},#{basicm_pwd},
+		#{basicm_nm},#{basicm_pnum},#{basicm_email})
+	</insert>
+	<update id="update">
+		UPDATE basicmember SET
+		basicm_pwd=#{basicm_pwd},basicm_nm=#{basicm_nm},
+		basicm_pnum=#{basicm_pnum},basicm_email=#{basicm_email}
+		WHERE basicm_id=#{basicm_id}
+	</update>
+	<delete id="delete">
+		DELETE FROM basicmember WHERE basicm_id=#{basicm_id}
+	</delete>
+
+</mapper>

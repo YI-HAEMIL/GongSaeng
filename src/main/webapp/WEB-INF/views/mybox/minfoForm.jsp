@@ -11,6 +11,7 @@
 </head>
 <body>
 	<br><p>회원정보를 확인 및 수정하는 공간입니다.</p>
+	<form action="mupdate" method="post">
 	<table id="updatet">
 		<tr>
 			<td style="text-align:left; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;기본 정보</td>
@@ -52,11 +53,11 @@
 				<span id="bMessage" class="message"></span>
 			</td>
 		</tr>
-		</table>
-		<br>
-		<input type="submit" class="button" style="text-align: center;" src="mupdate" value="회원 정보 수정">&nbsp;&nbsp;
-		<input type="text" class="button" src="mdelete" value="회원 탈퇴" style="text-align: center;">
-		
+	</table>
+	<br>
+	<input type="submit" class="button" style="text-align: center;" value="회원 정보 수정">&nbsp;&nbsp;
+	<a href="mdelete"><input type="button" class="button" value="회원 탈퇴" style="text-align: center;"></a>
+	</form>	
 	
 </body>
 </html>

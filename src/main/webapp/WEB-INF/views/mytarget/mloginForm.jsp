@@ -22,12 +22,12 @@
 		<form action="mlogin" method="post">
 			<table id="logint">
 				<tr>
-					<td><input type="text" name="id" id="id" placeholder="ID"><br>
+					<td><input type="text" name="basicm_id" id="basicm_id" placeholder="ID"><br>
 					<span id="iMessage" class="message"></span></td>
 					<td><input type="submit" class="button" value="LOGIN" onclick="return inCheck()"></td>
 				</tr>
 				<tr>
-					<td><input type="password" name="password" id="password" placeholder="PASSWORD"><br>
+					<td><input type="password" name="basicm_pwd" id="basicm_pwd" placeholder="PASSWORD"><br>
 						<span id="pMessage" class="message"></span></td>
 					<td><input type="reset" class="button" value="RESET"></td>
 				</tr>
@@ -45,7 +45,7 @@
 				<span>비즈니스 회원 등록을 원하신다면, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<a href="bjoinf" target="section">비즈니스 회원 등록</a>
 			</div>
-		<br><br>
+			<br><br>
 	</div>
 </body>
 </html>

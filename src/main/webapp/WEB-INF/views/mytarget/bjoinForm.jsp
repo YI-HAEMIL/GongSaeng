@@ -16,50 +16,43 @@
 	BUSINESS MEMBER SIGN IN
 	<hr width=220px><br><br>
 	<div id="joinbox">
-	<form action="binsert" method="post" id="myForm" enctype="multipart/form-data">
+	<form action="binsert" method="post" id="myForm">
 		<table id="joint">
 			<tr>
 				<td class="bth">I D</td>
 				<td>
 					<input type="text" name="bizm_id" id="bizm_id">&nbsp;&nbsp;
-					<input type="button" value="ID중복확인" id="idDup" class="button" onclick="idDupCheck()"><br>
-					<span id=iMessage class="message"></span>
+					<input type="button" value="ID중복확인" id="idDup" class="button" onclick="idDupCheck()">
 				</td>
 			</tr>
 			<tr>
 				<td class="bth">PASSWORD</td>
-				<td><input type="password" name="bizm_pwd" id="bizm_pwd" size="10"><br>
-					<span id="pMessage" class="message"></span>
+				<td><input type="password" name="bizm_pwd" id="bizm_pwd" size="10">
 				</td>
 			</tr>
 			<tr>
 				<td class="bth">PW CONFIRM</td>
-				<td><input type="password" name="pwcheck" id="pwcheck" size="10"><br>
-					<span id="ppMessage" class="message"></span>
+				<td><input type="password" name="pwcheck" id="pwcheck" size="10">
 				</td>
 			</tr>
 			<tr>
 				<td class="bth">NAME</td>
-				<td><input type="text" name="bizm_nm" id="bizm_nm" value="" size="10"><br>
-					<span id="nMessage" class="message"></span>
+				<td><input type="text" name="bizm_nm" id="bizm_nm" value="" size="10">
 				</td>
 			</tr>
 			<tr>
 				<td class="bth">PHONE NUMBER</td>
-				<td><input type="text" name="bizm_pnum" id="bizm_pnum" value="" size="10" placeholder="- 없이 11자리 입력"><br>
-					<span id="nMessage" class="message"></span>
+				<td><input type="text" name="bizm_pnum" id="bizm_pnum" value="" size="10" placeholder="- 없이 11자리 입력">
 				</td>
 			</tr>
 			<tr>
 				<td class="bth">EMAIL</td>
-				<td><input type="text" name="bizm_email" id="bizm_email" placeholder="member@gongsaeng.com"><br>
-					<span id="bMessage" class="message"></span>
+				<td><input type="text" name="bizm_email" id="bizm_email" placeholder="member@gongsaeng.com">
 				</td>
 			</tr>
 			<tr>
 				<td class="bth">LICENCE NUMBER</td>
-				<td><input type="text" name="bizm_licnum" id="bizm_licnum" placeholder=""><br>
-					<span id="bMessage" class="message"></span>
+				<td><input type="text" name="bizm_licnum" id="bizm_licnum" placeholder="">
 				</td>
 			</tr>
 			<tr>
