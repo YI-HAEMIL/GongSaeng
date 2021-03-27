@@ -66,4 +66,16 @@ public class HomeController {
 		mv.setViewName("mytarget/bjoinForm");
 		return mv;
 	}
+	
+	@RequestMapping(value="/mypage")
+	public ModelAndView mypage(ModelAndView mv) {
+		mv.setViewName("mytarget/mypage");
+		return mv;
+	}
+	
+	@RequestMapping(value="/minfo")
+	public ModelAndView minfo(ModelAndView mv) {
+		mv.setViewName("mybox/minfoForm");
+		return mv;
+	}
 }

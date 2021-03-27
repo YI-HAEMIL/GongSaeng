@@ -28,7 +28,7 @@
 			</tr>
 			<tr>
 				<td class="bth">PASSWORD</td>
-				<td><input type="password" name="bizm_pw" id="bizm_pw" size="10"><br>
+				<td><input type="password" name="bizm_pwd" id="bizm_pwd" size="10"><br>
 					<span id="pMessage" class="message"></span>
 				</td>
 			</tr>

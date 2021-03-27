@@ -14,7 +14,7 @@
 		<ul>
 			<li><a href="" target="section">All Places</a>
 			<li><a href="" target="section">Search</a>
-			<li><a href="" target="section">My Page</a>
+			<li><a href="mypage" target="section">My Page</a>
 			<li><a href="mloginf" target="section">Login</a>&nbsp;&nbsp; | &nbsp;&nbsp;
 			<a href="mjoinf" target="section">Join Us</a>
 			<!--<c:if test="${loginID = null}"></c:if>-->
