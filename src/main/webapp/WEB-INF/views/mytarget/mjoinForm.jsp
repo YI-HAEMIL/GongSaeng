@@ -58,7 +58,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" class="button" value="SUBMIT" disabled onclick="return inCheck()">&nbsp;&nbsp;
+					<input type="submit" class="button" value="SUBMIT">&nbsp;&nbsp;
 					<input type="reset"  class="button" value="RESET">
 				</td>
 			</tr>

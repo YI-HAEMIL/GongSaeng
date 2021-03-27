@@ -26,12 +26,12 @@
 	<div id="section">
 		<iframe src="mainp" name="section"></iframe>
 	</div>
-	<!-- 
+	
 	<div id="footer">
 		<hr style="border:0.3px solid #d9d9d9"><br>
-		COPYRIGHT (C) 2021 GONGSAENG RIGHTS RESERVED / DESIGNED BY HAEMIL YI
+		<a href="managerlogin" id="managerlogin">관리자 페이지 로그인</a><br>
+		<p style="margin-bottom: 30px">COPYRIGHT (C) 2021 GONGSAENG RIGHTS RESERVED / DESIGNED BY HAEMIL YI</p>
 		<br>   
 	</div>
-	 -->
 </body>
 </html>

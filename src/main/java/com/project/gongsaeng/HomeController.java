@@ -78,4 +78,10 @@ public class HomeController {
 		mv.setViewName("mybox/minfoForm");
 		return mv;
 	}
+	
+	@RequestMapping(value="/binfo")
+	public ModelAndView binfo(ModelAndView mv) {
+		mv.setViewName("mybox/binfoForm");
+		return mv;
+	}
 }

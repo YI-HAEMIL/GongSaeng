@@ -18,13 +18,13 @@
 		</tr>
 		<tr>
 			<td class="th">I D *</td>
-			<td><input type="text" name="basicm_id" id="basicm_id" value="${mVO.basicm_id}" readonly="readonly"><br> 
+			<td><input type="text" name="bizm_id" id="bizm_id" value="${mVO.bizm_id}" readonly="readonly"><br> 
 				<span id=iMessage class="message"></span>
 			</td>
 		</tr>
 		<tr>
 			<td class="th">PASSWORD *</td>
-			<td><input type="password" name="basicm_pwd" id="basicm_pwd"><br>
+			<td><input type="password" name="bizm_pwd" id="bizm_pwd"><br>
 				<span id="pMessage" class="message"></span>
 			</td>
 		</tr>
@@ -36,27 +36,32 @@
 		</tr>
 		<tr>
 			<td class="th">NAME *</td>
-			<td><input type="text" name="basicm_nm" id="basicm_nm" value="${mVO.basicm_nm}"><br>
+			<td><input type="text" name="bizm_nm" id="bizm_nm" value="${mVO.bizm_nm}"><br>
 			<span id="nMessage" class="message"></span>
 			</td>
 		</tr>
 		<tr>
 			<td class="th">PHONE NUMBER *</td>
-			<td><input type="text" name="basicm_pnum" id="basicm_pnum" value="${mVO.basicm_pnum}"><br>
+			<td><input type="text" name="bizm_pnum" id="bizm_pnum" value="${mVO.bizm_pnum}"><br>
 				<span id="nMessage" class="message"></span>
 			</td>
 		</tr>
 		<tr>
-			<td class="th" style="border-bottom:1px solid #c3cbe0">EMAIL *</td>
-			<td style="border-bottom:1px solid #c3cbe0"><input type="text" name="basicm_email" id="basicm_email" value="${mVO.basicm_email}"><br>
+			<td class="th">EMAIL *</td>
+			<td><input type="text" name="bizm_email" id="bizm_email" value="${mVO.bizm_email}"><br>
+				<span id="nMessage" class="message"></span>
+			</td>
+		</tr>
+		<tr>
+			<td class="th" style="border-bottom:1px solid #c3cbe0">LICENCE NUMBER *</td>
+			<td style="border-bottom:1px solid #c3cbe0">
+				<input type="text" name="bizm_licnum" id="bizm_licnum" value="${mVO.bizm_licnum}" readonly="readonly"><br>
 				<span id="bMessage" class="message"></span>
 			</td>
 		</tr>
 		</table>
 		<br>
-		<input type="submit" class="button" style="text-align: center;" src="mupdate" value="회원 정보 수정">&nbsp;&nbsp;
-		<input type="text" class="button" src="mdelete" value="회원 탈퇴" style="text-align: center;">
-		
-	
+		<input type="submit" class="button" style="text-align: center;" src="bupdate" value="회원 정보 수정">&nbsp;&nbsp;
+		<input type="text" class="button" src="bdelete" value="회원 탈퇴" style="text-align: center;">
 </body>
 </html>

@@ -65,6 +65,15 @@ iframe{
 	color:gray;
 }
 
+#managerlogin{
+	text-decoration: none;
+	color:gray;
+}
+
+#managerlogin:visited{
+	color:gray
+}
+
 /* main page */
 #main{
 	width:100%;
