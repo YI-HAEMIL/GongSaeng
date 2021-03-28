@@ -6,7 +6,7 @@
 <title>공 : 생</title>
 <link rel="icon" href="resources/image/favicon.png">
 <link rel="stylesheet" href="resources/myLib/mainCSS.css" type="text/css">
-<script src="resources/myLib/jquery-3.2.1.min.js"></script>
+<script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	function calcHeight() {
 		//find the height of the internal page
@@ -42,12 +42,13 @@
 	<div id="section">
 		<iframe src="mainp" name="section" id="the_iframe" onload="calcHeight(),window.scrollTo(0,0)" height="1"></iframe>
 	</div>
-	
+	<!--  
 	<div id="footer">
 		<hr style="border:0.3px solid #d9d9d9; margin-top:30px;"><br>
 		<a href="managerlogin" id="managerlogin">관리자 페이지 로그인</a><br>
 		<p style="margin-bottom: 30px">COPYRIGHT (C) 2021 GONGSAENG RIGHTS RESERVED / DESIGNED BY HAEMIL YI</p>
 		<br>   
 	</div>
+	-->
 </body>
 </html>

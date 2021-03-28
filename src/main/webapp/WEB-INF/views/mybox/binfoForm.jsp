@@ -7,11 +7,74 @@
 <meta charset="UTF-8">
 <title>Member Information</title>
 <link rel="stylesheet" href="resources/myLib/mypageCSS.css"  type="text/css">
-<script src="resources/myLib/jquery-3.2.1.min.js"></script>
+<script src="resources/gscript/jquery-3.2.1.min.js"></script>
+<script src="resources/gscript/gsCheck.js"></script>
+<script>
+	var pCheck=false;
+	var p2Check=false;
+	var nCheck=false;
+	var pnCheck=false;
+	var eCheck=false;
+	
+	$(function(){
+		$('#password').focus();
+		$('#password').focusout(function(){
+			pCheck=pwCheck();
+		}); //password
+		
+		$('#password2').focusout(function(){
+			p2Check=pw2Check();
+		}); //password2
+		
+		$('#name').focusout(function(){
+			nCheck=nmCheck();
+		}); //name
+		
+		$('#phonenum').focusout(function(){
+			pnCheck=pnumCheck();
+		}); //phonenum
+		
+		$('#email').focusout(function(){
+			eCheck=emCheck();
+		}); //email
+	}); //ready
+	
+	function validate(){
+		if(pCheck==false){
+			$('#pMessage').html('비밀번호를 확인해주세요');
+			$('#password').focus();
+		}
+		if(p2Check==false){
+			$('#p2Message').html('비밀번호를 확인해주세요');
+			$('#password2').focus();
+		}
+		if(nCheck==false){
+			$('#nMessage').html('이름을 확인해주세요');
+			$('#name').focus();
+		}
+		if(pnCheck==false){
+			$('#pnMessage').html('핸드폰 번호를 확인해주세요');
+			$('#phonenum').focus();
+		}
+		if(eCheck==false){
+			$('#eMessage').html('이메일을 확인해주세요');
+			$('#email').focus();
+		}
+		if(pCheck==true && p2Check==true && nCheck==true && pnCheck==true && eCheck==true) {
+			alert('입력 성공, 전송하시겠습니까?');
+		} else{
+			return false;
+		}
+	} //validate
+
+</script>
 </head>
 <body>
+<c:if test="${msg!=null}">
+	<script>alert('${msg}');</script>
+</c:if>
 	<br><p>회원정보를 확인 및 수정하는 공간입니다.</p>
-	<form action = "bupdate" method="post">
+	<form action = "bupdate" method="post" onsubmit="return validate();">
 	<table id="updatet">
 		<tr>
 			<td style="text-align:left; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;기본 정보</td>
@@ -19,51 +82,55 @@
 		</tr>
 		<tr>
 			<td class="th">I D *</td>
-			<td><input type="text" name="bizm_id" id="bizm_id" value="${bVO.bizm_id}" readonly="readonly"><br> 
-				<span id=iMessage class="message"></span>
+			<td>
+				<input type="text" name="bizm_id" id="id" value="${bVO.bizm_id}" readonly="readonly">
 			</td>
 		</tr>
 		<tr>
 			<td class="th">PASSWORD *</td>
-			<td><input type="password" name="bizm_pwd" id="bizm_pwd"><br>
+			<td>
+				<input type="password" name="bizm_pwd" id="password" value="${bVO.bizm_pwd}"><br>
 				<span id="pMessage" class="message"></span>
 			</td>
 		</tr>
 		<tr>
 			<td class="th">PW CONFIRM *</td>
-			<td><input type="password" name="pwcheck" id="pwcheck"><br>
-				<span id="ppMessage" class="message"></span>
+			<td>
+				<input type="password" name="pwcheck" id="password2" value="${bVO.bizm_pwd}"><br>
+				<span id="p2Message" class="message"></span>
 			</td>
 		</tr>
 		<tr>
 			<td class="th">NAME *</td>
-			<td><input type="text" name="bizm_nm" id="bizm_nm" value="${bVO.bizm_nm}"><br>
-			<span id="nMessage" class="message"></span>
+			<td>
+				<input type="text" name="bizm_nm" id="name" value="${bVO.bizm_nm}"><br>
+				<span id="nMessage" class="message"></span>
 			</td>
 		</tr>
 		<tr>
 			<td class="th">PHONE NUMBER *</td>
-			<td><input type="text" name="bizm_pnum" id="bizm_pnum" value="${bVO.bizm_pnum}"><br>
-				<span id="nMessage" class="message"></span>
+			<td>
+				<input type="text" name="bizm_pnum" id="phonenum" value="${bVO.bizm_pnum}"><br>
+				<span id="pnMessage" class="message"></span>
 			</td>
 		</tr>
 		<tr>
 			<td class="th">EMAIL *</td>
-			<td><input type="text" name="bizm_email" id="bizm_email" value="${bVO.bizm_email}"><br>
-				<span id="nMessage" class="message"></span>
+			<td>
+				<input type="text" name="bizm_email" id="email" value="${bVO.bizm_email}"><br>
+				<span id="eMessage" class="message"></span>
 			</td>
 		</tr>
 		<tr>
 			<td class="th" style="border-bottom:1px solid #c3cbe0">LICENCE NUMBER *</td>
 			<td style="border-bottom:1px solid #c3cbe0">
-				<input type="text" name="bizm_licnum" id="bizm_licnum" value="${bVO.bizm_licnum}" readonly="readonly"><br>
-				<span id="bMessage" class="message"></span>
+				<input type="text" name="bizm_licnum" id="licensenum" value="${bVO.bizm_licnum}" readonly="readonly">
 			</td>
 		</tr>
 	</table>
 	<br>
-	<input type="submit" class="button" style="text-align: center;" value="회원 정보 수정">&nbsp;&nbsp;
-	<a href="bdelete"><input type="button" class="button" src="bdelete" value="회원 탈퇴" style="text-align: center;"></a>
+		<input type="submit" class="button" style="text-align: center;" value="회원 정보 수정" onclick="inCheck()">&nbsp;&nbsp;
+		<a href="bdelete"><input type="button" class="button" src="bdelete" value="회원 탈퇴" style="text-align: center;"></a>
 	</form>
 </body>
 </html>

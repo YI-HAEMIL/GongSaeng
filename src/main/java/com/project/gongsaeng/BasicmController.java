@@ -61,6 +61,18 @@ public class BasicmController {
 		return mv;
 	} //logout
 	
+	// ID 중복확인
+	@RequestMapping(value = "/idCheck")
+	public ModelAndView idCheck(ModelAndView mv, BasicmVO vo) {
+		mv.addObject("newID", vo.getBasicm_id());
+		if (service.selectOne(vo) != null) {
+			mv.addObject("idUse", "F"); // 사용불가
+		} else {
+			mv.addObject("idUse", "T"); // 사용가능
+		}
+		mv.setViewName("target/mjoinForm");
+		return mv;
+	} // idCheck
 	
 	@RequestMapping(value="/mjoinf")
 	public ModelAndView mjoinf(ModelAndView mv) {

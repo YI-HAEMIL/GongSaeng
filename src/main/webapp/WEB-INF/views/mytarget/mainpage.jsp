@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>MainPage</title>
 <link rel="stylesheet" href="resources/myLib/mainCSS.css" type="text/css">
-<script src="resources/myLib/jquery-3.2.1.min.js"></script>
+<script src="resources/gscript/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <c:if test="${msg!=null}">

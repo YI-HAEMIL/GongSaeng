@@ -13,6 +13,9 @@
 </script>
 </head>
 <body>
+<c:if test="${msg!=null}">
+	<script>alert('${msg}');</script>
+</c:if>
 <div id="tapmenu">
 	<ul>
 		<c:if test="${empty loginID}">
