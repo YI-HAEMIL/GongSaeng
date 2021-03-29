@@ -23,6 +23,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- Image Upload & Download -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="-1" />	
+	</beans:bean>
+	<!-- maxUploadSize -1: 크기 무제한 -->
+	
 	<!-- JsonView -->
 	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView" />
 	<beans:bean id="viewResolver"

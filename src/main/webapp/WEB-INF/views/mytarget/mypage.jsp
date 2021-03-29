@@ -6,9 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypage</title>
-<link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.0" type="text/css">
-<script src="resources/myLib/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="resources/myLib/mypageCSS.css" type="text/css">
+<script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script>
+	function calcHeight() {
+		//find the height of the internal page
+		var the_height= document.getElementById('mybox').contentWindow.document.body.scrollHeight;
+		//change the height of the iframe
+		document.getElementById('mybox').height= the_height;
+	}
+	
 	$('#mybox', parent.document).get(0).contentDocument.location.reload(); 
 </script>
 </head>
@@ -31,17 +38,18 @@
 		<c:if test="${group eq 'business'}">
 		<li><a href="binfo" class="thar" target="mypagebox">개인정보수정</a>  
 		<li><a href="" class="thar" target="mypagebox">예약 확인</a> 
-		<li><a href="" class="thar" target="mypagebox">장소 등록 및 수정</a>
+		<li><a href="pinsertf" class="thar" target="mypagebox">장소 등록</a>
+		<li><a href="pdetail" class="thar" target="mypagebox">장소 수정 및 삭제</a>
 		</c:if>
 	</ul>
 </div>
 
-<div id="mypagebox">
+<div id="mypagebox" onload="calcHeight()">
 	<c:if test="${group eq 'basic'}">
-	<iframe src="minfo" name="mypagebox" id="mybox"></iframe>
+	<iframe src="minfo" name="mypagebox" id="mybox" onload="calcHeight()"></iframe>
 	</c:if>
 	<c:if test="${group eq 'business'}">
-	<iframe src="binfo" name="mypagebox"></iframe>
+	<iframe src="binfo" name="mypagebox" id="mybox" onload="calcHeight()"></iframe>
 	</c:if>
 </div>
 </body>

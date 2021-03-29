@@ -127,6 +127,6 @@
 		<input type="submit" class="button" style="text-align: center;" value="회원 정보 수정">&nbsp;&nbsp;
 		<a href="mdelete"><input type="button" class="button" value="회원 탈퇴" style="text-align: center;" onclick="return validate()"></a>
 	</form>	
-	
+	<br>
 </body>
 </html>

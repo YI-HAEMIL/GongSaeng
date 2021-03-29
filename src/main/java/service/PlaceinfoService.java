@@ -1,0 +1,30 @@
+package service;
+
+import java.util.List;
+
+import vo.PlacefileVO;
+import vo.PlaceinfoVO;
+
+public interface PlaceinfoService {
+	// ** selectList
+	public List<PlaceinfoVO> selectList();
+
+	// ** selectOne
+	public PlaceinfoVO selectOne(PlaceinfoVO vo);
+	// ** 파일 리스트 출력
+	public List<PlacefileVO> getFileList(int placeid);
+
+	// ** insert
+	public int insert(PlaceinfoVO vo);
+	// ** 파일 업로드
+	public void uploadFile(String originalfileName, String saveFileName, long fileSize, String savePath, int placeid);
+
+	// ** update
+	public int update(PlaceinfoVO vo);
+
+	// ** delete
+	public int delete(PlaceinfoVO vo);
+
+	
+	
+}
