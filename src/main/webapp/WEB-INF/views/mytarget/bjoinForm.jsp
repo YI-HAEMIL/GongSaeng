@@ -86,7 +86,35 @@
 			return false;
 		}
 	} //validate
-
+	
+	/* JSON으로 ID 중복확인 */
+	$(function(){	
+		$('#idDup').click(function(){
+			$.ajax({
+				type:'post',
+				url:'bidCheck',
+				data:{
+					basicm_id:$('#id').val()
+				},
+				success:function(resultData){
+					if(resultData.idUse=='T') {
+					$('#iMessage').html('사용 가능한 아이디입니다');
+					$('#id').prop('readonly',true);
+					$('#submit').prop('disabled',false);
+					$('#idDup').prop('disabled',true);
+					$('#password').focus();
+					} else {
+						$('#iMessage').html('이미 사용중인 아이디입니다');
+						$('#id').prop('value','');
+						$('#id').focus();
+					}
+				},
+				error:function(){
+					alert('오류가 발생하였습니다. 다시 시도해주세요');
+				}
+			}); //ajax
+		}); //idDup click
+	}); //ready
 </script>
 </head>
 <body>
@@ -103,7 +131,7 @@
 				<td class="bth">&nbsp;&nbsp;&nbsp;&nbsp;I D</td>
 				<td>
 					<input type="text" name="bizm_id" id="id">&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="button" value="ID중복확인" id="idDup" class="button" onclick="idDupCheck()">&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" value="ID중복확인" id="idDup" class="button">&nbsp;&nbsp;&nbsp;&nbsp;
 					<span id="iMessage" class="message"></span>
 				</td>
 			</tr>
@@ -145,7 +173,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align:center; border-bottom:1px solid #fff;">
-					<input type="submit" class="button" value="SUBMIT">&nbsp;&nbsp;
+					<input type="submit" class="button" value="SUBMIT" id="submit" disabled="disabled">&nbsp;&nbsp;
 					<input type="reset"  class="button" value="RESET">
 				</td>
 			</tr>

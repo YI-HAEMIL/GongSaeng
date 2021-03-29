@@ -61,16 +61,15 @@ public class BasicmController {
 		return mv;
 	} //logout
 	
-	// ID 중복확인
-	@RequestMapping(value = "/idCheck")
+	// ID 중복확인 (JSON으로 처리)
+	@RequestMapping(value = "/midCheck")
 	public ModelAndView idCheck(ModelAndView mv, BasicmVO vo) {
-		mv.addObject("newID", vo.getBasicm_id());
 		if (service.selectOne(vo) != null) {
 			mv.addObject("idUse", "F"); // 사용불가
 		} else {
 			mv.addObject("idUse", "T"); // 사용가능
 		}
-		mv.setViewName("target/mjoinForm");
+		mv.setViewName("jsonView");
 		return mv;
 	} // idCheck
 	

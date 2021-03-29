@@ -97,7 +97,7 @@
 		<tr>
 			<td class="th">PW CONFIRM *</td>
 			<td>
-				<input type="password" name="pwcheck" id="password2" value="${mVO.basicm_pwd}"><br>
+				<input type="password" name="pwcheck" id="password2"><br>
 				<span id="p2Message" class="message"></span>
 			</td>
 		</tr>
@@ -125,7 +125,7 @@
 	</table>
 	<br>
 		<input type="submit" class="button" style="text-align: center;" value="회원 정보 수정">&nbsp;&nbsp;
-		<a href="mdelete"><input type="button" class="button" value="회원 탈퇴" style="text-align: center;"></a>
+		<a href="mdelete"><input type="button" class="button" value="회원 탈퇴" style="text-align: center;" onclick="return validate()"></a>
 	</form>	
 	
 </body>

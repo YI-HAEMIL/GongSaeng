@@ -78,23 +78,34 @@
 		}
 	} //validate
 	
-	
-	/* 모달창(미완)
-	function offClick() {
-		document.querySelector('.modal_wrap').style.display = 'none';
-		document.querySelector('.black_bg').style.display = 'none';
-	}
-
-	// ID 중복 확인하기 
-	function idDupCheck() {
-		if (iCheck == false) {
-			iCheck = idCheck();
-		} else {
-			document.querySelector('.modal_wrap').style.display = 'block';
-			document.querySelector('.black_bg').style.display = 'block';
-		}
-	} //idDupCheck
-	*/
+	/* JSON으로 ID 중복확인 */
+	$(function(){	
+		$('#idDup').click(function(){
+			$.ajax({
+				type:'post',
+				url:'midCheck',
+				data:{
+					basicm_id:$('#id').val()
+				},
+				success:function(resultData){
+					if(resultData.idUse=='T') {
+					$('#iMessage').html('사용 가능한 아이디입니다');
+					$('#id').prop('readonly',true);
+					$('#submit').prop('disabled',false);
+					$('#idDup').prop('disabled',true);
+					$('#password').focus();
+					} else {
+						$('#iMessage').html('이미 사용중인 아이디입니다');
+						$('#id').prop('value','');
+						$('#id').focus();
+					}
+				},
+				error:function(){
+					alert('오류가 발생하였습니다. 다시 시도해주세요');
+				}
+			}); //ajax
+		}); //idDup click
+	}); //ready
 </script>
 </head>
 <body>
@@ -111,7 +122,7 @@
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;I D</td>
 				<td>
 					<input type="text" name="basicm_id" id="id">&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="button" value="ID중복확인" id="idDup" class="button" onclick="idDupCheck()">&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" value="ID중복확인" id="idDup" class="button">&nbsp;&nbsp;&nbsp;&nbsp;
 					<span id="iMessage" class="message"></span>
 				</td>
 			</tr>
@@ -147,7 +158,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align:center; border-bottom:1px solid #fff;">
-					<input type="submit" class="button" value="SUBMIT">&nbsp;&nbsp;
+					<input type="submit" class="button" id="submit" value="SUBMIT" disabled='disabled'>&nbsp;&nbsp;
 					<input type="reset"  class="button" value="RESET">
 				</td>
 			</tr>
@@ -164,52 +175,5 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<a href="mloginf" target="section">일반 회원 로그인</a>
 	</div>
-	
-	<!--
-	<div class="back_bg"></div>
-	<div class="modal_wrap">
-		<div class="modal_close" onclick="return offClick()"><a href="#">close</a></div>
-	    <div>
-	    	<script>
-			function idOK() {
-				opener.$('#id').val('${newID}');
-				opener.document.getElementById('submit').disabled='';
-				opener.document.getElementById('idDup').disabled='disabled';
-				
-				// JQ 방식으로 속성에 접근
-				// => attr , prop 비교
-				// => attr()는 HTML의 속성(Attribute) ,기능, 입력된 값을 취급 
-				// => prop()는 JavaScript의 프로퍼티(Property), 실제값, property가 가지는 본연의 값
-				//opener.$('#id').attr('readonly','readonly');
-				opener.document.$('#id').prop('readonly',true);
-				opener.document.$('#password').focus();
-				document.querySelector('.modal_wrap').style.display ='none';
-		        document.querySelector('.black_bg').style.display ='none';
-			}
-			</script>
-			
-	        <span>ID 중복확인</span>
-	        <form action="idCheck" method="post">
-		        <input type="text" id="id" name="id" value="">
-				<input type="submit" class="button" value="ID중복확인" onclick="return idCheck()">
-				<span id="iMessage" class="message"></span>
-			</form>
-			<div id="msgBlock">
-				<c:if test="${idUse=='T'}">
-					${newID} 는 사용 가능한 아이디입니다.
-					<input type="button" class="button" value="idOK" onclick="idOK()">
-				</c:if>
-				<c:if test="${idUse=='F'}">
-					${newID} 는 이미 사용중인 아이디입니다.<br>
-					다시 입력해주세요.
-					<script>
-						$('#id').focus();
-						opener.document.getElementById('id').value='';
-					</script>
-				</c:if>
-			</div>
-	    </div>
-	</div>
-	-->
 </body>
 </html>

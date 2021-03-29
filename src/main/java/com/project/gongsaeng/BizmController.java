@@ -48,6 +48,18 @@ public class BizmController {
 
 	// 로그아웃은 BasicmController에 있음
 	
+	// ID 중복확인 (JSON으로 처리)
+	@RequestMapping(value = "/bidCheck")
+	public ModelAndView bidCheck(ModelAndView mv, BizmVO vo) {
+		if (service.selectOne(vo) != null) {
+			mv.addObject("idUse", "F"); // 사용불가
+		} else {
+			mv.addObject("idUse", "T"); // 사용가능
+		}
+		mv.setViewName("jsonView");
+		return mv;
+	} // idCheck
+	
 	@RequestMapping(value="/bjoinf")
 	public ModelAndView bjoinf(ModelAndView mv) {
 		mv.setViewName("mytarget/bjoinForm");
