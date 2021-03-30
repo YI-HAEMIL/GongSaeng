@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.project.PlaceinfoMapper">
 	
 	<select id = "selectList" resultType="vo.PlaceinfoVO">
@@ -9,17 +8,14 @@
 		ORDER BY #{place_id}
 	</select>
 	
-	
 	<select id="selectOne" resultType="vo.PlaceinfoVO">
 		SELECT * FROM place_info
 		WHERE bizm_id=#{bizm_id}
 	</select>
-	
-	<select id="selectfileList" resultType="vo.PlaceinfoVO">
+	<select id="selectfileList" resultType="vo.PlacefileVO">
 		SELECT * FROM place_file
 		WHERE place_id=#{place_id}
 	</select>
-	
 	
 	<insert id="insert">
 		<selectKey keyProperty="place_id" resultType="int" order="BEFORE">
@@ -31,20 +27,24 @@
 	</insert>
 	<insert id="uploadFile" parameterType="HashMap">
 		INSERT INTO place_file VALUES(
-		#{origin_nm},#{file_nm},#{file_size},#{file_url},#{place_id})
+		#{origin_nm},#{file_nm},#{file_size},#{file_url},#{file_path},#{place_id})
 	</insert>
 	
 	<update id="update">
 		UPDATE place_info SET
 		place_nm=#{place_nm},place_loc=#{place_loc},place_size=#{place_size},place_max=#{place_max},
-		place_price=#{place_price},place_pt_url=#{place_pt_url},place_pt_nm=#{place_pt_nm},
-		place_con=#{place_con},place_rule=#{place_rule},place_thumb_url=#{place_thumb_url}
+		place_price=#{place_price},place_con=#{place_con},place_rule=#{place_rule}
 		WHERE place_id=#{place_id}
 	</update>
+	<update id="updateFile" parameterType="HashMap">
+		UPDATE place_file SET
+		file_nm=#{file_nm},file_size=#{file_size},
+		file_url=#{file_url},file_path=#{file_path},place_id=#{place_id}
+		WHERE origin_nm=#{origin_nm}
+	</update>
+	
 	<delete id="delete">
 		DELETE FROM place_info WHERE place_id=#{place_id}
 	</delete>
-	
-	
 
 </mapper>

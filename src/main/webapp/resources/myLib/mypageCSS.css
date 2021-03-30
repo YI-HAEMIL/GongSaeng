@@ -2,8 +2,8 @@
 body{
 	margin:0 auto;
 	text-align:center;
-	overflow-X:hidden;
 	font-family:Roboto, Spoqa Han Sans Neo Medium;
+	overflow:inherit;
 }
 
 #mypagebox{
@@ -12,21 +12,20 @@ body{
 	width:1080px;
 	/*height:100%;*/
 	margin-top:-5px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
 iframe{
 	display:inline-block;
 	border: none;
 	width:100%;
-	/*height:100%;*/
 }
 
 #tapmenu{
 	display:inline-block;
 	width: 1080px;
 	margin-left:-82px;
-	margin-top:40px;
+	margin-top:15px;
 }
 ul{
 	list-style: none;

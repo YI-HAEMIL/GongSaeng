@@ -17,14 +17,14 @@ public interface PlaceinfoService {
 	// ** insert
 	public int insert(PlaceinfoVO vo);
 	// ** 파일 업로드
-	public void uploadFile(String originalfileName, String saveFileName, long fileSize, String savePath, int placeid);
-
+	public void uploadFile(String originalfileName, String saveFileName, long fileSize, String saveUrl, String savePath, int placeid);
+	
 	// ** update
 	public int update(PlaceinfoVO vo);
+	// ** 파일 업로드
+	public void updateFile(String originalfileName, String saveFileName, long fileSize, String saveUrl, String savePath, int placeid);
 
 	// ** delete
 	public int delete(PlaceinfoVO vo);
-
-	
 	
 }

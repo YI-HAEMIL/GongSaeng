@@ -2,9 +2,10 @@
 body{
 	margin:0 auto;
 	text-align:center;
-	overflow-X:hidden;
+	overflow-x:hidden;
 	font-family:Roboto, Spoqa Han Sans Neo Medium;
 }
+
 #topmenu{
 	background-color:#f0f0f0;
 	width:100%;
@@ -48,17 +49,17 @@ ul li {
 	/*position: absolute;*/
 }
 
+
 #section{
 	position:relative;
 	width:100%;
-	overflow:hidden;
+	height:100vh;
 }
 
 iframe{
 	margin-top:80px;
 	margin-bottom:20px;
 	width:100%;
-	/*height:100vh;*/
 	display: inline-block;
 	border: none;
 }
@@ -77,116 +78,3 @@ iframe{
 	color:gray
 }
 
-/* main page */
-#main{
-	width:100%;
-	height:400px;
-	/* background-color: #f7f7f7; */
-}
-
-#txt{
-	margin-top:70px;
-	margin-left:-430px;
-	position:absolute;
-	width:400px;
-	height:121px;
-	z-index:80;
-}
-#txt2{
-	padding-top:190px;
-	margin-left:60px;
-	position:absolute;
-	width:500px;
-	height:132px;
-	z-index:80;
-}
-#circle{
-	display:inline-block;
-	margin-left:-180px;
-	width:350px; height:350px;
-	border-radius:50% 50%;
-	border:1px solid #f0f0f0;
-	margin-top:40px;
-	position:absolute;
-	z-index:10;
-}
-#vertical{
-	width:0.1px;
-	height:120px;
-	border-left:0.5px solid #f0f0f0;
-	margin-top:-50px;
-	margin-left:50%;
-	position:absolute;
-	z-index:15;
-}
-
-.placecard{
-	display:inline-block;
-	width: 250px; height:300px;
-	border-radius:20px;
-	border: 1px solid #f0f0f0;
-	margin:0 5px;
-	box-shadow: 5px 5px 10px #e3e3e3;
-}
-.cardline{
-	border:1px solid #f0f0f0;
-	margin-top:120px;
-}
-
-/* loginForm */
-#loginbox{
-	margin:0 auto;
-	text-align:center;
-	display:block;
-	top:20px;
-	width:600px;
-	border: 1px solid #d9d9d9;
-	font-family:AppleSDGothicNeoM00;
-}
-#logint {
-	width: 300px;
-	border-collapse: collapse;
-	margin: 0 auto;
-	padding-top:15px;
-}
-
-td, th {
-	text-align: center;
-	border-bottom: 1px solid #fff;
-	padding: 5px;
-}
-input {
-	width: 220px;
-	height: 30px;
-	border-style: solid;
-	border-color: #d9d9d9;
-	font-family:AppleSDGothicNeoM00;
-	font-size:medium;
-}
-
-.button {
-	width:150px;
-	height:40px;
-	border:0;
-	background-color:#fff;
-	color: rgba(30, 22, 54, 0.6);
-	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
-}
-
-.button:hover {
-	color: rgba(255, 255, 255, 0.85);
-	box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
-	-webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-}
-/*
-#sub, #res{
-	width:150px;
-	height:40px;
-	border:0;
-	color:#fff;
-	background-color:#292323;
-}*/

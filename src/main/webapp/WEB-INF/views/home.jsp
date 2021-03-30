@@ -38,11 +38,8 @@
 			</c:if>
 		</ul>
 	</div>
-	
 	<div id="section">
-		<div class="scrollBlind">
 		<iframe src="mainp" name="section" id="the_iframe" onload="calcHeight(),window.scrollTo(0,0)" height="1"></iframe>
-		</div>
 	</div>
 	<!--  
 	<div id="footer">

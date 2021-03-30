@@ -34,20 +34,33 @@ public class PlaceinfoServiceImpl implements PlaceinfoService {
 		return dao.insert(vo);
 	}
 	// ** 파일 업로드
-	public void uploadFile(String originalfileName, String saveFileName, long fileSize, String savePath, int placeid) {
+	public void uploadFile(String originalfileName, String saveFileName, long fileSize, String saveUrl, String savePath, int placeid) {
 		HashMap<String, Object> hm = new HashMap<>();
 		hm.put("origin_nm", originalfileName);
 		hm.put("file_nm", saveFileName);
 		hm.put("file_size", fileSize);
-		hm.put("file_url", savePath);
+		hm.put("file_url", saveUrl);
+		hm.put("file_path", savePath);
 		hm.put("place_id", placeid);
-		
+
 		dao.uploadFile(hm);
 	}
 
 	// ** update
 	public int update(PlaceinfoVO vo) {
 		return dao.update(vo);
+	}
+	// ** 파일 업로드
+	public void updateFile(String originalfileName, String saveFileName, long fileSize, String saveUrl, String savePath, int placeid) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("origin_nm", originalfileName);
+		hm.put("file_nm", saveFileName);
+		hm.put("file_size", fileSize);
+		hm.put("file_url", saveUrl);
+		hm.put("file_path", savePath);
+		hm.put("place_id", placeid);
+
+		dao.updateFile(hm);
 	}
 
 	// ** delete

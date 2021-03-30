@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>LOGIN PAGE</title>
-<link rel="stylesheet" href="resources/myLib/mainCSS.css" type="text/css">
+<link rel="stylesheet" href="resources/myLib/targetCSS.css" type="text/css">
 <script src="resources/myLib/jquery-3.2.1.min.js"></script>
 </head>
 <body>

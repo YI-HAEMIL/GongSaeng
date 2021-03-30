@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypage</title>
-<link rel="stylesheet" href="resources/myLib/mypageCSS.css" type="text/css">
+<link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.0" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script>
 	function calcHeight() {
@@ -16,7 +16,7 @@
 		document.getElementById('mybox').height= the_height;
 	}
 	
-	$('#mybox', parent.document).get(0).contentDocument.location.reload(); 
+	$('#mybox', parent.document).get(0).contentDocument.location.reload();
 </script>
 </head>
 <body>
@@ -46,10 +46,11 @@
 
 <div id="mypagebox" onload="calcHeight()">
 	<c:if test="${group eq 'basic'}">
-	<iframe src="minfo" name="mypagebox" id="mybox" onload="calcHeight()"></iframe>
+		<iframe src="minfo" name="mypagebox" id="mybox" onload="calcHeight()"></iframe>
 	</c:if>
 	<c:if test="${group eq 'business'}">
-	<iframe src="binfo" name="mypagebox" id="mybox" onload="calcHeight()"></iframe>
+	<div id="resultArea"></div>
+		<iframe src="binfo" name="mypagebox" id="mybox" onload="calcHeight()"></iframe>
 	</c:if>
 </div>
 </body>

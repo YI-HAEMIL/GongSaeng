@@ -25,33 +25,37 @@ public class PlaceinfoDAO {
 	
 	// ** selectOne
 	public PlaceinfoVO selectOne(PlaceinfoVO vo) {
-		return sqlSession.selectOne(NS+"selectOne", vo);
+		return sqlSession.selectOne(NS + "selectOne", vo);
 	}
 	// ** 파일 리스트 출력
 	public List<PlacefileVO> getFileList(int placeid) {
 		return sqlSession.selectList(NS + "selectfileList", placeid);
 	}
 	
+	
 	// ** insert
 	public int insert(PlaceinfoVO vo) {
-		return sqlSession.insert(NS+"insert", vo);
+		return sqlSession.insert(NS + "insert", vo);
 	}
 	// ** 파일 업로드
 	public int uploadFile(HashMap<String, Object> hm) {
-		return sqlSession.insert(NS+"uploadFile", hm);
+		return sqlSession.insert(NS + "uploadFile", hm);
 	}
-		
+	
+	
 	// ** update
 	public int update(PlaceinfoVO vo) {
 		return sqlSession.update(NS+"update", vo);
 	}
+	// ** 파일 업데이트
+	public int updateFile(HashMap<String, Object> hm) {
+		return sqlSession.update(NS+"updateFile", hm);
+	}
+	
 	
 	// ** delete
 	public int delete(PlaceinfoVO vo) {
 		return sqlSession.delete(NS+"delete", vo);
 	}
-	
-	
-
 	
 }
