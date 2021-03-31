@@ -32,12 +32,6 @@ function previewImage(targetObj, View_area) {
 			if (!file.type.match(imageType)) {
 				alert('이미지 형식만 업로드 가능합니다. 다시 시도해주세요');
 			} else {
-				
-				var prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
-	            if (prevImg) {
-	                preview.removeChild(prevImg);
-	            }
-	
 				var span = document.createElement('span');
 				span.id = "img_id_" + i;
 				span.style.width = '70px';

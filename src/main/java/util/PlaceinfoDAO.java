@@ -57,5 +57,9 @@ public class PlaceinfoDAO {
 	public int delete(PlaceinfoVO vo) {
 		return sqlSession.delete(NS+"delete", vo);
 	}
+	// ** 파일 삭제
+	public int deleteFile(PlacefileVO fvo) {
+		return sqlSession.delete(NS+"deleteFile", fvo);
+	}
 	
 }

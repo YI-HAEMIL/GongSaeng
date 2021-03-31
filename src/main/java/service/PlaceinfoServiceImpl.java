@@ -67,5 +67,8 @@ public class PlaceinfoServiceImpl implements PlaceinfoService {
 	public int delete(PlaceinfoVO vo) {
 		return dao.delete(vo);
 	}
-	
+	// ** 파일 삭제
+	public int deleteFile(PlacefileVO fvo) {
+		return dao.deleteFile(fvo);
+	}
 }

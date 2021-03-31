@@ -29,22 +29,25 @@
 		INSERT INTO place_file VALUES(
 		#{origin_nm},#{file_nm},#{file_size},#{file_url},#{file_path},#{place_id})
 	</insert>
-	
+
 	<update id="update">
 		UPDATE place_info SET
 		place_nm=#{place_nm},place_loc=#{place_loc},place_size=#{place_size},place_max=#{place_max},
 		place_price=#{place_price},place_con=#{place_con},place_rule=#{place_rule}
 		WHERE place_id=#{place_id}
 	</update>
-	<update id="updateFile" parameterType="HashMap">
+<!-- <update id="updateFile" parameterType="HashMap">
 		UPDATE place_file SET
 		file_nm=#{file_nm},file_size=#{file_size},
 		file_url=#{file_url},file_path=#{file_path},place_id=#{place_id}
 		WHERE origin_nm=#{origin_nm}
-	</update>
+	</update> -->	
 	
 	<delete id="delete">
-		DELETE FROM place_info WHERE place_id=#{place_id}
+		DELETE FROM place_info WHERE place_id=#{place_id} 
+	</delete>
+	<delete id="deleteFile">
+		DELETE FROM place_file WHERE place_id=#{place_id}
 	</delete>
 
 </mapper>

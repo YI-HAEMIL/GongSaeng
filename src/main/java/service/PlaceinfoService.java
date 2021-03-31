@@ -26,5 +26,7 @@ public interface PlaceinfoService {
 
 	// ** delete
 	public int delete(PlaceinfoVO vo);
+	// ** 파일 삭제
+	public int deleteFile(PlacefileVO fvo);
 	
 }

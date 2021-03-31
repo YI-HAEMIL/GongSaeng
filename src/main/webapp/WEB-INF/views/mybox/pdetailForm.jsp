@@ -75,6 +75,7 @@
 					<span id="View_area" style="border: 0px;">
 						<c:forEach var="uploadFile" items="${uploadFileList}">
 							<img src="${uploadFile.file_path}" style="width:70px;height:70px;">
+							<input type="hidden" name="prevImg" value="${uploadFile.file_path}" multiple="multiple"/>
 						</c:forEach>
 					</span>&nbsp;&nbsp;&nbsp;&nbsp;
 				</td>
@@ -82,7 +83,7 @@
 		</table>
 	<br>
 		<input type="submit" class="button" style="text-align: center;" value="장소 정보 수정">&nbsp;&nbsp;
-		<a href="pdelete"><input type="reset"  class="button" style="text-align: center;" value="장소 삭제"></a>
+		<a href="pdelete?place_id=${pVO.place_id}"><input type="button"  class="button" style="text-align: center;" value="장소 삭제"></a>
 	</form>
 	<br>
 </body>
