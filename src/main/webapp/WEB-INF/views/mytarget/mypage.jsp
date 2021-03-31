@@ -25,10 +25,6 @@
 </c:if>
 <div id="tapmenu">
 	<ul>
-		<c:if test="${empty loginID}">
-			<script>alert('로그인이 필요한 서비스입니다')</script>
-			<script>parent.document.location.reload()</script>
-		</c:if>
 		<c:if test="${group eq 'basic'}">
 		<li><a href="minfo" class="thar" target="mypagebox">개인정보수정</a>  
 		<li><a href="" class="thar" target="mypagebox">예약 확인</a> 
