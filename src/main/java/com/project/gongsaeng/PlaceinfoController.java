@@ -102,8 +102,8 @@ public class PlaceinfoController {
 		vo=service.selectOne(vo);
 		if(vo != null) {
 			int placeid=vo.getPlace_id();
-			List<PlacefileVO> uploadFileList = service.getFileList(placeid);
-			mv.addObject("uploadFileList", uploadFileList);
+			List<PlacefileVO> prevImgList = service.getFileList(placeid);
+			mv.addObject("prevImgList", prevImgList);
 			mv.addObject("pVO", vo);
 			mv.setViewName("mybox/pdetailForm");
 		} else {
@@ -123,7 +123,7 @@ public class PlaceinfoController {
 		if (!f1.exists())
 			f1.mkdir(); // 없으면 생성해주기
 
-		List<MultipartFile> prevList = mhsq.getFiles("prevImg");	// 이전 파일
+		List<MultipartFile> prevList = mhsq.getFiles("prevImg"); 	// 예전 파일
 		List<MultipartFile> fileList = mhsq.getFiles("uploadFile"); // 새로 업로드한 파일
 
 		if (fileList.size() > 0 && !fileList.get(0).getOriginalFilename().equals("")) {
@@ -131,7 +131,11 @@ public class PlaceinfoController {
 			service.deleteFile(fvo);
 			
 			for(int i=0; i<prevList.size(); i++) {
-				new File(realPath + prevList.get(i).getName()).delete(); 
+				String genId = UUID.randomUUID().toString();
+				String originalfileName = fileList.get(i).getOriginalFilename();	// 본래 파일명
+				String saveFileName = genId + originalfileName;					// 저장되는 파일명
+				File f = new File(realPath+saveFileName);
+				if(f.exists()) f.delete();
 			}
 			
 			for (int i = 0; i < fileList.size(); i++) {

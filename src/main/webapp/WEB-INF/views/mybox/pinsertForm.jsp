@@ -66,9 +66,9 @@
 					<label for="uploadFile">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="resources/image/imgupicon.png" style="width:70px; height:70px; cursor:pointer;">
 					</label>
-					<input type="file" name="uploadFile" id="uploadFile" multiple="multiple" class="pinput" onchange="previewImage(this, 'View_area')" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="file" name="uploadFile" id="uploadFile" multiple="multiple" class="pinput"
+							onchange="previewImage(this, 'View_area')" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;
 					
-					<span id="View_area" style="border: 0px;"></span>&nbsp;&nbsp;&nbsp;&nbsp;
 					<span id="View_area" style="border: 0px;"></span>&nbsp;&nbsp;&nbsp;&nbsp;
 				</td>
 			</tr>

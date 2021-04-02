@@ -67,17 +67,19 @@
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;장소 이미지<br>(다중 업로드 가능)</td>
 				<td style="text-align:left;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label for="uploadFile">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="resources/image/imgupicon.png" style="width:70px; height:70px; cursor:pointer;">
+					<img src="resources/image/imgupicon.png" id="file_add" style="width:70px; height:70px; cursor:pointer;">
 					</label>
-					<input type="file" name="uploadFile" id="uploadFile" multiple class="pinput" onchange="previewImage(this, 'View_area')" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="file" name="uploadFile" id="uploadFile" multiple class="pinput"
+							onchange="previewImage(this, 'View_area')" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;
 					
-					<span id="View_area" style="border: 0px;">
-						<c:forEach var="uploadFile" items="${uploadFileList}">
-							<img src="${uploadFile.file_path}" style="width:70px;height:70px;">
-							<input type="hidden" name="prevImg" value="${uploadFile.file_path}" multiple="multiple"/>
+ 					<span id="View_area" style="border: 0px;">
+						<c:forEach var="prevImg" items="${prevImgList}">
+							<img src="${prevImg.file_path}" style="width:70px;height:70px;">
+							<input type="hidden" name="prevImg" id="prevImg" value="${prevImg.file_url}"/>
 						</c:forEach>
-					</span>&nbsp;&nbsp;&nbsp;&nbsp;
+					</span>
 				</td>
 			</tr>
 		</table>

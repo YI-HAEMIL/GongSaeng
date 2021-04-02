@@ -1,24 +1,12 @@
-/* 이미지 업로드 및 미리보기 */
-
 var fileArr;
-var fileInfoArr = [];
+var fileInfoArr=[];
 
-/* 썸네일 클릭 시 삭제 */
-function fileRemove(index) {
-	console.log("index: " + index);
-	fileInfoArr.splice(index, 1);
-
-	var imgId = "#img_id_" + index;
-	$(imgId).remove();
-	console.log(fileInfoArr);
-}
-
-/* 썸네일 미리보기 */
+// 썸네일 미리보기
 function previewImage(targetObj, View_area) {
 	$('#View_area').empty();
 	
 	var files = targetObj.files;
-	fileArr = Array.prototype.slice.call(files);
+	fileArr = Array.prototype.slice.call(files); // Object 타입인 files를 Array로 저장하겠다
 
 	var preview = document.getElementById(View_area);
 	
@@ -27,6 +15,7 @@ function previewImage(targetObj, View_area) {
 		for (var i = 0; i < files.length; i++) {
 			var file = files[i];
 			fileInfoArr.push(file);
+			//push 메서드는 배열의 끝에 하나 이상의 요소 추가, 배열의 새로운 길이 반환
 			
 			var imageType = /image.*/; // 이미지 파일일 경우에만 허용
 			if (!file.type.match(imageType)) {
@@ -45,11 +34,9 @@ function previewImage(targetObj, View_area) {
 				img.style.width = 'inherit';
 				img.style.height = 'inherit';
 				img.style.cursor = 'pointer';
-				const idx = i; // for 문에서 다 돌고 나가버려서 변수 따로 선언
-				img.onclick = () => fileRemove(idx); //이미지 클릭했을때 삭제 함수
-				
+				const idx=i;
+				img.onclick=()=>fileRemove(idx);	//이미지 클릭했을때 삭제 함수
 				span.appendChild(img);
-	
 	
 				if (window.FileReader) { // FireFox,Chrome,Opera 확인
 					var reader = new FileReader();
