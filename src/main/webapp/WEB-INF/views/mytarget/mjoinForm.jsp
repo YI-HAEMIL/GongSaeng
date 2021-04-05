@@ -6,10 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>JOIN PAGE</title>
-<link rel="stylesheet" href="resources/myLib/joinCSS.css" type="text/css">
+<link rel="stylesheet" href="resources/myLib/joinCSS.css?ver=1.2" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/gsCheck.js"></script>
 <script>
+	var isRun=false;
+	
 	var iCheck=false;
 	var pCheck=false;
 	var p2Check=false;
@@ -106,6 +108,50 @@
 			}); //ajax
 		}); //idDup click
 	}); //ready
+	
+	/* submit */
+	$(document).on('click', '#minsert', function() {
+		if(isRun == true) { return; } isRun = true;
+		$.ajax({
+			type:'Post',
+			url:'minsert',
+			data:{
+				basicm_id:$('#id').val(),
+				basicm_pwd:$('#password').val(),
+				basicm_nm:$('#name').val(),
+				basicm_pnum:$('#phonenum').val(),
+				basicm_email:$('#email').val()
+			},
+			success:function(resultData){
+				if(resultData.joinSuccess=='T') {
+					alert(resultData.msg);
+					onload=mloginf();
+					isRun=false;
+				} else {
+					alert(resultData.msg);
+					$('#id').focus();
+				}
+			},
+			error:function(){
+				alert("서버 오류 발생, 다시 시도해주세요.");
+			}	
+		}); //ajax
+	});
+	
+	$(document).on('click', '#bjoinf', function() {
+		if(isRun == true) { return; } isRun = true;
+		$.ajax({
+			type:'Get',
+			url:'bjoinf',
+			success:function(resultPage){
+				$('#resultArea').html(resultPage);
+				isRun=false;
+				},
+			error:function(){
+				alert("오류 발생, 다시 시도해주세요.");
+			}	
+		}); //ajax
+	});
 </script>
 </head>
 <body>
@@ -116,7 +162,7 @@
 	MEMBER SIGN IN
 	<hr width=150px><br><br>
 	<div id="joinbox">
-	<form action="minsert" method="post" id="myForm" onsubmit="return validate();">
+	<form action="minsert" method="post">
 		<table id="joint">
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;I D</td>
@@ -158,7 +204,8 @@
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align:center; border-bottom:1px solid #fff;">
-					<input type="submit" class="button" id="submit" value="SUBMIT" disabled='disabled'>&nbsp;&nbsp;
+					<span id="minsert" onclick="validate();"><input type="button" class="button" value="SUBMIT"
+							id="submit" disabled='disabled'></span>&nbsp;&nbsp;
 					<input type="reset"  class="button" value="RESET">
 				</td>
 			</tr>
@@ -168,12 +215,10 @@
 	<br>
 	<div class="txtbox">
 		<br>
-		<span>비즈니스 회원으로 가입하고자 한다면, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<a href="bjoinf" target="section">비즈니스 회원 회원가입</a><br>
-		<span>회원가입이 되어 있다면,
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<a href="mloginf" target="section">일반 회원 로그인</a>
+		<span>시간과 돈을 들여 차근차근 꾸민 공간을 
+		<br>다른 사람과 공유하고 새로운 추억을 쌓을 수 있는 기회.<br></span>
+		<span id="bjoinf" style="text-decoration: underline; color: blue; cursor: pointer;">비즈니스 회원으로 가입</span>
+		<span>해보세요. 다양한 혜택이 있습니다.</span><br>
 	</div>
 </body>
 </html>

@@ -9,7 +9,10 @@
 <link rel="stylesheet" href="resources/myLib/joinCSS.css" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/gsCheck.js"></script>
+<script src="resources/gscript/pageMove.js"></script>
 <script>
+	var isRun=false;
+	
 	var iCheck=false;
 	var pCheck=false;
 	var p2Check=false;
@@ -115,6 +118,51 @@
 			}); //ajax
 		}); //idDup click
 	}); //ready
+	
+	function bloginf(){
+		if(isRun == true) { return; } isRun = true;
+		$.ajax({
+			type:'Get',
+			url:'bloginf',
+			success:function(resultPage){
+				$('#resultArea').html(resultPage);
+				isRun=false;
+				},
+			error:function(){
+				alert("서버 오류 발생, 다시 시도해주세요.");
+			}	
+		}); //ajax
+	}
+	
+	/* submit */
+	$(document).on('click', '#binsert', function() {
+		if(isRun == true) { return; } isRun = true;
+		$.ajax({
+			type:'Post',
+			url:'binsert',
+			data:{
+				bizm_id:$('#id').val(),
+				bizm_pwd:$('#password').val(),
+				bizm_nm:$('#name').val(),
+				bizm_pnum:$('#phonenum').val(),
+				bizm_email:$('#email').val(),
+				bizm_licnum:$('#license').val()
+			},
+			success:function(resultData){
+				if(resultData.joinSuccess=='T') {
+					alert(resultData.msg);
+					onload=bloginf();
+					isRun=false;
+				} else {
+					alert(resultData.msg);
+					$('#id').focus();
+				} 	
+			},
+			error:function(){
+				alert("서버 오류 발생, 다시 시도해주세요.");
+			}	
+		}); //ajax
+	});
 </script>
 </head>
 <body>
@@ -125,7 +173,7 @@
 	BUSINESS MEMBER SIGN IN
 	<hr width=220px><br><br>
 	<div id="joinbox">
-	<form action="binsert" method="post" id="myForm" onsubmit="return validate();">
+	<form action="binsert" method="post">
 		<table id="joint">
 			<tr>
 				<td class="bth">&nbsp;&nbsp;&nbsp;&nbsp;I D</td>
@@ -173,7 +221,8 @@
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align:center; border-bottom:1px solid #fff;">
-					<input type="submit" class="button" value="SUBMIT" id="submit" disabled="disabled">&nbsp;&nbsp;
+					<span id="binsert" onclick="validate();"><input type="button" class="button" value="SUBMIT"
+					id="submit" disabled='disabled'></span>&nbsp;&nbsp;
 					<input type="reset"  class="button" value="RESET">
 				</td>
 			</tr>
@@ -181,14 +230,5 @@
 	</form>
 	</div>
 	<br>
-	<div class="txtbox">
-		<br>
-		<span>일반회원으로 가입하고자 한다면, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<a href="mjoinf" target="section">일반 회원 회원가입</a><br>
-		<span>비즈니스 회원 등록이 되어 있다면,
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<a href="bloginf" target="section">비즈니스 회원 로그인</a>
-	</div>
 </body>
 </html>

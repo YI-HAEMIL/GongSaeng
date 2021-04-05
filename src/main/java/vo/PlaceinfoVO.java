@@ -13,4 +13,5 @@ public class PlaceinfoVO {
 	private String place_price;
 	private String place_con;
 	private String place_rule;
+	private String place_area;
 }

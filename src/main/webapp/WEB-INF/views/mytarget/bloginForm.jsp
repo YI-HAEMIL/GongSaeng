@@ -6,8 +6,36 @@
 <head>
 <meta charset="UTF-8">
 <title>LOGIN PAGE</title>
-<link rel="stylesheet" href="resources/myLib/targetCSS.css" type="text/css">
-<script src="resources/myLib/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="resources/myLib/targetCSS.css?ver=1.2" type="text/css">
+<script src="resources/gscript/jquery-3.2.1.min.js"></script>
+<script>
+var isRun=false;
+/* submit */
+$(document).on('click', '#blogin', function() {
+	if(isRun == true) { return; } isRun = true;
+	$.ajax({
+		type:'Post',
+		url:'blogin',
+		data:{
+			bizm_id:$('#id').val(),
+			bizm_pwd:$('#password').val()
+		},
+		success:function(resultData){
+			if(resultData.loginSuccess=='T') {
+				alert(resultData.msg);
+				location.reload();
+				isRun=false;
+			} else {
+				alert(resultData.msg);
+				$('#id').focus();
+			} 	
+		},
+		error:function(){
+			alert("서버 오류 발생, 다시 시도해주세요.");
+		}	
+	}); //ajax
+});
+</script>
 </head>
 <body>
 <c:if test="${msg != null }">
@@ -19,32 +47,24 @@
 	<div id="loginbox">
         <h4>Business Member Login</h4>
         <span>가입시 입력하신 아이디와 비밀번호로 로그인이 가능합니다.</span><br><br>
-		<form action="blogin" method="post">
 			<table id="logint">
 				<tr>
-					<td><input type="text" name="bizm_id" id="bizm_id" placeholder="ID"><br>
-					<span id="iMessage" class="message"></span></td>
-					<td><input type="submit" class="button" value="LOGIN" onclick="return inCheck()"></td>
+					<td>
+						<input type="text" name="bizm_id" id="id" placeholder="ID"><br>
+						<span id="iMessage" class="message"></span>
+					</td>
+					<td rowspan="2">
+						<span id="blogin"><input type="button" class="button" value="LOGIN" id="login"></span>
+					</td>
 				</tr>
 				<tr>
-					<td><input type="password" name="bizm_pwd" id="bizm_pwd" placeholder="PASSWORD"><br>
-						<span id="pMessage" class="message"></span></td>
-					<td><input type="reset" class="button" value="RESET"></td>
+					<td>
+						<input type="password" name="bizm_pwd" id="password" placeholder="PASSWORD"><br>
+						<span id="pMessage" class="message"></span>
+					</td>
 				</tr>
 			</table>				
-		</form>
 		<br>
-			<div style="display:inline-block; background-color:#f0f0f0; width:500px; height:85px;">
-				<br>
-				<span>일반 회원이시라면, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				<a href="mloginf" target="section">일반 회원 로그인</a><br>
-				<span>비즈니스 회원 등록을 원하신다면, 
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				<a href="bjoinf" target="section">비즈니스 회원 등록</a>
-			</div>
-		<br><br>
 	</div>
 </body>
 </html>

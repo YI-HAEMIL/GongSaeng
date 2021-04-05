@@ -7,41 +7,48 @@
 <link rel="icon" href="resources/image/favicon.png">
 <link rel="stylesheet" href="resources/myLib/mainCSS.css" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
+<script src="resources/gscript/pageMove.js"></script>
 <script type="text/javascript">
-	function calcHeight() {
-		//find the height of the internal page
-		var the_height= document.getElementById('the_iframe').contentWindow.document.body.scrollHeight;
-		//change the height of the iframe
-		document.getElementById('the_iframe').height= the_height; top.location.href = "#";
+	var isRun=false;
+	function main(){
+		if(isRun == true) { return; } isRun = true;
+		$.ajax({
+			type:'Get',
+			url:'mainp',
+		    success : function(resultpage){
+		        $("#resultArea").html(resultpage);
+		        isRun=false;
+		    	},
+			error:function(){
+				alert("서버 오류 발생, 다시 시도해주세요.");
+				}	
+			});
 	}
-	if(top.location != window.location) top.location.reload();
-	if(window.opner) {window.opner.top.location.reload(); self.close;}
+	window.onload=main();
 </script>
 </head>
 <body>
-<c:if test="${msg!=null}">
-	<script>alert('${msg}');</script>
+<c:if test="${msg != null }">
+	<script>alert('${msg}')</script>
 </c:if>
 	<div id="topmenu">
 		<a href="home"><img src="resources/image/gstitle.png" id="logo"></a>
 		<ul>
-			<li><a href="" target="section">All Places</a>
-			<li><a href="" target="section">Search</a>
-			<li><a href="mypage" target="section">My Page</a>
+			<li><span id="">All Places</span>
+			<li><span id="">Search</span>
+			<li><span id="mypage">My Page</span>
 			
 			<c:if test="${empty loginID}"> 
-			<li><a href="mloginf" target="section">Login</a>&nbsp;&nbsp; | &nbsp;&nbsp;
-			<a href="mjoinf" target="section">Join Us</a>
+			<li><span id="mloginbtn">Login</span>&nbsp;&nbsp; | &nbsp;&nbsp;
+			<span id="mjoinf">Join Us</span>
 			</c:if>
 			<c:if test="${loginID != null}"> 
-			<li><a href="logout">Logout</a>
+			<li><span id="logout">Logout</span>
 			</c:if>
 		</ul>
 	</div>
-	<div id="section">
-		<iframe src="mainp" name="section" id="the_iframe" onload="calcHeight(),window.scrollTo(0,0)" height="1"></iframe>
-	</div>
-	<!--  
+	<div id=resultArea style="margin-top:82px;" onload="main()"></div>
+	<!-- 
 	<div id="footer">
 		<hr style="border:0.3px solid #d9d9d9; margin-top:30px;"><br>
 		<a href="managerlogin" id="managerlogin">관리자 페이지 로그인</a><br>

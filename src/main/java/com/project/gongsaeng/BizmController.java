@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import service.BizmService;
 import vo.BizmVO;
@@ -33,16 +32,17 @@ public class BizmController {
 			if(vo.getBizm_pwd().equals(password)) {
 				request.getSession().setAttribute("loginID", vo.getBizm_id());
 				request.getSession().setAttribute("group", group);
+				mv.addObject("loginSuccess", "T");
 				mv.addObject("msg", vo.getBizm_id()+"님, 반갑습니다!");
-				mv.setViewName("home");
 			} else {
+				mv.addObject("loginSuccess", "F");
 				mv.addObject("msg", "비밀번호가 틀렸습니다. 다시 시도해주세요");
-				mv.setViewName("mytarget/bloginForm");
 			}
 		} else {
+			mv.addObject("loginSuccess", "F");
 			mv.addObject("msg", "없는 ID입니다. 다시 입력하시거나 회원가입 해주세요");
-			mv.setViewName("mytarget/bloginForm");
 		}
+		mv.setViewName("jsonView");
 		return mv;
 	} //blogin
 
@@ -69,12 +69,13 @@ public class BizmController {
 	@RequestMapping(value="/binsert")
 	public ModelAndView binsert(ModelAndView mv, BizmVO vo) {
 		if(service.insert(vo) > 0) {
+			mv.addObject("joinSuccess","T");
 			mv.addObject("msg", "회원가입에 성공하였습니다. 로그인 후 이용해주세요");
-			mv.setViewName("mytarget/bloginForm");
 		} else {
+			mv.addObject("joinSuccess","F");
 			mv.addObject("msg", "회원가입에 실패하였습니다. 다시 시도해주세요");
-			mv.setViewName("mytarget/mjoinForm");
 		}
+		mv.setViewName("jsonView");
 		return mv;
 	} //binsert
 	
@@ -95,35 +96,36 @@ public class BizmController {
 		return mv;
 	} //binfo
 	
-	@RequestMapping(value="/bupdate")
-	public ModelAndView bupdate(ModelAndView mv, BizmVO vo, RedirectAttributes rttr) {
-		if(service.update(vo) > 0) {
-			rttr.addFlashAttribute("msg","정상적으로 수정되었습니다.");
+	@RequestMapping(value = "/bupdate")
+	public ModelAndView bupdate(ModelAndView mv, BizmVO vo) {
+		if (service.update(vo) > 0) {
+			mv.addObject("updateSuccess", "T");
+			mv.addObject("msg", "정상적으로 수정되었습니다");
 		} else {
-			rttr.addFlashAttribute("msg", "정보 수정에 실패하였습니다. 다시 시도해주세요");
+			mv.addObject("updateSuccess", "F");
+			mv.addObject("msg", "정보 수정에 실패하였습니다. 다시 시도해주세요");
 		}
-		mv.setViewName("redirect:binfo");
+		mv.setViewName("jsonView");
 		return mv;
-	} //bupdate
+	} // bupdate
 	
 	@RequestMapping(value="/bdelete")
-	public ModelAndView bdelete(HttpServletRequest request, ModelAndView mv, BizmVO vo, RedirectAttributes rttr) {
+	public ModelAndView bdelete(HttpServletRequest request, ModelAndView mv, BizmVO vo) {
 		HttpSession session = request.getSession(false);
 		if(session != null && session.getAttribute("loginID") != null) {
-			vo.setBizm_id((String)session.getAttribute("loginID"));
-			
-			if(service.delete(vo) > 0) {
+			if(service.delete(vo)>0) {
 				session.invalidate();
+				mv.addObject("deleteSuccess", "T");
 				mv.addObject("msg", "정상적으로 탈퇴되었습니다. 개인정보는 안전하게 삭제됩니다");
-				mv.setViewName("home"); 
 			} else {
-				rttr.addFlashAttribute("msg", "회원 탈퇴에 실패하였습니다. 다시 시도해주세요");
-				mv.setViewName("redirect:binfo");
-			} 
+				mv.addObject("deleteSuccess", "F");
+				mv.addObject("msg", "회원 탈퇴에 실패하였습니다. 다시 시도해주세요");
+			}
 		} else {
+			mv.addObject("deleteSuccess", "F");
 			mv.addObject("msg", "잘못된 접근입니다. 다시 시도해주세요");
-			mv.setViewName("home");
 		}
+		mv.setViewName("jsonView");
 		return mv;
 	} //bdelete
 }

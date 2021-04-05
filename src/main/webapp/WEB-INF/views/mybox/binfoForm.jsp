@@ -10,6 +10,8 @@
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/gsCheck.js"></script>
 <script>
+	var isRun=false;
+	
 	var pCheck=false;
 	var p2Check=false;
 	var nCheck=false;
@@ -66,6 +68,62 @@
 			return false;
 		}
 	} //validate
+	
+	/* update */
+	$(document).on('click', '#bupdate', function() {
+		if(isRun == true) { return; } isRun = true;
+		$.ajax({
+			type:'Post',
+			url:'bupdate',
+			data:{
+				bizm_id:$('#id').val(),
+				bizm_pwd:$('#password').val(),
+				bizm_nm:$('#name').val(),
+				bizm_pnum:$('#phonenum').val(),
+				bizm_email:$('#email').val(),
+				bizm_licnum:$('#licensenum').val()
+			},
+			success:function(resultData){
+				if(resultData.updateSuccess=='T') {
+					alert(resultData.msg);
+					onload=binfo();
+					isRun=false;
+				} else {
+					alert(resultData.msg);
+					$('#id').focus();
+				} 	
+			},
+			error:function(){
+				alert("서버 오류 발생, 다시 시도해주세요.");
+			}	
+		}); //ajax
+	});
+	
+	/* delete */
+	$(document).on('click', '#bdelete', function(){
+		if(isRun == true) { return; } isRun = true;
+		$.ajax({
+			type:'Post',
+			url:'bdelete',
+			data:{
+				bizm_id:$('#id').val(),
+			},
+			success:function(resultData){
+				if(resultData.deleteSuccess=='T') {
+					alert(resultData.msg);
+					location.reload();
+					isRun=false;
+				} else {
+					alert(resultData.msg);
+					location.reload();
+				} 	
+			},
+			error:function(){
+				alert("서버 오류 발생, 다시 시도해주세요.");
+			}	
+		}); //ajax
+	})
+
 </script>
 </head>
 <body>
@@ -128,8 +186,11 @@
 		</tr>
 	</table>
 	<br>
-		<input type="submit" class="button" style="text-align: center;" value="회원 정보 수정">&nbsp;&nbsp;
-		<a href="bdelete"><input type="button" class="button" src="bdelete" value="회원 탈퇴" style="text-align: center;" onclick="return validate()"></a>
+		<span id="bupdate"><input type="button" class="button" style="text-align: center;"
+		value="회원 정보 수정" onclick="validate();"></span>
+		&nbsp;&nbsp;
+		<span id="bdelete"><input type="button" class="button" style="text-align: center;"
+		value="회원 탈퇴" onclick="validate();"></span>
 	</form>
 	<br>
 </body>

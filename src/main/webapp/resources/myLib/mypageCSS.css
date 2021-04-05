@@ -3,45 +3,39 @@ body{
 	margin:0 auto;
 	text-align:center;
 	font-family:Roboto, Spoqa Han Sans Neo Medium;
-	overflow:inherit;
+	float:none;
 }
 
 #mypagebox{
 	display:inline-block;
 	border:1px solid #bba3c9;
 	width:1080px;
-	/*height:100%;*/
-	margin-top:-5px;
-	margin-bottom: 30px;
-}
-
-iframe{
-	display:inline-block;
-	border: none;
-	width:100%;
+	margin:82px 0px 30px -500px;
+	position:absolute;
 }
 
 #tapmenu{
 	display:inline-block;
 	width: 1080px;
-	margin-left:-82px;
 	margin-top:15px;
+	margin-left:-540px;
+	position:absolute;
 }
-ul{
+#tapmenu ul{
 	list-style: none;
 	line-height: 50px;
 }
-a{
+#tapmenu a{
 	text-decoration: none;
 	color:#000;
 }
-a:visited{
+#tapmenu a:visited{
 	color:#000;
 }
 
-a.thar{
+#tapmenu a.thar{
+	margin-right:20px;
 	width:130px;
-	margin-right:15px;
 	border-radius: 20px 20px 0 0;
 	border: 1px solid #bba3c9;
 	background-color:none;
@@ -53,15 +47,15 @@ a.thar{
 	text-transform: uppercase;
 }
 
-a.thar::after {
+#tapmenu a.thar::after {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 
-a.thar::before,
-a.thar::after {
+#tapmenu a.thar::before,
+#tapmenu a.thar::after {
   background-color: #bba3c9;
   border-radius: 20px 20px 0 0;
   content: '';
@@ -69,18 +63,18 @@ a.thar::after {
   z-index: -1;
 }
 
-a.thar:hover {
+#tapmenu a.thar:hover {
   color: #fff;
 }
 
-a.thar::after {
+#tapmenu a.thar::after {
   height: 0;
   left: 0;
   bottom: 0;
   width: 100%;
 }
 
-a.thar:hover:after {
+#tapmenu a.thar:hover:after {
   height: 100%;
 }
 
@@ -178,6 +172,27 @@ textarea{
 .pinput{
 	width: 500px;
 	height: 30px;
+	border-style: solid;
+	border-color: #e9ebf2;
+	font-family:AppleSDGothicNeoM00;
+}
+
+#sizenum1, #sizenum2, #max, #price {
+	width:150px;
+	margin-left:30px;
+}
+
+#sizeunit{
+	width: 130px;
+	height:30px;
+	border-style: solid;
+	border-color: #e9ebf2;
+	font-family:AppleSDGothicNeoM00;
+}
+
+#areaU, #areaD {
+	width: 160px;
+	height:30px;
 	border-style: solid;
 	border-color: #e9ebf2;
 	font-family:AppleSDGothicNeoM00;

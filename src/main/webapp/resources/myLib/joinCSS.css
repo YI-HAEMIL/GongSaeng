@@ -105,8 +105,11 @@ input {
 	margin-bottom:10px;
 	display:inline-block;
 	background-color:#f0f0f0;
-	width:650px; height:85px;
+	width:650px; height:100px;
 	font-family:AppleSDGothicNeoM00
+}
+.txtbox span{
+	margin-top:10px;
 }
 
 

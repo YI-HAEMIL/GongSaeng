@@ -20,14 +20,14 @@ body{
 }
 #logo{
 	margin-top:20px;
-	margin-left:40px;
+	margin-left:60px;
 	width:103px;
 	height:45px;
 	float:left;
 	position:absolute;
 }
 
-#topmenu a {
+#topmenu span {
 	cursor:pointer;
 	text-decoration:none;
 	color:#9e37d1;
@@ -35,13 +35,13 @@ body{
 	height:100%;
 }
 #topmenu a:hover{color:#727272}
-ul{
+#topmenu ul{
 	margin-right: 80px;
 	list-style: none;
 	line-height: 50px;
 	float:right;
 }
-ul li {
+#topmenu ul li {
 	cursor:pointer;
 	color:#4b6b50;
 	float: left;

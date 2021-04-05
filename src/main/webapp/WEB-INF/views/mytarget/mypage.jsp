@@ -6,18 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypage</title>
-<link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.0" type="text/css">
+<link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.5" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
-<script>
-	function calcHeight() {
-		//find the height of the internal page
-		var the_height= document.getElementById('mybox').contentWindow.document.body.scrollHeight;
-		//change the height of the iframe
-		document.getElementById('mybox').height= the_height;
-	}
-	
-	$('#mybox', parent.document).get(0).contentDocument.location.reload();
-</script>
+<script src="resources/gscript/pageMove2.js?ver=1.0"></script>
 </head>
 <body>
 <c:if test="${msg!=null}">
@@ -26,28 +17,24 @@
 <div id="tapmenu">
 	<ul>
 		<c:if test="${group eq 'basic'}">
-		<li><a href="minfo" class="thar" target="mypagebox">개인정보수정</a>  
-		<li><a href="" class="thar" target="mypagebox">예약 확인</a> 
-		<li><a href="" class="thar" target="mypagebox">내가 쓴 글</a>
-		<li><a href="" class="thar" target="mypagebox">북마크 관리</a>
+		<li><span id="minfobtn"><a class="thar">개인정보수정</a></span>
+		<li><span id=""><a class="thar">예약 확인</a></span> 
+		<li><span><a class="thar">내가 쓴 글</a></span>
+		<li><span><a class="thar">북마크 관리</a></span>
 		</c:if>
 		<c:if test="${group eq 'business'}">
-		<li><a href="binfo" class="thar" target="mypagebox">개인정보수정</a>  
-		<li><a href="" class="thar" target="mypagebox">예약 확인</a> 
-		<li><a href="pinsertf" class="thar" target="mypagebox">장소 등록</a>
-		<li><a href="pdetail" class="thar" target="mypagebox">장소 수정 및 삭제</a>
+		<li><span id="binfobtn"><a class="thar">개인정보수정</a></span>  
+		<li><span id=""><a class="thar">예약 확인</a></span>  
+		<li><span id="pinsertbtn"><a class="thar">장소 등록</a></span>  
+		<li><span id="pdetailbtn"><a class="thar">장소 수정 및 삭제</a></span>  
 		</c:if>
 	</ul>
 </div>
 
-<div id="mypagebox" onload="calcHeight()">
-	<c:if test="${group eq 'basic'}">
-		<iframe src="minfo" name="mypagebox" id="mybox" onload="calcHeight()"></iframe>
-	</c:if>
-	<c:if test="${group eq 'business'}">
-	<div id="resultArea"></div>
-		<iframe src="binfo" name="mypagebox" id="mybox" onload="calcHeight()"></iframe>
-	</c:if>
+<div id="mypagebox">
+	<c:if test="${group eq 'basic'}"><script>onload=minfo()</script></c:if>
+	<c:if test="${group eq 'business'}"><script>onload=binfo();</script></c:if>
 </div>
+<br>
 </body>
 </html>

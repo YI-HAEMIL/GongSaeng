@@ -29,13 +29,14 @@
 	</beans:bean>
 	<!-- maxUploadSize -1: 크기 무제한 -->
 	
-	<!-- JsonView -->
-	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView" />
-	<beans:bean id="viewResolver"
-			class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	<!-- JsonView 한글 처리 해줘야함-->
+	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView">
+		<beans:property name="contentType" value="application/json;charset=UTF-8"/>
+	</beans:bean>
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="1"></beans:property>
 	</beans:bean>
-	
+
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl" />
@@ -62,18 +63,11 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/"/>
-			<mvc:exclude-mapping path="/home"/>
-			<mvc:exclude-mapping path="/mainp"/>
-			<mvc:exclude-mapping path="/mloginf"/>
-			<mvc:exclude-mapping path="/bloginf"/>
-			<mvc:exclude-mapping path="/mlogin"/>
-			<mvc:exclude-mapping path="/blogin"/>
-			<mvc:exclude-mapping path="/mjoinf"/>
-			<mvc:exclude-mapping path="/bjoinf"/>
-			<mvc:exclude-mapping path="/mjoin"/>
-			<mvc:exclude-mapping path="/bjoin"/>
+			<mvc:mapping path="/mypage"/>
+			<mvc:mapping path="/pinsert"/>
+			<mvc:mapping path="/pdetail"/>
+			<mvc:mapping path="/minfo"/>
+			<mvc:mapping path="/binfo"/>
 			
 			<!-- 경로 지정 후 빈 등록 -->
 			<beans:ref bean="loginInterceptor"/>

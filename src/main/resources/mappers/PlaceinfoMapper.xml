@@ -23,7 +23,7 @@
 		</selectKey>
 		INSERT INTO place_info VALUES(
 		#{place_id},#{place_nm},#{bizm_id},#{place_loc},#{place_size},#{place_max},
-		#{place_price},#{place_con},#{place_rule})
+		#{place_price},#{place_con},#{place_rule},#{place_area})
 	</insert>
 	<insert id="uploadFile" parameterType="HashMap">
 		INSERT INTO place_file VALUES(
@@ -33,7 +33,7 @@
 	<update id="update">
 		UPDATE place_info SET
 		place_nm=#{place_nm},place_loc=#{place_loc},place_size=#{place_size},place_max=#{place_max},
-		place_price=#{place_price},place_con=#{place_con},place_rule=#{place_rule}
+		place_price=#{place_price},place_con=#{place_con},place_rule=#{place_rule},place_area=#{place_area}
 		WHERE place_id=#{place_id}
 	</update>
 	

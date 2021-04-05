@@ -48,6 +48,8 @@ public class PlaceinfoController {
 		vo.setBizm_id((String)session.getAttribute("loginID"));
 		
 		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+		
 		File f1 = new File(realPath);
 		if (!f1.exists())
 			f1.mkdir(); // 없으면 생성해주기
@@ -56,9 +58,9 @@ public class PlaceinfoController {
 		
 		// 이미지 넣었는지 체크 먼저해주고 인서트 진행
 		if (fileList.size() < 1 && fileList.get(0).getOriginalFilename().equals("")) {
+			mv.addObject("insertSuccess", "F");
 			mv.addObject("msg", "이미지는 한 개 이상 선택해줘야 합니다");
-			mv.setViewName("mybox/pinsertForm");
-			
+
 		} else if (service.insert(vo) > 0) { // 정보 인서트
 			
 			// 다중 이미지 업로드 (placeid를 받아와야 해서 정보가 먼저 insert 되어야 가능)
@@ -80,15 +82,14 @@ public class PlaceinfoController {
 				// DB 업로드 > 서비스에서 처리
 			} //for
 			
-			rttr.addFlashAttribute("msg", "장소 등록이 정상적으로 처리되었습니다.");
-			mv.setViewName("redirect:pdetail");
+			mv.addObject("msg", "장소 등록이 정상적으로 처리되었습니다.");
 
 		} else {	// 정보 인서트 실패
-			
+			mv.addObject("insertSuccess", "F");
 			mv.addObject("msg", "장소 등록에 실패하였습니다. 다시 시도해주세요");
-			mv.setViewName("mybox/pinsertForm");
 		}
 
+		mv.setViewName("jsonView");
 		return mv;
 		
 	} //pinsert
@@ -102,8 +103,16 @@ public class PlaceinfoController {
 		vo=service.selectOne(vo);
 		if(vo != null) {
 			int placeid=vo.getPlace_id();
+			
+			String[] area = vo.getPlace_area().split(",");
+			mv.addObject("area", area);
+
+			String[] size = vo.getPlace_size().split("/");
+			mv.addObject("size", size);
+
 			List<PlacefileVO> prevImgList = service.getFileList(placeid);
 			mv.addObject("prevImgList", prevImgList);
+			
 			mv.addObject("pVO", vo);
 			mv.setViewName("mybox/pdetailForm");
 		} else {
@@ -118,64 +127,68 @@ public class PlaceinfoController {
 			PlaceinfoVO vo, PlacefileVO fvo, RedirectAttributes rttr) throws IllegalStateException, IOException {
 
 		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 
 		File f1 = new File(realPath);
 		if (!f1.exists())
 			f1.mkdir(); // 없으면 생성해주기
 
-		List<MultipartFile> prevList = mhsq.getFiles("prevImg"); 	// 예전 파일
 		List<MultipartFile> fileList = mhsq.getFiles("uploadFile"); // 새로 업로드한 파일
-
-		if (fileList.size() > 0 && !fileList.get(0).getOriginalFilename().equals("")) {
-			int placeid = vo.getPlace_id();		// 장소번호(FK) 넣어주기
-			service.deleteFile(fvo);
-			
-			for(int i=0; i<prevList.size(); i++) {
-				String genId = UUID.randomUUID().toString();
-				String originalfileName = fileList.get(i).getOriginalFilename();	// 본래 파일명
-				String saveFileName = genId + originalfileName;					// 저장되는 파일명
-				File f = new File(realPath+saveFileName);
-				if(f.exists()) f.delete();
-			}
-			
-			for (int i = 0; i < fileList.size(); i++) {
-				// 업로드 파일 중 없는 파일은 인서트 해주기
-				String genId = UUID.randomUUID().toString();
-				String originalfileName = fileList.get(i).getOriginalFilename(); // 본래 파일명
-
-				String saveFileName = genId + originalfileName; 				// 저장되는 파일명
-				String saveUrl = realPath + saveFileName;						// 실제 저장될 파일 경로 (url)
-				String savePath = "resources/placeImg/" + saveFileName;			// 이클립스 내 파일 경로
-				long fileSize = fileList.get(i).getSize(); 						// 파일 사이즈
-
-				fileList.get(i).transferTo(new File(saveUrl));					// 파일 실제 경로에 저장
-
-				service.uploadFile(originalfileName, saveFileName, fileSize, saveUrl, savePath, placeid); // 새로 업로드
-			}
-		}
-		
 		
 		if(service.update(vo) > 0) {
-			rttr.addFlashAttribute("msg", "장소 정보 수정이 정상적으로 처리되었습니다");
-			mv.setViewName("redirect:pdetail");
+			if (fileList.size() > 0 && !fileList.get(0).getOriginalFilename().equals("")) {
+				int placeid = vo.getPlace_id();		// 장소번호(FK) 넣어주기
+				List<PlacefileVO> prevImgList = service.getFileList(placeid);
+				
+				service.deleteFile(fvo);	// DB에서 삭제
+				
+				for(int i=0; i<prevImgList.size(); i++) {
+					File f = new File(prevImgList.get(i).getFile_url());
+					if(f.exists()) f.delete();
+				}
+				
+				for (int i = 0; i < fileList.size(); i++) {
+					// 업로드 파일 중 없는 파일은 인서트 해주기
+					String genId = UUID.randomUUID().toString();
+					String originalfileName = fileList.get(i).getOriginalFilename(); // 본래 파일명
+
+					String saveFileName = genId + originalfileName; 				// 저장되는 파일명
+					String saveUrl = realPath + saveFileName;						// 실제 저장될 파일 경로 (url)
+					String savePath = "resources/placeImg/" + saveFileName;			// 이클립스 내 파일 경로
+					long fileSize = fileList.get(i).getSize(); 						// 파일 사이즈
+
+					fileList.get(i).transferTo(new File(saveUrl));					// 파일 실제 경로에 저장
+
+					service.uploadFile(originalfileName, saveFileName, fileSize, saveUrl, savePath, placeid); // 새로 업로드
+				}
+			}
+			mv.addObject("updateSuccess","T");
+			mv.addObject("msg", "장소 정보 수정이 정상적으로 처리되었습니다");
 		} else {
-			rttr.addFlashAttribute("msg", "장소 정보 수정에 실패하였습니다. 다시 시도해주세요");
-			mv.setViewName("redirect:pdetail");
+			mv.addObject("updateSuccess","F");
+			mv.addObject("msg", "장소 정보 수정에 실패하였습니다. 다시 시도해주세요");
 		}
+		mv.setViewName("jsonView");
 		return mv;
 	}
 	
 	@RequestMapping(value="/pdelete")
-	public ModelAndView pdelete(ModelAndView mv, PlaceinfoVO vo, RedirectAttributes rttr) {
-
-		if (service.delete(vo) > 0) {
-			mv.addObject("msg", "장소 삭제가 정상적으로 처리되었습니다");
-			mv.setViewName("home");
-		} else {
-			rttr.addFlashAttribute("msg", "장소 정보 삭제에 실패하였습니다. 다시 시도해주세요");
-			mv.setViewName("redirect:pdetail");
+	public ModelAndView pdelete(ModelAndView mv, PlaceinfoVO vo, PlacefileVO fvo, RedirectAttributes rttr) {
+		
+		List<PlacefileVO> prevImgList = service.getFileList(vo.getPlace_id());
+		for(int i=0; i<prevImgList.size(); i++) {
+			File f = new File(prevImgList.get(i).getFile_url());
+			if(f.exists()) f.delete();
 		}
 
+		if (service.delete(vo) > 0 && prevImgList.isEmpty()) {
+			mv.addObject("deleteSuccess", "T");
+			mv.addObject("msg", "장소 삭제가 정상적으로 처리되었습니다");
+		} else {
+			mv.addObject("deleteSuccess", "F");
+			mv.addObject("msg", "장소 정보 삭제에 실패하였습니다. 다시 시도해주세요");
+		}
+		mv.setViewName("jsonView");
 		return mv;
 	}
 
