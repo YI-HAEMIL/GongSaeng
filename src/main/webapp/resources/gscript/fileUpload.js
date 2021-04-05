@@ -3,6 +3,9 @@ var isRun = false;
 var fileArr;
 var fileInfoArr=[];
 
+// tapmenu css 변환
+
+
 // 주소 selectbox
 function areaChange(e) {
 	var north = ["서촌","북촌/익선동","성북구","혜화","부암동","동대문"];
@@ -26,6 +29,7 @@ function areaChange(e) {
 	}
 }
 
+// select box 2개, size input 2개 value 합치기
 function getsValue(){
 	var areaU=$("#areaU option:selected").val();
 	var areaD=$("#areaD option:selected").val();
@@ -57,7 +61,43 @@ function calcSize(chk){
 	  }
 }
 
+// detail 페이지에서 selected 설정
+function setSelect(value) {
+	if (value) {
+		var str = value;
+		console.log(str);
+		$("#areaU").val(str).prop("selected", true);
+		
+		var north = ["서촌","북촌/익선동","성북구","혜화","부암동","동대문"];
+		var south = ["청담/삼성동","신사/압구정","강남/양재","고터/반포"];
+		var west = ["한남","이태원","연남동","망원/서교","신촌","용산","문래동"];
+		var east = ["성수","잠실","건대","강동구"];
+		var carea = ["수원","성남","판교","파주","송도","하남"];
+			
+		if(str=="A") var d = north;
+		else if(str=="B") var d = south;
+		else if(str=="C") var d = west;
+		else if(str=="D") var d = east;
+		else if(str=="E") var d = carea;
+			
+		for(x in d){
+			var opt = document.createElement("option");
+			opt.value=d[x];
+			opt.innerHTML=d[x];
+			$('#areaD').append(opt);
+		}
+	}
+}
+function setSelect2(value) {
+	if (value) {
+		var str2 = value;
+		console.log(str2);
+		$("#areaD").val(str2).prop("selected", true);
+	}
+}
+
 // -----------------------------------------------------------------------------------------
+
 // 파일 삭제
 /*
 function fileRemove(index) {
@@ -139,7 +179,7 @@ function pinsert() {
     var data=new FormData($('#myplacein')[0]);
  	
     $.ajax({
-        type:"POST",
+        type:"Post",
         url: "pinsert",
         data: data,
         processData:false,
@@ -148,15 +188,16 @@ function pinsert() {
 		success:function(resultData){
 			if(resultData.insertSuccess=='T') {
 				alert(resultData.msg);
-				onload=pdetail();
-				isRun=false;
+				$('#mypagebox').load('pdetail');
 			} else {
 				alert(resultData.msg);
-				$('#name').focus();
-			} 	
+				$('#mypagebox').load('pinsertf');
+			}
+			isRun=false;
 		},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			$('#mypagebox').load('pinsertf');
 		}	
     });
 }
@@ -172,7 +213,7 @@ function pupdate(){
 	if(isRun == true) { return; } isRun = true;
 	 var data=new FormData($('#myplaceup')[0]);
 	$.ajax({
-        type:"POST",
+        type:"Post",
         url: "pupdate",
         data: data,
         processData:false,
@@ -181,15 +222,16 @@ function pupdate(){
 		success:function(resultData){
 			if(resultData.updateSuccess=='T') {
 				alert(resultData.msg);
-				onload=pdetail();
-				isRun=false;
+				$('#mypagebox').load('pdetail');
 			} else {
 				alert(resultData.msg);
-				$('#name').focus();
-			} 	
+				$('#mypagebox').load('pdetail');
+			}
+			isRun=false;
 		},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			$('#mypagebox').load('pdetail');
 		}	
     });
 }
@@ -201,23 +243,25 @@ $(document).on('click', '#pdelete-submit', function(){
 function pdelete(){
 	if(isRun == true) { return; } isRun = true;
 	$.ajax({
-		type:'POST',
+		type:'Get',
 		url:'pdelete',
+		enctype:'application/x-www-form-urlencoded',
 		data:{
 			place_id:$('#id').val()
 		},
 		success:function(resultData){
 			if(resultData.deleteSuccess=='T') {
 				alert(resultData.msg);
-				onload=pinsert();
-				isRun=false;
+				location.reload();
 			} else {
 				alert(resultData.msg);
-				$('#id').focus();
-			} 	
+				location.reload();
+			}
+			isRun=false;
 		},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			$('#mypagebox').load('pdetail');
 		}	
 	}); //ajax
 }

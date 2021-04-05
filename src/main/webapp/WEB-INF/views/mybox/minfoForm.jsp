@@ -86,15 +86,16 @@
 			success:function(resultData){
 				if(resultData.updateSuccess=='T') {
 					alert(resultData.msg);
-					onload=minfo();
-					isRun=false;
+					$('#mypagebox').load('minfo');
 				} else {
 					alert(resultData.msg);
-					$('#id').focus();
+					$('#mypagebox').load('minfo');
 				} 	
+				isRun=false;
 			},
 			error:function(){
 				alert("서버 오류 발생, 다시 시도해주세요.");
+				$('#mypagebox').load('minfo');
 			}	
 		}); //ajax
 	});
@@ -103,7 +104,7 @@
 	$(document).on('click', '#mdelete', function(){
 		if(isRun == true) { return; } isRun = true;
 		$.ajax({
-			type:'Post',
+			type:'Get',
 			url:'mdelete',
 			data:{
 				basicm_id:$('#id').val(),
@@ -112,14 +113,15 @@
 				if(resultData.deleteSuccess=='T') {
 					alert(resultData.msg);
 					location.reload();
-					isRun=false;
 				} else {
 					alert(resultData.msg);
-					location.reload();
+					$('#mypagebox').load('minfo');
 				} 	
+				isRun=false;
 			},
 			error:function(){
 				alert("서버 오류 발생, 다시 시도해주세요.");
+				$('#mypagebox').load('minfo');
 			}	
 		}); //ajax
 	})
@@ -179,11 +181,11 @@
 			</tr>
 		</table>
 		<br>
-		<span id="mupdate" onclick="validate();"><input type="button" class="button" style="text-align: center;"
-		value="회원 정보 수정"></span>
+		<span id="mupdate"><input type="button" class="button" style="text-align: center;"
+		value="회원 정보 수정" onclick="validate()"></span>
 		&nbsp;&nbsp;
-		<span id="mdelete" onclick="validate();"><input type="button" class="button" style="text-align: center;"
-		value="회원 탈퇴"></span>
+		<span id="mdelete"><input type="button" class="button" style="text-align: center;"
+		value="회원 탈퇴" onclick="validate()"></span>
 	</form>	
 	<br>
 </body>

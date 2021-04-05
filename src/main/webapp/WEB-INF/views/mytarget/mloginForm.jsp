@@ -13,7 +13,7 @@ var isRun=false;
 $(document).on('click', '#mlogin', function() {
 	if(isRun == true) { return; } isRun = true;
 	$.ajax({
-		type:'Post',
+		type:'Get',
 		url:'mlogin',
 		data:{
 			basicm_id:$('#id').val(),
@@ -26,11 +26,12 @@ $(document).on('click', '#mlogin', function() {
 				isRun=false;
 			} else {
 				alert(resultData.msg);
-				$('#id').focus();
+				$('#resultArea').load('mloginf');
 			} 	
 		},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			$('#resultArea').load('mloginf');
 		}	
 	}); //ajax
 });
@@ -49,6 +50,7 @@ function bloginf(){
 			},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			$('#resultArea').load('mloginf');
 		}	
 	}); //ajax
 }

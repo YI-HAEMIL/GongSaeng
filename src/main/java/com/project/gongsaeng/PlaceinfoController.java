@@ -40,15 +40,15 @@ public class PlaceinfoController {
 	} //pinsertf
 	
 	@RequestMapping(value="/pinsert")
-	public ModelAndView pinsert(HttpServletRequest request, MultipartHttpServletRequest mhsq, ModelAndView mv,
-			PlaceinfoVO vo, RedirectAttributes rttr) throws IllegalStateException, IOException {
+	public ModelAndView pinsert(HttpServletRequest request, MultipartHttpServletRequest mhsq,
+			ModelAndView mv, PlaceinfoVO vo) throws IllegalStateException, IOException {
 		
 		// 로그인 한 아이디 = bizm_id
 		HttpSession session = request.getSession(false);
 		vo.setBizm_id((String)session.getAttribute("loginID"));
 		
-		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
-//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 		
 		File f1 = new File(realPath);
 		if (!f1.exists())
@@ -123,11 +123,11 @@ public class PlaceinfoController {
 	}
 	
 	@RequestMapping(value="/pupdate")
-	public ModelAndView pupdate(HttpServletRequest request, MultipartHttpServletRequest mhsq, ModelAndView mv,
-			PlaceinfoVO vo, PlacefileVO fvo, RedirectAttributes rttr) throws IllegalStateException, IOException {
+	public ModelAndView pupdate(HttpServletRequest request, MultipartHttpServletRequest mhsq,
+			ModelAndView mv, PlaceinfoVO vo, PlacefileVO fvo) throws IllegalStateException, IOException {
 
-		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
-//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 
 		File f1 = new File(realPath);
 		if (!f1.exists())
@@ -173,7 +173,7 @@ public class PlaceinfoController {
 	}
 	
 	@RequestMapping(value="/pdelete")
-	public ModelAndView pdelete(ModelAndView mv, PlaceinfoVO vo, PlacefileVO fvo, RedirectAttributes rttr) {
+	public ModelAndView pdelete(ModelAndView mv, PlaceinfoVO vo, PlacefileVO fvo) {
 		
 		List<PlacefileVO> prevImgList = service.getFileList(vo.getPlace_id());
 		for(int i=0; i<prevImgList.size(); i++) {
@@ -181,7 +181,7 @@ public class PlaceinfoController {
 			if(f.exists()) f.delete();
 		}
 
-		if (service.delete(vo) > 0 && prevImgList.isEmpty()) {
+		if (service.delete(vo) > 0) {
 			mv.addObject("deleteSuccess", "T");
 			mv.addObject("msg", "장소 삭제가 정상적으로 처리되었습니다");
 		} else {

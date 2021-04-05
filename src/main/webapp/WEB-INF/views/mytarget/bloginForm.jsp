@@ -14,7 +14,7 @@ var isRun=false;
 $(document).on('click', '#blogin', function() {
 	if(isRun == true) { return; } isRun = true;
 	$.ajax({
-		type:'Post',
+		type:'Get',
 		url:'blogin',
 		data:{
 			bizm_id:$('#id').val(),
@@ -27,11 +27,13 @@ $(document).on('click', '#blogin', function() {
 				isRun=false;
 			} else {
 				alert(resultData.msg);
+				$('#resultArea').load('bloginf');
 				$('#id').focus();
 			} 	
 		},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			$('#resultArea').load('bloginf');
 		}	
 	}); //ajax
 });

@@ -86,15 +86,16 @@
 			success:function(resultData){
 				if(resultData.updateSuccess=='T') {
 					alert(resultData.msg);
-					onload=binfo();
-					isRun=false;
+					$('#mypagebox').load('binfo');
 				} else {
 					alert(resultData.msg);
-					$('#id').focus();
+					$('#mypagebox').load('binfo');
 				} 	
+				isRun=false;
 			},
 			error:function(){
 				alert("서버 오류 발생, 다시 시도해주세요.");
+				$('#mypagebox').load('binfo');
 			}	
 		}); //ajax
 	});
@@ -103,7 +104,7 @@
 	$(document).on('click', '#bdelete', function(){
 		if(isRun == true) { return; } isRun = true;
 		$.ajax({
-			type:'Post',
+			type:'Get',
 			url:'bdelete',
 			data:{
 				bizm_id:$('#id').val(),
@@ -112,14 +113,15 @@
 				if(resultData.deleteSuccess=='T') {
 					alert(resultData.msg);
 					location.reload();
-					isRun=false;
 				} else {
 					alert(resultData.msg);
-					location.reload();
-				} 	
+					$('#mypagebox').load('binfo');
+				}
+				isRun=false;
 			},
 			error:function(){
 				alert("서버 오류 발생, 다시 시도해주세요.");
+				$('#mypagebox').load('binfo');
 			}	
 		}); //ajax
 	})
@@ -131,7 +133,7 @@
 	<script>alert('${msg}');</script>
 </c:if>
 	<br><p>회원정보를 확인 및 수정하는 공간입니다.</p>
-	<form action = "bupdate" method="post" onsubmit="return validate();">
+	<form action = "bupdate" method="post">
 	<table id="updatet">
 		<tr>
 			<td style="text-align:left; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;기본 정보</td>
@@ -187,10 +189,10 @@
 	</table>
 	<br>
 		<span id="bupdate"><input type="button" class="button" style="text-align: center;"
-		value="회원 정보 수정" onclick="validate();"></span>
+		value="회원 정보 수정" onclick="validate()"></span>
 		&nbsp;&nbsp;
 		<span id="bdelete"><input type="button" class="button" style="text-align: center;"
-		value="회원 탈퇴" onclick="validate();"></span>
+		value="회원 탈퇴" onclick="validate()"></span>
 	</form>
 	<br>
 </body>

@@ -94,7 +94,7 @@
 	$(function(){	
 		$('#idDup').click(function(){
 			$.ajax({
-				type:'post',
+				type:'Get',
 				url:'bidCheck',
 				data:{
 					basicm_id:$('#id').val()
@@ -114,25 +114,11 @@
 				},
 				error:function(){
 					alert('오류가 발생하였습니다. 다시 시도해주세요');
+					$('#resultArea').load('bjoinf');
 				}
 			}); //ajax
 		}); //idDup click
 	}); //ready
-	
-	function bloginf(){
-		if(isRun == true) { return; } isRun = true;
-		$.ajax({
-			type:'Get',
-			url:'bloginf',
-			success:function(resultPage){
-				$('#resultArea').html(resultPage);
-				isRun=false;
-				},
-			error:function(){
-				alert("서버 오류 발생, 다시 시도해주세요.");
-			}	
-		}); //ajax
-	}
 	
 	/* submit */
 	$(document).on('click', '#binsert', function() {
@@ -146,20 +132,22 @@
 				bizm_nm:$('#name').val(),
 				bizm_pnum:$('#phonenum').val(),
 				bizm_email:$('#email').val(),
-				bizm_licnum:$('#license').val()
+				bizm_licnum:$('#licensenum').val()
 			},
 			success:function(resultData){
 				if(resultData.joinSuccess=='T') {
 					alert(resultData.msg);
-					onload=bloginf();
+					$('#resultArea').load('bloginf');
 					isRun=false;
 				} else {
 					alert(resultData.msg);
 					$('#id').focus();
+					$('#resultArea').load('bjoinf');
 				} 	
 			},
 			error:function(){
 				alert("서버 오류 발생, 다시 시도해주세요.");
+				$('#resultArea').load('bjoinf');
 			}	
 		}); //ajax
 	});

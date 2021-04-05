@@ -9,15 +9,13 @@
 <link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.2" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/fileUpload.js"></script>
-<script>
-</script>
 </head>
 <body>
 <c:if test="${msg!=null}">
 	<script>alert('${msg}');</script>
 </c:if>
 <br><p>등록한 장소를 수정 및 삭제하는 공간입니다.</p>
-	<form action = "pupdate" method="post" id="myplaceup" enctype="multipart/form-data">
+	<form action = "pupdate" method="post" id="myplaceup">
 		<table id="placet">
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;장소 번호</td>
@@ -37,7 +35,9 @@
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;지역 선택</td>
 				<td>
 					<input type="hidden" name="place_area" id="place_area">
+					
 					<label for="areaU" style="font-size: small">주소 대분류&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<script>setSelect("${area[0]}");</script>
 					<select id="areaU" name="areaU" onchange="areaChange(this)">
 						<option>선택해주세요</option>
 						<option value="A">서울 북부</option>
@@ -46,7 +46,9 @@
 						<option value="D">서울 동부</option>
 						<option value="E">수도권</option>
 					</select>&nbsp;&nbsp;&nbsp;&nbsp;
+					
 					<label for="areaD" style="font-size: small">주소 소분류&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<script>setSelect2("${area[1]}");</script>
 					<select id="areaD" name="areaD">
 						<option>선택해주세요</option>
 					</select><br>

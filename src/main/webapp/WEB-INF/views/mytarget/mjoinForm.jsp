@@ -84,7 +84,7 @@
 	$(function(){	
 		$('#idDup').click(function(){
 			$.ajax({
-				type:'post',
+				type:'Get',
 				url:'midCheck',
 				data:{
 					basicm_id:$('#id').val()
@@ -104,6 +104,7 @@
 				},
 				error:function(){
 					alert('오류가 발생하였습니다. 다시 시도해주세요');
+					$('#resultArea').load('mjoinf');
 				}
 			}); //ajax
 		}); //idDup click
@@ -125,15 +126,16 @@
 			success:function(resultData){
 				if(resultData.joinSuccess=='T') {
 					alert(resultData.msg);
-					onload=mloginf();
+					$('#resultArea').load('mloginf');
 					isRun=false;
 				} else {
 					alert(resultData.msg);
-					$('#id').focus();
+					$('#resultArea').load('mjoinf');
 				}
 			},
 			error:function(){
 				alert("서버 오류 발생, 다시 시도해주세요.");
+				$('#resultArea').load('mjoinf');
 			}	
 		}); //ajax
 	});
@@ -149,6 +151,7 @@
 				},
 			error:function(){
 				alert("오류 발생, 다시 시도해주세요.");
+				$('#resultArea').load('mjoinf');
 			}	
 		}); //ajax
 	});

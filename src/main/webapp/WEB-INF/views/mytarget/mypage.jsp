@@ -9,12 +9,21 @@
 <link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.5" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/pageMove2.js?ver=1.0"></script>
+<script>
+	$(.thar).click(function(){
+		$(this).css({
+		
+		})
+	}, function(){
+		
+	}); //click
+</script>
 </head>
 <body>
 <c:if test="${msg!=null}">
 	<script>alert('${msg}');</script>
 </c:if>
-<div id="tapmenu">
+<div id="tapmenu" onclick="">
 	<ul>
 		<c:if test="${group eq 'basic'}">
 		<li><span id="minfobtn"><a class="thar">개인정보수정</a></span>

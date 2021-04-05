@@ -41,9 +41,9 @@ function binfo(){
 
 // 장소 입력
 $(document).on('click', '#pinsertbtn', function() {
-	pinsert();
+	pinsertf();
 });
-function pinsert(){
+function pinsertf(){
 	if(isRun == true) { return; } isRun = true;
 	$.ajax({
 		type:'Get',
