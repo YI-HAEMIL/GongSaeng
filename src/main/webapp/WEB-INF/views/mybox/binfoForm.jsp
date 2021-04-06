@@ -63,7 +63,7 @@
 			$('#email').focus();
 		}
 		if(pCheck==true && p2Check==true && nCheck==true && pnCheck==true && eCheck==true) {
-			alert('입력 성공, 전송하시겠습니까?');
+			return true;
 		} else{
 			return false;
 		}
@@ -71,61 +71,68 @@
 	
 	/* update */
 	$(document).on('click', '#bupdate', function() {
-		if(isRun == true) { return; } isRun = true;
-		$.ajax({
-			type:'Post',
-			url:'bupdate',
-			data:{
-				bizm_id:$('#id').val(),
-				bizm_pwd:$('#password').val(),
-				bizm_nm:$('#name').val(),
-				bizm_pnum:$('#phonenum').val(),
-				bizm_email:$('#email').val(),
-				bizm_licnum:$('#licensenum').val()
-			},
-			success:function(resultData){
-				if(resultData.updateSuccess=='T') {
-					alert(resultData.msg);
+		if(validate()==false) {
+			return;
+		} else {
+			if(isRun == true) { return; } isRun = true;
+			$.ajax({
+				type:'Post',
+				url:'bupdate',
+				data:{
+					bizm_id:$('#id').val(),
+					bizm_pwd:$('#password').val(),
+					bizm_nm:$('#name').val(),
+					bizm_pnum:$('#phonenum').val(),
+					bizm_email:$('#email').val(),
+					bizm_licnum:$('#licensenum').val()
+				},
+				success:function(resultData){
+					if(resultData.updateSuccess=='T') {
+						alert(resultData.msg);
+						$('#mypagebox').load('binfo');
+					} else {
+						alert(resultData.msg);
+						$('#mypagebox').load('binfo');
+					} 	
+					isRun=false;
+				},
+				error:function(){
+					alert("서버 오류 발생, 다시 시도해주세요.");
 					$('#mypagebox').load('binfo');
-				} else {
-					alert(resultData.msg);
-					$('#mypagebox').load('binfo');
-				} 	
-				isRun=false;
-			},
-			error:function(){
-				alert("서버 오류 발생, 다시 시도해주세요.");
-				$('#mypagebox').load('binfo');
-			}	
-		}); //ajax
+				}	
+			}); //ajax
+		}
 	});
 	
 	/* delete */
 	$(document).on('click', '#bdelete', function(){
-		if(isRun == true) { return; } isRun = true;
-		$.ajax({
-			type:'Get',
-			url:'bdelete',
-			data:{
-				bizm_id:$('#id').val(),
-			},
-			success:function(resultData){
-				if(resultData.deleteSuccess=='T') {
-					alert(resultData.msg);
-					location.reload();
-				} else {
-					alert(resultData.msg);
+		if(validate()==false){
+			return;
+		} else {
+			if(isRun == true) { return; } isRun = true;
+			$.ajax({
+				type:'Get',
+				url:'bdelete',
+				data:{
+					bizm_id:$('#id').val(),
+				},
+				success:function(resultData){
+					if(resultData.deleteSuccess=='T') {
+						alert(resultData.msg);
+						location.reload();
+					} else {
+						alert(resultData.msg);
+						$('#mypagebox').load('binfo');
+					}
+					isRun=false;
+				},
+				error:function(){
+					alert("서버 오류 발생, 다시 시도해주세요.");
 					$('#mypagebox').load('binfo');
-				}
-				isRun=false;
-			},
-			error:function(){
-				alert("서버 오류 발생, 다시 시도해주세요.");
-				$('#mypagebox').load('binfo');
-			}	
-		}); //ajax
-	})
-
+				}	
+			}); //ajax
+		}
+	});
 </script>
 </head>
 <body>
@@ -189,10 +196,10 @@
 	</table>
 	<br>
 		<span id="bupdate"><input type="button" class="button" style="text-align: center;"
-		value="회원 정보 수정" onclick="validate()"></span>
+		value="회원 정보 수정"></span>
 		&nbsp;&nbsp;
 		<span id="bdelete"><input type="button" class="button" style="text-align: center;"
-		value="회원 탈퇴" onclick="validate()"></span>
+		value="회원 탈퇴"></span>
 	</form>
 	<br>
 </body>

@@ -64,7 +64,7 @@
 			$('#email').focus();
 		}
 		if(pCheck==true && p2Check==true && nCheck==true && pnCheck==true && eCheck==true) {
-			alert('입력 성공, 전송하시겠습니까?');
+			return true;
 		} else{
 			return false;
 		}
@@ -72,59 +72,67 @@
 	
 	/* update */
 	$(document).on('click', '#mupdate', function() {
-		if(isRun == true) { return; } isRun = true;
-		$.ajax({
-			type:'Post',
-			url:'mupdate',
-			data:{
-				basicm_id:$('#id').val(),
-				basicm_pwd:$('#password').val(),
-				basicm_nm:$('#name').val(),
-				basicm_pnum:$('#phonenum').val(),
-				basicm_email:$('#email').val()
-			},
-			success:function(resultData){
-				if(resultData.updateSuccess=='T') {
-					alert(resultData.msg);
+		if(validate()==false){
+			return;
+		} else {
+			if(isRun == true) { return; } isRun = true;
+			$.ajax({
+				type:'Post',
+				url:'mupdate',
+				data:{
+					basicm_id:$('#id').val(),
+					basicm_pwd:$('#password').val(),
+					basicm_nm:$('#name').val(),
+					basicm_pnum:$('#phonenum').val(),
+					basicm_email:$('#email').val()
+				},
+				success:function(resultData){
+					if(resultData.updateSuccess=='T') {
+						alert(resultData.msg);
+						$('#mypagebox').load('minfo');
+					} else {
+						alert(resultData.msg);
+						$('#mypagebox').load('minfo');
+					} 	
+					isRun=false;
+				},
+				error:function(){
+					alert("서버 오류 발생, 다시 시도해주세요.");
 					$('#mypagebox').load('minfo');
-				} else {
-					alert(resultData.msg);
-					$('#mypagebox').load('minfo');
-				} 	
-				isRun=false;
-			},
-			error:function(){
-				alert("서버 오류 발생, 다시 시도해주세요.");
-				$('#mypagebox').load('minfo');
-			}	
-		}); //ajax
+				}	
+			}); //ajax
+		}
 	});
 	
 	/* delete */
 	$(document).on('click', '#mdelete', function(){
-		if(isRun == true) { return; } isRun = true;
-		$.ajax({
-			type:'Get',
-			url:'mdelete',
-			data:{
-				basicm_id:$('#id').val(),
-			},
-			success:function(resultData){
-				if(resultData.deleteSuccess=='T') {
-					alert(resultData.msg);
-					location.reload();
-				} else {
-					alert(resultData.msg);
+		if(validate()==false){
+			return;
+		} else {
+			if(isRun == true) { return; } isRun = true;
+			$.ajax({
+				type:'Get',
+				url:'mdelete',
+				data:{
+					basicm_id:$('#id').val(),
+				},
+				success:function(resultData){
+					if(resultData.deleteSuccess=='T') {
+						alert(resultData.msg);
+						location.reload();
+					} else {
+						alert(resultData.msg);
+						$('#mypagebox').load('minfo');
+					} 	
+					isRun=false;
+				},
+				error:function(){
+					alert("서버 오류 발생, 다시 시도해주세요.");
 					$('#mypagebox').load('minfo');
-				} 	
-				isRun=false;
-			},
-			error:function(){
-				alert("서버 오류 발생, 다시 시도해주세요.");
-				$('#mypagebox').load('minfo');
-			}	
-		}); //ajax
-	})
+				}	
+			}); //ajax
+		}
+	});
 </script>
 </head>
 <body>
@@ -182,10 +190,10 @@
 		</table>
 		<br>
 		<span id="mupdate"><input type="button" class="button" style="text-align: center;"
-		value="회원 정보 수정" onclick="validate()"></span>
+		value="회원 정보 수정"></span>
 		&nbsp;&nbsp;
 		<span id="mdelete"><input type="button" class="button" style="text-align: center;"
-		value="회원 탈퇴" onclick="validate()"></span>
+		value="회원 탈퇴"></span>
 	</form>	
 	<br>
 </body>

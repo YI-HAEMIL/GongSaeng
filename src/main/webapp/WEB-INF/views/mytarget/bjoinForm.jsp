@@ -84,7 +84,7 @@
 		}
 		if(iCheck==true && pCheck==true && p2Check==true
 			&& nCheck==true && pnCheck==true && eCheck==true && lCheck==true) {
-			alert('입력 성공, 전송하시겠습니까?');
+			return true;
 		} else{
 			return false;
 		}
@@ -122,34 +122,38 @@
 	
 	/* submit */
 	$(document).on('click', '#binsert', function() {
-		if(isRun == true) { return; } isRun = true;
-		$.ajax({
-			type:'Post',
-			url:'binsert',
-			data:{
-				bizm_id:$('#id').val(),
-				bizm_pwd:$('#password').val(),
-				bizm_nm:$('#name').val(),
-				bizm_pnum:$('#phonenum').val(),
-				bizm_email:$('#email').val(),
-				bizm_licnum:$('#licensenum').val()
-			},
-			success:function(resultData){
-				if(resultData.joinSuccess=='T') {
-					alert(resultData.msg);
-					$('#resultArea').load('bloginf');
-					isRun=false;
-				} else {
-					alert(resultData.msg);
-					$('#id').focus();
+		if(validate()==false){
+			return;
+		} else {
+			if(isRun == true) { return; } isRun = true;
+			$.ajax({
+				type:'Post',
+				url:'binsert',
+				data:{
+					bizm_id:$('#id').val(),
+					bizm_pwd:$('#password').val(),
+					bizm_nm:$('#name').val(),
+					bizm_pnum:$('#phonenum').val(),
+					bizm_email:$('#email').val(),
+					bizm_licnum:$('#licensenum').val()
+				},
+				success:function(resultData){
+					if(resultData.joinSuccess=='T') {
+						alert(resultData.msg);
+						$('#resultArea').load('bloginf');
+						isRun=false;
+					} else {
+						alert(resultData.msg);
+						$('#id').focus();
+						$('#resultArea').load('bjoinf');
+					} 	
+				},
+				error:function(){
+					alert("서버 오류 발생, 다시 시도해주세요.");
 					$('#resultArea').load('bjoinf');
-				} 	
-			},
-			error:function(){
-				alert("서버 오류 발생, 다시 시도해주세요.");
-				$('#resultArea').load('bjoinf');
-			}	
-		}); //ajax
+				}	
+			}); //ajax
+		}
 	});
 </script>
 </head>
@@ -209,7 +213,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align:center; border-bottom:1px solid #fff;">
-					<span id="binsert" onclick="validate();"><input type="button" class="button" value="SUBMIT"
+					<span id="binsert"><input type="button" class="button" value="SUBMIT"
 					id="submit" disabled='disabled'></span>&nbsp;&nbsp;
 					<input type="reset"  class="button" value="RESET">
 				</td>

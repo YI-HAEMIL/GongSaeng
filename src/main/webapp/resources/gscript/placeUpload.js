@@ -115,7 +115,6 @@ function previewImage(targetObj, View_area) {
 	fileArr = Array.prototype.slice.call(files); // Object 타입인 files를 Array로 저장하겠다
 
 	var preview = document.getElementById(View_area);
-	
 	if(files.length < 11) {
 		
 		for (var i = 0; i < files.length; i++) {
@@ -140,8 +139,8 @@ function previewImage(targetObj, View_area) {
 				img.style.width = 'inherit';
 				img.style.height = 'inherit';
 				img.style.cursor = 'pointer';
-				const idx=i;
-				img.onclick=()=>fileRemove(idx);	//이미지 클릭했을때 삭제 함수
+//				const idx=i;
+//				img.onclick=()=>fileRemove(idx);	//이미지 클릭했을때 삭제 함수
 				span.appendChild(img);
 	
 				if (window.FileReader) { // FireFox,Chrome,Opera 확인
@@ -165,109 +164,15 @@ function previewImage(targetObj, View_area) {
 
 
 // -----------------------------------------------------------------------------------------
-// 유효성 체크
-
-var nCheck=false;
-var aCheck=false;
-var lCheck=false;
-var sCheck=false;
-var mCheck=false;
-var pCheck=false;
-var cCheck=false;
-var rCheck=false;
-var iCheck=false;
-	
-$(function(){
-	$('#name').focus();
-	$('#name').focusout(function(){
-		nCheck=nmCheck();
-	});
-	
-	$('#areaU').focusout(function(){
-		aCheck=arCheck();
-	});
-	
-	$('#location').focusout(function(){
-		lCheck=locCheck();
-	});
-	
-	$('#size').focusout(function(){
-		sCheck=szCheck();
-	});
-	
-	$('#max').focusout(function(){
-		mCheck=maxCheck();
-	});
-	
-	$('#price').focusout(function(){
-		pCheck=priCheck();
-	});
-	
-	$('#content').focusout(function(){
-		cCheck=conCheck();
-	});
-	
-	$('#rule').focusout(function(){
-		rCheck=rulCheck();
-	});
-	
-	$('#uploadFile').focusout(function(){
-		iCheck=imgCheck();
-	});
-}); //ready
-	
-function validate() {
-	if(nCheck==false){
-		$('#nMessage').html('장소명(제목)을 확인해주세요');
-		$('#name').focus();
-	}
-	if(aCheck==false){
-		$('#aMessage').html('지역 선택을 확인해주세요');
-		$('#areaU').focus();
-	}
-	if(lCheck==false){
-		$('#lMessage').html('상세 주소를 확인해주세요');
-		$('#location').focus();
-	}
-	if(sCheck==false){
-		$('#sMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;면적을 확인해주세요');
-		$('#size').focus();
-	}
-	if(mCheck==false){
-		$('#mMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;수용 인원을 확인해주세요');
-		$('#max').focus();
-	}
-	if(pCheck==false){
-		$('#pMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;이용 금액을 확인해주세요');
-		$('#price').focus();
-	}
-	if(cCheck==false){
-		$('#cMessage').html('장소 소개 내용을 확인해주세요');
-		$('#content').focus();
-	}
-	if(rCheck==false){
-		$('#rMessage').html('장소 이용 규칙을 확인해주세요');
-		$('#rule').focus();
-	}
-	if(iCheck==false){
-		$('#iMessage').html('업로드할 이미지를 확인해주세요');
-		$('#uploadFile').focus();
-	}
-	if(nCheck==true && aCheck==true && lCheck==true && sCheck==true && mCheck==true &&
-			pCheck==true && cCheck==true && rCheck==true && iCheck==true){
-		alert('입력 성공, 전송하시겠습니까?');
-	} else {
-		return false;
-	}
-}
-
-// -----------------------------------------------------------------------------------------
 // insert submit
 $(document).on('click','#pinsert-submit',function(){
-	validate();
-	getsValue();
-	getSize();
-	pinsert();
+	if(validate()==false){
+		return;
+	} else {
+		getsValue();
+		getSize();
+		pinsert();
+	}
 });
 
 function pinsert() {
