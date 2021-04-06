@@ -55,7 +55,7 @@ body{
 }
 
 #tapmenu a.thar::before,
-#tapmenu a.thar::after {
+#tapmenu a.thar::after{
   background-color: #bba3c9;
   border-radius: 20px 20px 0 0;
   content: '';
@@ -76,6 +76,11 @@ body{
 
 #tapmenu a.thar:hover:after {
   height: 100%;
+}
+
+.clicked{
+	background-color: #bba3c9;
+	color:#fff;
 }
 
 /* 정보 수정 테이블 */

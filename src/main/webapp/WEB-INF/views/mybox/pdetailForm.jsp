@@ -8,7 +8,7 @@
 <title>Place Information</title>
 <link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.2" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
-<script src="resources/gscript/fileUpload.js"></script>
+<script src="resources/gscript/placeUpload.js"></script>
 </head>
 <body>
 <c:if test="${msg!=null}">

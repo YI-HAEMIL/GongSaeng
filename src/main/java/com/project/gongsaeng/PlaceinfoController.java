@@ -47,8 +47,8 @@ public class PlaceinfoController {
 		HttpSession session = request.getSession(false);
 		vo.setBizm_id((String)session.getAttribute("loginID"));
 		
-//		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
-		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 		
 		File f1 = new File(realPath);
 		if (!f1.exists())
@@ -126,8 +126,8 @@ public class PlaceinfoController {
 	public ModelAndView pupdate(HttpServletRequest request, MultipartHttpServletRequest mhsq,
 			ModelAndView mv, PlaceinfoVO vo, PlacefileVO fvo) throws IllegalStateException, IOException {
 
-//		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
-		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 
 		File f1 = new File(realPath);
 		if (!f1.exists())
