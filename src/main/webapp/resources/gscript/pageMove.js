@@ -1,24 +1,27 @@
 /* 메인페이지에서 페이지 이동 ajax 처리 스크립트문 */
 var isRun = false;
 
-//All Places 토글 메뉴
-function toggle_all(){
-	
+// 토글 메뉴
+$(document).on('click', '#toggle_all', function() {
+	togglemenu();
+});
+function togglemenu(){
+	$('#category_all').toggle();
 }
 
 // 마이페이지
 $(document).on('click', '#mypage', function() {
-	if(isRun == true) { return; } isRun = true;
+	if (isRun == true) { return; } isRun = true;
 	$.ajax({
-		type:'Get',
-		url:'mypage',
-		success:function(resultPage){
+		type: 'Get',
+		url: 'mypage',
+		success: function(resultPage) {
 			$('#resultArea').html(resultPage);
-			isRun=false;
-			},
-		error:function(){
+			isRun = false;
+		},
+		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
-		}	
+		}
 	}); //ajax
 });
 
@@ -26,50 +29,50 @@ $(document).on('click', '#mypage', function() {
 $(document).on('click', '#mloginbtn', function() {
 	mloginf();
 });
-function mloginf(){
-	if(isRun == true) { return; } isRun = true;
+function mloginf() {
+	if (isRun == true) { return; } isRun = true;
 	$.ajax({
-		type:'Get',
-		url:'mloginf',
-		success:function(resultPage){
+		type: 'Get',
+		url: 'mloginf',
+		success: function(resultPage) {
 			$('#resultArea').html(resultPage);
-			isRun=false;
+			isRun = false;
 		},
-		error:function(){
+		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
-		}	
+		}
 	}); //ajax
 }
 
 // 회원가입페이지
 $(document).on('click', '#mjoinf', function() {
-	if(isRun == true) { return; } isRun = true;
+	if (isRun == true) { return; } isRun = true;
 	$.ajax({
-		type:'Get',
-		url:'mjoinf',
-		success:function(resultPage){
+		type: 'Get',
+		url: 'mjoinf',
+		success: function(resultPage) {
 			$('#resultArea').html(resultPage);
-			isRun=false;
+			isRun = false;
 		},
-		error:function(){
+		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
-		}	
+		}
 	}); //ajax
 });
 
 // 로그아웃	
 $(document).on('click', '#logout', function() {
-	if(isRun == true) { return; } isRun = true;
+	if (isRun == true) { return; } isRun = true;
 	$.ajax({
-		type:'Get',
-		url:'logout',
-		success:function(resultPage){
+		type: 'Get',
+		url: 'logout',
+		success: function(resultPage) {
 			$('#resultArea').html(resultPage);
 			location.reload();
-			isRun=false;
-			},
-		error:function(){
+			isRun = false;
+		},
+		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
-		}	
+		}
 	}); //ajax
 });

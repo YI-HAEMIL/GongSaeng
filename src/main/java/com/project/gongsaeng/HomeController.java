@@ -34,6 +34,19 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		String[] title = {"서울 북부", "서울 남부", "서울 서부", "서울 동부", "수도권"};
+		String[] north = {"서촌","북촌/익선동","성북구","혜화","부암동","동대문"};
+		String[] south = {"청담/삼성동","신사/압구정","강남/양재","고터/반포"};
+		String[] west = {"한남","이태원","연남동","망원/서교","신촌","용산","문래동"};
+		String[] east = {"성수","잠실","건대","강동구"};
+		String[] carea = {"수원","성남","판교","파주","송도","하남"};
+		model.addAttribute("title", title);
+		model.addAttribute("north", north);
+		model.addAttribute("south", south);
+		model.addAttribute("west", west);
+		model.addAttribute("east", east);
+		model.addAttribute("carea", carea);
+		
 		return "home";
 	}
 	
