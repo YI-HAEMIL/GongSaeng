@@ -1,6 +1,11 @@
 /* 메인페이지에서 페이지 이동 ajax 처리 스크립트문 */
 var isRun = false;
 
+//All Places 토글 메뉴
+function toggle_all(){
+	
+}
+
 // 마이페이지
 $(document).on('click', '#mypage', function() {
 	if(isRun == true) { return; } isRun = true;

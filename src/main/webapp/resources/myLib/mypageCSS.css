@@ -182,9 +182,13 @@ textarea{
 	font-family:AppleSDGothicNeoM00;
 }
 
-#sizenum1, #sizenum2, #max, #price {
+#sizenum1, #max, #price {
 	width:120px;
-	margin-left:30px;
+	margin-left:45px;
+}
+#sizenum2 {
+	width:120px;
+	margin-left:10px;
 }
 
 #sizeunit{
@@ -201,4 +205,10 @@ textarea{
 	border-style: solid;
 	border-color: #e9ebf2;
 	font-family:AppleSDGothicNeoM00;
+}
+
+#uploadFile{
+	width:180px;
+	border:0px solid #fff;
+	margin-left:45px;
 }

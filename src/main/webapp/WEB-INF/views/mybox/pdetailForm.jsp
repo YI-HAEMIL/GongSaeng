@@ -6,9 +6,96 @@
 <head>
 <meta charset="UTF-8">
 <title>Place Information</title>
-<link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.2" type="text/css">
+<link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.3" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/placeUpload.js"></script>
+<script src="resources/gscript/placeCheck.js"></script>
+<script>
+var nCheck=false;
+var aCheck=false;
+var lCheck=false;
+var sCheck=false;
+var mCheck=false;
+var pCheck=false;
+var cCheck=false;
+var rCheck=false;
+	
+$(function(){
+	$('#name').focus();
+	$('#name').focusout(function(){
+		nCheck=nmCheck();
+	});
+	
+	$('#areaU').focusout(function(){
+		aCheck=arCheck();
+	});
+	
+	$('#location').focusout(function(){
+		lCheck=locCheck();
+	});
+	
+	$('#sizenum1').focusout(function(){
+		sCheck=szCheck();
+	});
+	
+	$('#max').focusout(function(){
+		mCheck=maxCheck();
+	});
+	
+	$('#price').focusout(function(){
+		pCheck=priCheck();
+	});
+	
+	$('#content').focusout(function(){
+		cCheck=conCheck();
+	});
+	
+	$('#rule').focusout(function(){
+		rCheck=rulCheck();
+	});
+}); //ready
+	
+function validate() {
+	if(nCheck==false){
+		$('#nMessage').html('장소명(제목)을 확인해주세요');
+		$('#name').focus();
+	}
+	if(aCheck==false){
+		$('#aMessage').html('지역 선택을 확인해주세요');
+		$('#areaU').focus();
+	}
+	if(lCheck==false){
+		$('#lMessage').html('상세 주소를 확인해주세요');
+		$('#location').focus();
+	}
+	if(sCheck==false){
+		$('#sMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;면적을 확인해주세요');
+		$('#size').focus();
+	}
+	if(mCheck==false){
+		$('#mMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;수용 인원을 확인해주세요');
+		$('#max').focus();
+	}
+	if(pCheck==false){
+		$('#pMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;이용 금액을 확인해주세요');
+		$('#price').focus();
+	}
+	if(cCheck==false){
+		$('#cMessage').html('장소 소개 내용을 확인해주세요');
+		$('#content').focus();
+	}
+	if(rCheck==false){
+		$('#rMessage').html('장소 이용 규칙을 확인해주세요');
+		$('#rule').focus();
+	}
+	if(nCheck==true && aCheck==true && lCheck==true && sCheck==true && mCheck==true &&
+			pCheck==true && cCheck==true && rCheck==true){
+		return true;
+	} else {
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 <c:if test="${msg!=null}">
@@ -52,69 +139,70 @@
 					<select id="areaD" name="areaD">
 						<option>선택해주세요</option>
 					</select><br>
-					<span id="nMessage" class="message"></span>
+					<span id="aMessage" class="message"></span>
 				</td>
 			</tr>
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;상세 주소</td>
-				<td><input type="text" name="place_loc" id="location" class="pinput" value="${pVO.place_loc}"><br>
-					<span id="nMessage" class="message"></span>
+				<td>
+					<input type="text" name="place_loc" id="location" class="pinput" value="${pVO.place_loc}"><br>
+					<span id="lMessage" class="message"></span>
 				</td>
 			</tr>
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;면적</td>
-				<td style="text-align:left;">&nbsp;&nbsp;
+				<td style="text-align:left;">
 					<input type="hidden" name="place_size" id="place_size">
 					<input type="text" id="sizenum1" class="pinput" onkeyup="calcSize(1)" value="${size[0]}">&nbsp;&nbsp;
  					<span style="font-size:small;">평&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</span>
  					<input type="text" id="sizenum2" class="pinput" onkeyup="calcSize(2)"  value="${size[1]}">
  					<span style="font-size:small;">&nbsp;&nbsp;㎡</span>
-					<span id="nMessage" class="message"></span>
+					<span id="sMessage" class="message"></span>
 				</td>
 			</tr>
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;기본 수용 인원</td>
-				<td style="text-align:left;">&nbsp;&nbsp;
+				<td style="text-align:left;">
 					<input type="text" name="place_max" id="max" class="pinput" value="${pVO.place_max}">
-					<span style="font-size:small;">&nbsp;&nbsp;&nbsp;명</span><br>
-					<span id="nMessage" class="message"></span>
+					<span style="font-size:small;">&nbsp;&nbsp;&nbsp;명</span>
+					<span id="mMessage" class="message"></span>
 				</td>
 			</tr>
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;이용 금액 / 1시간</td>
-				<td style="text-align:left;">&nbsp;&nbsp;
+				<td style="text-align:left;">
 					<input type="text" name="place_price" id="price" class="pinput" value="${pVO.place_price}">
-					<span style="font-size:small;">&nbsp;&nbsp;&nbsp;원</span><br>
-					<span id="nMessage" class="message"></span>
+					<span style="font-size:small;">&nbsp;&nbsp;&nbsp;원</span>
+					<span id="pMessage" class="message"></span>
 				</td>
 			</tr>
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;장소 소개 내용</td>
 				<td><textarea name="place_con" id="content">${pVO.place_con}</textarea><br>
-					<span id="nMessage" class="message"></span>
+					<span id="cMessage" class="message"></span>
 				</td>
 			</tr>
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;장소 이용 규칙</td>
 				<td><textarea name="place_rule" id="rule">${pVO.place_rule}</textarea><br>
-					<span id="nMessage" class="message"></span>
+					<span id="rMessage" class="message"></span>
 				</td>
 			</tr>
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;장소 이미지<br>(다중 업로드 가능)</td>
 				<td style="text-align:left;">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label for="uploadFile">
+					<!-- <label for="uploadFile">
 					<img src="resources/image/imgupicon.png" id="file_add" style="width:70px; height:70px; cursor:pointer;">
-					</label>
+					</label> -->
 					<input type="file" name="uploadFile" id="uploadFile" multiple class="pinput"
-							onchange="previewImage(this, 'View_area')" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;
-					
- 					<span id="View_area" style="border: 0px;">
+							onchange="previewImage(this, 'View_area')"><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="View_area" style="border: 0px;">
 						<c:forEach var="prevImg" items="${prevImgList}">
 							<img src="${prevImg.file_path}" style="width:70px;height:70px;">
 						</c:forEach>
-					</span>
+					</span><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="iMessage" class="message"></span>
 				</td>
 			</tr>
 		</table>

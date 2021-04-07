@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Place Insert</title>
-<link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.2" type="text/css">
+<link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.3" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/placeUpload.js"></script>
 <script src="resources/gscript/placeCheck.js"></script>
@@ -19,6 +19,7 @@
 	var pCheck=false;
 	var cCheck=false;
 	var rCheck=false;
+	var iCheck=false;
 		
 	$(function(){
 		$('#name').focus();
@@ -52,6 +53,10 @@
 		
 		$('#rule').focusout(function(){
 			rCheck=rulCheck();
+		});
+		
+		$('#uploadFile').focusout(function(){
+			iCheck=imgCheck();
 		});
 	}); //ready
 		
@@ -89,8 +94,12 @@
 			$('#rMessage').html('장소 이용 규칙을 확인해주세요');
 			$('#rule').focus();
 		}
+		if(iCheck==false){
+			$('#iMessage').html('이미지 업로드를 확인해주세요');
+			$('#uploadFile').focus();
+		}
 		if(nCheck==true && aCheck==true && lCheck==true && sCheck==true && mCheck==true &&
-				pCheck==true && cCheck==true && rCheck==true){
+				pCheck==true && cCheck==true && rCheck==true && iCheck==true){
 			return true;
 		} else {
 			return false;
@@ -141,10 +150,10 @@
 			</tr>
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;면적</td>
-				<td style="text-align:left;">&nbsp;&nbsp;
+				<td style="text-align:left;">
 					<input type="hidden" name="place_size" id="place_size">
 					<input type="text" id="sizenum1" class="pinput" onkeyup="calcSize(1)">&nbsp;&nbsp;
- 					<span style="font-size:small;">평&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</span>
+ 					<span style="font-size:small;">평&nbsp;&nbsp;&nbsp;&nbsp;/</span>
  					<input type="text" id="sizenum2" class="pinput" onkeyup="calcSize(2)">
  					<span style="font-size:small;">&nbsp;&nbsp;㎡</span>
 					<span id="sMessage" class="message"></span>
@@ -152,7 +161,7 @@
 			</tr>
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;기본 수용 인원</td>
-				<td style="text-align:left;">&nbsp;&nbsp;
+				<td style="text-align:left;">
 					<input type="text" name="place_max" id="max" class="pinput">
 					<span style="font-size:small;">&nbsp;&nbsp;&nbsp;명</span>
 					<span id="mMessage" class="message"></span>
@@ -160,7 +169,7 @@
 			</tr>
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;이용 금액 / 1시간</td>
-				<td style="text-align:left;">&nbsp;&nbsp;
+				<td style="text-align:left;">
 					<input type="text" name="place_price" id="price" class="pinput">
 					<span style="font-size:small;">&nbsp;&nbsp;&nbsp;원</span>
 					<span id="pMessage" class="message"></span>
@@ -181,14 +190,13 @@
 			<tr>
 				<td class="th">&nbsp;&nbsp;&nbsp;&nbsp;장소 이미지<br>(다중 업로드 가능)</td>
 				<td style="text-align:left;">
-					<label for="uploadFile">
+					<!-- <label for="uploadFile">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="resources/image/imgupicon.png" style="width:70px; height:70px; cursor:pointer;">
-					</label>
+					</label> -->
 					<input type="file" name="uploadFile" id="uploadFile" multiple="multiple" class="pinput"
-							onchange="previewImage(this, 'View_area')" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;
-					
-					<span id="View_area" style="border: 0px;"></span><br>
-					<span id="iMessage" class="message"></span>
+							onchange="previewImage(this, 'View_area')"><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="View_area" style="border: 0px;"></span><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="iMessage" class="message"></span>
 				</td>
 			</tr>
 		</table>

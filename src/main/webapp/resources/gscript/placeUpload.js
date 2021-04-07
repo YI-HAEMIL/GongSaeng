@@ -47,11 +47,11 @@ function getSize(){
 function calcSize(chk){
 	  if(chk==1){ 
 		var sizechange=parseFloat(document.getElementById('sizenum1').value) * 3.3058;
-		document.getElementById('sizenum2').value=sizechange.toFixed(2);
+		document.getElementById('sizenum2').value=sizechange.toFixed(0);
 	  }
 	  else { 
 		var sizechange=parseFloat(document.getElementById('sizenum2').value) / 3.3058;
-		document.getElementById('sizenum1').value=sizechange.toFixed(2);
+		document.getElementById('sizenum1').value=sizechange.toFixed(0);
 		
 		place_size=sizechange+"/"+$('#sizenum2').val();
 		$('#place_size').val(place_size);
@@ -206,9 +206,13 @@ function pinsert() {
 
 // update submit
 $(document).on('click', '#pupdate-submit', function(){
-	getsValue();
-	getSize();
-	pupdate();
+	if(validate()==false){
+		return;
+	} else {
+		getsValue();
+		getSize();
+		pupdate();
+	}
 });
 function pupdate(){
 	if(isRun == true) { return; } isRun = true;

@@ -34,8 +34,8 @@
 	<div id="topmenu">
 		<a href="home"><img src="resources/image/gstitle.png" id="logo"></a>
 		<ul>
-			<li><span id="">All Places</span>
-			<li><span id="">Search</span>
+			<li><span onclick="toggle_all()">All Places</span>
+			<li><span onclick="toggle_search()">Search</span>
 			<li><span id="mypage">My Page</span>
 			
 			<c:if test="${empty loginID}"> 
@@ -46,6 +46,27 @@
 			<li><span id="logout">Logout</span>
 			</c:if>
 		</ul>
+		<div class="category_all" onclick="toggle_all()">
+	        <div class="toggle_back">
+	            <div style="padding-top: 10px; padding-bottom: 40px;width: 1160px;display: flex; flex-direction: row;">
+	                <div style="flex: 1">
+		                <p class="title_hover_button">
+		                	{{ category.title }}
+		                </p>
+		                <div class="hover_button">
+		                <p style="font-size: 15px;font-weight: normal;font-stretch: normal;font-style: normal;line-height: 1.6;letter-spacing: normal;color: #454b50;">
+		                	전체
+		                </p>
+		                </div>
+		                <div class="hover_button">
+		                <p style="font-size: 15px;font-weight: normal;font-stretch: normal;font-style: normal;line-height: 1.6;letter-spacing: normal;color: #454b50;">
+		                    {{ sub.title }}
+		                </p>
+		                </div>
+	            	</div>
+	            </div>
+	        </div>
+	    </div>
 	</div>
 	<div id=resultArea style="margin-top:82px;" onload="main()"></div>
 	<!-- 

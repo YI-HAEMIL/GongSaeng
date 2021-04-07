@@ -58,11 +58,11 @@ function maxCheck(){
 	if(max == null || max == "") {
 		$('#mMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;수용 인원을 입력해주세요');
 		return false;
-	} else if(max.length > 3) {
-		$('#mMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;수용 인원이 너무 많습니다');
-		return false;
 	} else if(max.replace(/[0-9]/gi,'').length>0){
 		$('#mMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;수용 인원은 숫자로만 입력해주세요');
+		return false;
+	} else if(max.length > 3) {
+		$('#mMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;수용 인원이 너무 많습니다');
 		return false;
 	} else {
 		$('#mMessage').html('');
@@ -75,11 +75,11 @@ function priCheck(){
 	if(price == null || price == ""){
 		$('#pMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;이용 금액을 입력해주세요');
 		return false;
-	} else if(price.length > 7) {
-		$('#pMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;시간 당 요금이 백만원을 초과할 수 없습니다');
-		return false;
 	} else if(price.replace(/[0-9]/gi,'').length>0){
 		$('#pMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;이용 금액은 숫자로만 입력해주세요');
+		return false;
+	} else if(price.length > 7) {
+		$('#pMessage').html('&nbsp;&nbsp;&nbsp;&nbsp;시간 당 요금이 백만원을 초과할 수 없습니다');
 		return false;
 	} else {
 		$('#pMessage').html('');
@@ -105,6 +105,17 @@ function rulCheck() {
 		return false;
 	} else {
 		$('#rMessage').html('');
+		return true;
+	}
+}
+
+function imgCheck(){
+	var input=document.getElementById('uploadFile').value;
+	if(!input){
+		$('#iMessage').html('장소를 보여줄 이미지를 업로드해주세요');
+		return false;
+	} else {
+		$('#iMessage').html('');
 		return true;
 	}
 }
