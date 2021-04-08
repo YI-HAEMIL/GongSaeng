@@ -2,6 +2,7 @@ package com.project.gongsaeng;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import search.SearchArea;
 import service.PlaceinfoService;
 import vo.PlacefileVO;
 import vo.PlaceinfoVO;
@@ -24,6 +26,54 @@ import vo.PlaceinfoVO;
 public class PlaceinfoController {
 	@Autowired
 	PlaceinfoService service;
+	
+	@RequestMapping(value="/placeone")
+	public ModelAndView placeone(ModelAndView mv, PlaceinfoVO vo) {
+		vo=service.selectOne(vo);
+		if(vo != null) {
+			int placeid=vo.getPlace_id();
+			
+			String[] area = vo.getPlace_area().split(",");
+			mv.addObject("parea", area);
+
+			String[] size = vo.getPlace_size().split("/");
+			mv.addObject("psize", size);
+
+			List<PlacefileVO> imgList = service.getFileList(placeid);
+			mv.addObject("pimgList", imgList);
+			
+			mv.addObject("ppVO", vo);
+		} else {
+			mv.addObject("msg", "잘못된 접근입니다. 다시 시도해주세요");
+		}
+		mv.setViewName("placeReserv/pareaList");
+		return mv;
+	}
+	
+	@RequestMapping(value="/parea")
+	public ModelAndView parea(ModelAndView mv, PlaceinfoVO vo, SearchArea sa) {
+		List<PlaceinfoVO> list = service.selectArea(sa);
+
+		if (list != null) {
+			int listsize=list.size();
+			mv.addObject("pvoSize", listsize);
+			
+			List<String> thumbList = new ArrayList<String>();
+			for (int i = 0; i < listsize; i++) {
+				int placeid = list.get(i).getPlace_id();
+				List<PlacefileVO> imgList = service.getFileList(placeid);
+				thumbList.add(imgList.get(0).getFile_path());
+			}
+			
+			mv.addObject("thumbList", thumbList);
+			mv.addObject("pvoList", list);
+
+		} else {
+			mv.addObject("msg", "아직 장소가 등록되어있지 않습니다.");
+		}
+		mv.setViewName("placeReserv/pareaList");
+		return mv;
+	}
 	
 	@RequestMapping(value="/pinsertf")
 	public ModelAndView pinsertf(HttpServletRequest request, ModelAndView mv, PlaceinfoVO vo, RedirectAttributes rttr) {
@@ -47,8 +97,8 @@ public class PlaceinfoController {
 		HttpSession session = request.getSession(false);
 		vo.setBizm_id((String)session.getAttribute("loginID"));
 		
-//		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
-		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 		
 		File f1 = new File(realPath);
 		if (!f1.exists())
@@ -126,8 +176,8 @@ public class PlaceinfoController {
 	public ModelAndView pupdate(HttpServletRequest request, MultipartHttpServletRequest mhsq,
 			ModelAndView mv, PlaceinfoVO vo, PlacefileVO fvo) throws IllegalStateException, IOException {
 
-//		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
-		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 
 		File f1 = new File(realPath);
 		if (!f1.exists())

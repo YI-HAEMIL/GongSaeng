@@ -10,4 +10,5 @@ public class PlacefileVO {
 	private String file_url;
 	private String file_path;
 	private int place_id;
+	private String file_thumb;
 }

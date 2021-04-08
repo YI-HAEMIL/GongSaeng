@@ -12,7 +12,7 @@ body{
 	height:80px;
 	font-weight:700;
 	font-family:Roboto;
-	position:absolute;
+	position:fixed;
 	z-index:50;
 	top:0px;
 	text-align:left;
@@ -24,7 +24,7 @@ body{
 	width:103px;
 	height:45px;
 	float:left;
-	position:absolute;
+	position:fixed;
 }
 
 #topmenu span {
@@ -70,10 +70,11 @@ body{
 }
 
 #category_txtbox{
+	width:1080px;
 	padding-top: 10px;
 	padding-bottom: 40px;
 	padding: 10px 350px 40px 350px;
-	display: flex; 
+	display: flex;
 	justify-content: space-around;
 }
 
@@ -87,6 +88,17 @@ body{
 	color: #454b50;
 	margin-bottom: 20px;
 	cursor:pointer;
+	background-color:#fff;
+	border:none;
+	width:90px;
+	text-align:center;
+}
+
+.title:hover{
+	border-radius: 2px;
+	background-color:#ebebeb;
+	width:90px;
+	text-align:center;
 }
 
 .subtitle_btn{

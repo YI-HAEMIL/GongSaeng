@@ -141,12 +141,12 @@
 					if(resultData.joinSuccess=='T') {
 						alert(resultData.msg);
 						$('#resultArea').load('bloginf');
-						isRun=false;
 					} else {
 						alert(resultData.msg);
 						$('#id').focus();
 						$('#resultArea').load('bjoinf');
 					} 	
+					isRun=false;
 				},
 				error:function(){
 					alert("서버 오류 발생, 다시 시도해주세요.");

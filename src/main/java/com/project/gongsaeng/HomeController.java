@@ -1,22 +1,31 @@
 package com.project.gongsaeng;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import service.PlaceinfoService;
+import vo.PlacefileVO;
+import vo.PlaceinfoVO;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+	@Autowired
+	PlaceinfoService service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -52,6 +61,24 @@ public class HomeController {
 	
 	@RequestMapping(value="/mainp")
 	public ModelAndView mainpage(ModelAndView mv) {
+		/*
+		List<PlaceinfoVO> list = service.selectList();
+		if(list != null) {
+			int listsize=list.size();
+			mv.addObject("pVO", list);
+			
+			List<String> thumbList = new ArrayList<String>();
+			for (int i = 0; i < listsize; i++) {
+				int placeid = list.get(i).getPlace_id();
+				List<PlacefileVO> imgList = service.getFileList(placeid);
+				thumbList.add(imgList.get(0).getFile_path());
+			}
+			
+		} else {
+			
+			mv.addObject("msg", "출력할 장소가 없습니다.");
+		}
+		*/
 		mv.setViewName("mytarget/mainpage");
 		return mv;
 	}

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import search.SearchArea;
 import vo.PlacefileVO;
 import vo.PlaceinfoVO;
 
@@ -21,6 +22,10 @@ public class PlaceinfoDAO {
 	// ** selectList
 	public List<PlaceinfoVO> selectList(){
 		return sqlSession.selectList(NS+"selectList");
+	}
+	// ** selectArea (지역 선택 리스트 출력)
+	public List<PlaceinfoVO> selectArea(SearchArea sa) {
+		return sqlSession.selectList(NS + "selectArea", sa);
 	}
 	
 	// ** selectOne

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import search.SearchArea;
 import util.PlaceinfoDAO;
 import vo.PlacefileVO;
 import vo.PlaceinfoVO;
@@ -16,10 +17,14 @@ public class PlaceinfoServiceImpl implements PlaceinfoService {
 	PlaceinfoDAO dao;
 
 	// ** selectList
-	public List<PlaceinfoVO> selectList(){
+	public List<PlaceinfoVO> selectList() {
 		return dao.selectList();
 	}
-
+	// ** selectArea
+	public List<PlaceinfoVO> selectArea(SearchArea sa) {
+		return dao.selectArea(sa);
+	}
+	
 	// ** selectOne
 	public PlaceinfoVO selectOne(PlaceinfoVO vo){
 		return dao.selectOne(vo);

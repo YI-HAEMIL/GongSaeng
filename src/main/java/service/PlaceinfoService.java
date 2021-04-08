@@ -2,12 +2,15 @@ package service;
 
 import java.util.List;
 
+import search.SearchArea;
 import vo.PlacefileVO;
 import vo.PlaceinfoVO;
 
 public interface PlaceinfoService {
 	// ** selectList
 	public List<PlaceinfoVO> selectList();
+	// ** selectArea
+	public List<PlaceinfoVO> selectArea(SearchArea sa);
 
 	// ** selectOne
 	public PlaceinfoVO selectOne(PlaceinfoVO vo);

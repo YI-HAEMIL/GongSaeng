@@ -34,7 +34,7 @@
 	<div id="topmenu">
 		<a href="home"><img src="resources/image/gstitle.png" id="logo"></a>
 		<ul>
-			<li><span id="toggle_all" onclick="toggle()">All Places</span>
+			<li><span id="toggle_all">All Places</span>
 			<li><span id="toggle_search">Search</span>
 			<li><span id="mypage">My Page</span>
 			
@@ -51,42 +51,42 @@
 	        <div id="category_back">
 	        	<div id="category_txtbox">
 	        		<div style="flex-direction: column">
-			       		<p class="title"><c:out value="${title[0]}" /></p>
+			       		<p class="title" onclick="menuMove(innerText)"><c:out value="${title[0]}" /></p>
 			       		<c:forEach var="s" items="${north}">
 			       			<div class="subtitle_btn">
-				        	<p class="subtitle"><c:out value="${s}" /></p>
+				        	<p class="subtitle" onclick="submenuMove(innerText)"><c:out value="${s}" /></p>
 				        	</div>
 			            </c:forEach>
 		            </div>
 	        		<div style="flex-direction: column">
-			       		<p class="title"><c:out value="${title[1]}" /></p>
+			       		<p class="title" onclick="menuMove(innerText)"><c:out value="${title[1]}" /></p>
 			       		<c:forEach var="s" items="${south}">
 			       			<div class="subtitle_btn">
-				        	<p class="subtitle"><c:out value="${s}" /></p>
+				        	<p class="subtitle" onclick="submenuMove(innerText)"><c:out value="${s}" /></p>
 				        	</div>
 			            </c:forEach>
 		            </div>
 	        		<div style="flex-direction: column">
-			       		<p class="title"><c:out value="${title[2]}" /></p>
+			       		<p class="title" onclick="menuMove(innerText)"><c:out value="${title[2]}" /></p>
 			       		<c:forEach var="s" items="${west}">
 				            <div class="subtitle_btn">
-				        	<p class="subtitle"><c:out value="${s}" /></p>
+				        	<p class="subtitle" onclick="submenuMove(innerText)"><c:out value="${s}" /></p>
 				        	</div>
 			            </c:forEach>
 		            </div>
 	        		<div style="flex-direction: column">
-			       		<p class="title"><c:out value="${title[3]}" /></p>
+			       		<p class="title" onclick="menuMove(innerText)"><c:out value="${title[3]}" /></p>
 			       		<c:forEach var="s" items="${east}">
 				            <div class="subtitle_btn">
-				        	<p class="subtitle"><c:out value="${s}" /></p>
+				        	<p class="subtitle" onclick="submenuMove(innerText)"><c:out value="${s}" /></p>
 				        	</div>
 			            </c:forEach>
 		            </div>
 	        		<div style="flex-direction: column">
-			       		<p class="title"><c:out value="${title[4]}" /></p>
+			       		<p class="title" onclick="menuMove(innerText)"><c:out value="${title[4]}" /></p>
 			       		<c:forEach var="s" items="${carea}">
 				            <div class="subtitle_btn">
-				        	<p class="subtitle"><c:out value="${s}" /></p>
+				        	<p class="subtitle" onclick="submenuMove(innerText)"><c:out value="${s}" /></p>
 				        	</div>
 			            </c:forEach>
 		            </div>

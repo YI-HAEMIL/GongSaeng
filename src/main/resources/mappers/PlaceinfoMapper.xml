@@ -8,6 +8,11 @@
 		ORDER BY #{place_id}
 	</select>
 	
+	<select id="selectArea" resultType="vo.PlaceinfoVO">
+		SELECT * FROM place_info
+		WHERE place_area LIKE '%' || #{keyword} || '%'
+	</select>
+	
 	<select id="selectOne" resultType="vo.PlaceinfoVO">
 		SELECT * FROM place_info
 		WHERE bizm_id=#{bizm_id}
