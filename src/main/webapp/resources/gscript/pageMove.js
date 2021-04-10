@@ -6,7 +6,14 @@ $(document).on('click', '#toggle_all', function() {
 	togglemenu();
 });
 function togglemenu(){
-	$('#category_all').toggle();
+	if($('#category_all').css("display")=="none"){
+		$('#category_all').show();
+		document.body.classList.add("stop-scrolling");
+	} else {
+		$('#category_all').hide();
+		document.body.classList.remove("stop-scrolling");
+	}
+	
 }
 
 //메뉴 이동

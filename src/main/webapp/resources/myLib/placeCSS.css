@@ -1,6 +1,14 @@
 @charset "UTF-8";
-/* pareaList */
 
+body{
+	overflow-x:hidden;
+}
+.stop-scrolling {
+	height:100%;
+	overflow:hidden;
+}
+
+/* pareaList */
 /* 메뉴와 구분하기 위한 div */
 .p_cardPage{
 	display:flex;
@@ -51,49 +59,64 @@ th, td{
 .modal{
 	position:absolute;
 	overflow-y:auto;
-	width:100%;
-	height:100%;
+	width:100vw;
+	height:100vh;
 	background-color: rgba(0,0,0,0.6);
 	top:0;
 	left:0;
 	display:none;
 	float:left;
 }
-.modal_content{
+.modal.show{
+	display:block;
+}
+.modal_cArea{
+	position:absolute; top:113px;
+	width:100%;
 	display:flex;
-	flex-wrap:wrap;
+	flex-wrap:nowrap;
+	justify-content: center;
+}
+.modal_content{
 	flex-direction:column;
+	flex-wrap:nowrap;
 	width:800px;
 	height:auto;
 	background:#fff; border-radius:20px;
-	position:relative; top:15%; left:18%; bottom:10px;
+	/*margin-left:310px; margin-bottom:10px;*/
+	margin-right:10px;
 	text-align:left;
 	box-sizing:border-box;
-	line-height:23px; cursor:pointer;
+	line-height:23px;
 	padding-left:20px;
 }
 .modal_content2{
+	flex-wrap:nowrap;
 	width:300px;
 	height:600px;
 	background:#fff; border-radius:20px;
-	position:absolute; top:143px; left:65%;
 	text-align:left;
+	/*margin-left:20px; */
+	margin-left:10px;
 	padding-left:20px;
 	padding-top:20px;
 	font-family:AppleSDGothicNeoM00;
 	line-height: 1.4;
 	letter-spacing: -0.1px;
 }
+
 .modal_hr{
 	width:120px;
 	border: 1px solid #ebebeb;
 	margin-left:0px;
 }
-.stop-scrolling { 
-  height: 100%; 
-  overflow: hidden;
-} 
 
 pre{
 	font-family: AppleSDGothicNeoM00;
+	width:600px;
+}
+
+/* 이미지 슬라이더 */
+.imgOne{
+	width: 250px; height:180px;
 }

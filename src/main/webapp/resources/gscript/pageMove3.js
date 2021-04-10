@@ -2,33 +2,36 @@
 var isRun = false;
 
 //장소 상세 페이지 이동
-function placeOne(innerText){
-	if (isRun == true) { return; } isRun = true;
-	var bizmid=innerText;
-	console.log(bizmid);
-	
+
+function placemodal(id) {
+	var bid = id;
+	console.log(bid);
+
 	$.ajax({
-		type:'Get',
-		url: 'placeone',
+		type: 'Get',
+		url: 'placemodal',
 		data: {
-			bizm_id:bizmid
+			bizm_id: bid
 		},
-		success:function(resultPage){
-			window.scrollTo(0,0);
-			$('.modal').html(resultPage);
+		success: function(resultPage) {
+			window.scrollTo(0, 0);
+			$('.modal_cArea').html(resultPage);
 			$('.modal').fadeIn();
 			document.body.classList.add("stop-scrolling");
 			isRun = false;
-		}, 
+		},
 		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
 		}
 	});//ajax
 }
 
-
-// 모달창 끄기
-$(document).on('click', '.modal', function(){
-	$('.modal').fadeOut();
-	 document.body.classList.remove("stop-scrolling"); 
+//모달창 끄기
+$(document).mouseup(function (e) {
+	var modal = $('.modal');
+	var modal2 = $('.modal_cArea');
+	if(modal.has(e.target).length===1&&modal2.has(e.target).length!=1){
+		modal.fadeOut();
+		document.body.classList.remove("stop-scrolling");
+	}
 });

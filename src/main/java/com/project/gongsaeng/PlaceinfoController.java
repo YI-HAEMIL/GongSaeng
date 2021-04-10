@@ -27,8 +27,8 @@ public class PlaceinfoController {
 	@Autowired
 	PlaceinfoService service;
 	
-	@RequestMapping(value="/placeone")
-	public ModelAndView placeone(ModelAndView mv, PlaceinfoVO vo) {
+	@RequestMapping(value="/placemodal")
+	public ModelAndView placemodal(ModelAndView mv, PlaceinfoVO vo) {
 		vo=service.selectOne(vo);
 		if(vo != null) {
 			int placeid=vo.getPlace_id();
@@ -46,7 +46,7 @@ public class PlaceinfoController {
 		} else {
 			mv.addObject("msg", "잘못된 접근입니다. 다시 시도해주세요");
 		}
-		mv.setViewName("placeReserv/pareaList");
+		mv.setViewName("placeReserv/placemodal");
 		return mv;
 	}
 	
@@ -56,7 +56,6 @@ public class PlaceinfoController {
 
 		if (list != null) {
 			int listsize=list.size();
-			mv.addObject("pvoSize", listsize);
 			
 			List<String> thumbList = new ArrayList<String>();
 			for (int i = 0; i < listsize; i++) {

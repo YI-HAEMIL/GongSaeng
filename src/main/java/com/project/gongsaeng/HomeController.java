@@ -1,9 +1,7 @@
 package com.project.gongsaeng;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -16,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.PlaceinfoService;
-import vo.PlacefileVO;
-import vo.PlaceinfoVO;
 
 /**
  * Handles requests for the application home page.

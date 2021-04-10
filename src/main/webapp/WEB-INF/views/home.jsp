@@ -5,9 +5,10 @@
 <head>
 <title>공 : 생</title>
 <link rel="icon" href="resources/image/favicon.png">
-<link rel="stylesheet" href="resources/myLib/mainCSS.css?ver=1.0" type="text/css">
+<link rel="stylesheet" href="resources/myLib/mainCSS.css?ver=1.3" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/pageMove.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=70479aea1165b5f91675f4fc638a746e&libraries=services"></script>
 <script type="text/javascript">
 	var isRun=false;
 	function main(){
