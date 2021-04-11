@@ -27,6 +27,10 @@ public class PlaceinfoDAO {
 	public List<PlaceinfoVO> selectArea(SearchArea sa) {
 		return sqlSession.selectList(NS + "selectArea", sa);
 	}
+	// ** selectRandom
+	public List<PlaceinfoVO> selectRandom(){
+		return sqlSession.selectList(NS+"selectRandom");
+	}
 	
 	// ** selectOne
 	public PlaceinfoVO selectOne(PlaceinfoVO vo) {

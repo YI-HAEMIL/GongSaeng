@@ -11,6 +11,8 @@ public interface PlaceinfoService {
 	public List<PlaceinfoVO> selectList();
 	// ** selectArea
 	public List<PlaceinfoVO> selectArea(SearchArea sa);
+	// ** selectRandom
+	public List<PlaceinfoVO> selectRandom();
 
 	// ** selectOne
 	public PlaceinfoVO selectOne(PlaceinfoVO vo);

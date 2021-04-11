@@ -6,31 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <title>MainPage</title>
-<link rel="stylesheet" href="resources/myLib/placeCSS.css?ver=1.6" type="text/css">
+<link rel="stylesheet" href="resources/myLib/placeCSS.css?ver=2.1" type="text/css">
+<link rel="stylesheet" href="resources/slick/slick.css" type="text/css">
+<link rel="stylesheet" href="resources/slick/slick-theme.css" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
+<script src="resources/slick/slick.min.js"></script>
 <script src="resources/gscript/pageMove3.js"></script>
 </head>
 <body>
 <c:if test="${msg!=null}">
 	<script>alert('${msg}');</script>
 </c:if>
-	<!-- 상단 카테고리 메뉴바 (미완) -->
-	<div id="main_category_all">
-		<div id="main_category_txtbox">
-			<div style="flex-direction: row">
-				<p class="title">
-					<c:forEach var="t" items="${title}">
-						<c:out value="${t}" />
-					</c:forEach>
-				</p>
-				<br>
-				<div>
-					
-				</div>
-			</div>
-		</div>
+	<div id="keyword">
+		<span id="keywordtxt">
+			<c:choose>
+					<c:when test="${keyword eq 'A'}">서울 북부</c:when>
+					<c:when test="${keyword eq 'B'}">서울 남부</c:when>
+					<c:when test="${keyword eq 'C'}">서울 서부</c:when>
+					<c:when test="${keyword eq 'D'}">서울 동부</c:when>
+					<c:when test="${keyword eq 'E'}">수도권</c:when>
+					<c:otherwise>${keyword}</c:otherwise>
+			</c:choose>
+		</span>
 	</div>
-	
+	<br>
 	<!-- 장소 지역검색 결과 리스트 출력 -->
 	<div class="p_cardPage">
 		<div class="p_cardList">

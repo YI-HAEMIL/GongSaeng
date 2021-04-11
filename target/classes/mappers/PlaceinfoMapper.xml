@@ -13,6 +13,12 @@
 		WHERE place_area LIKE '%' || #{keyword} || '%'
 	</select>
 	
+	<select id="selectRandom" resultType="vo.PlaceinfoVO">
+		<![CDATA[
+		SELECT * FROM (SELECT * FROM place_info ORDER BY dbms_random.value)
+		WHERE rownum <= 4 ]]>
+	</select>
+	
 	<select id="selectOne" resultType="vo.PlaceinfoVO">
 		SELECT * FROM place_info
 		WHERE bizm_id=#{bizm_id}

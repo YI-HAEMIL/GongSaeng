@@ -24,6 +24,10 @@ public class PlaceinfoServiceImpl implements PlaceinfoService {
 	public List<PlaceinfoVO> selectArea(SearchArea sa) {
 		return dao.selectArea(sa);
 	}
+	// ** selectRandom
+	public List<PlaceinfoVO> selectRandom() {
+		return dao.selectRandom();
+	}
 	
 	// ** selectOne
 	public PlaceinfoVO selectOne(PlaceinfoVO vo){

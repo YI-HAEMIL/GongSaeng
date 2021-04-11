@@ -1,7 +1,9 @@
 package com.project.gongsaeng;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.PlaceinfoService;
+import vo.PlacefileVO;
+import vo.PlaceinfoVO;
 
 /**
  * Handles requests for the application home page.
@@ -56,25 +60,22 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/mainp")
-	public ModelAndView mainpage(ModelAndView mv) {
-		/*
-		List<PlaceinfoVO> list = service.selectList();
+	public ModelAndView mainpage(ModelAndView mv, PlaceinfoVO vo) {
+		
+		List<PlaceinfoVO> list = service.selectRandom();
 		if(list != null) {
-			int listsize=list.size();
-			mv.addObject("pVO", list);
-			
 			List<String> thumbList = new ArrayList<String>();
-			for (int i = 0; i < listsize; i++) {
+			for (int i = 0; i < list.size(); i++) {
 				int placeid = list.get(i).getPlace_id();
 				List<PlacefileVO> imgList = service.getFileList(placeid);
 				thumbList.add(imgList.get(0).getFile_path());
 			}
-			
+			mv.addObject("thumbList", thumbList);
+			mv.addObject("pvoList", list);
 		} else {
-			
 			mv.addObject("msg", "출력할 장소가 없습니다.");
 		}
-		*/
+		
 		mv.setViewName("mytarget/mainpage");
 		return mv;
 	}

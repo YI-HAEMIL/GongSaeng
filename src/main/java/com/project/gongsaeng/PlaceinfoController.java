@@ -52,13 +52,12 @@ public class PlaceinfoController {
 	
 	@RequestMapping(value="/parea")
 	public ModelAndView parea(ModelAndView mv, PlaceinfoVO vo, SearchArea sa) {
+		mv.addObject("keyword", sa.getKeyword());
 		List<PlaceinfoVO> list = service.selectArea(sa);
 
 		if (list != null) {
-			int listsize=list.size();
-			
 			List<String> thumbList = new ArrayList<String>();
-			for (int i = 0; i < listsize; i++) {
+			for (int i = 0; i < list.size(); i++) {
 				int placeid = list.get(i).getPlace_id();
 				List<PlacefileVO> imgList = service.getFileList(placeid);
 				thumbList.add(imgList.get(0).getFile_path());
@@ -67,7 +66,7 @@ public class PlaceinfoController {
 			mv.addObject("thumbList", thumbList);
 			mv.addObject("pvoList", list);
 
-		} else {
+		} else if(list == null || list.size()==0) {
 			mv.addObject("msg", "아직 장소가 등록되어있지 않습니다.");
 		}
 		mv.setViewName("placeReserv/pareaList");
@@ -109,7 +108,6 @@ public class PlaceinfoController {
 		if (fileList.size() < 1 && fileList.get(0).getOriginalFilename().equals("")) {
 			mv.addObject("insertSuccess", "F");
 			mv.addObject("msg", "이미지는 한 개 이상 선택해줘야 합니다");
-
 		} else if (service.insert(vo) > 0) { // 정보 인서트
 			
 			// 다중 이미지 업로드 (placeid를 받아와야 해서 정보가 먼저 insert 되어야 가능)

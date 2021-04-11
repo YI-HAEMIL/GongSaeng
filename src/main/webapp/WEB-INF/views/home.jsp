@@ -97,5 +97,10 @@
 	</div>
 	
 	<div id="resultArea" style="margin-top:82px;" onload="main()"></div>
+	<!-- 로그인 모달창 -->
+	<div class="login_modal">
+		<div class="login_modal_con">
+		</div>
+	</div>
 </body>
 </html>

@@ -1,8 +1,8 @@
 /* 장소 리스트 페이지에서 페이지 이동 ajax 처리 스크립트문 */
 var isRun = false;
 
-//장소 상세 페이지 이동
 
+//장소 상세 페이지 이동
 function placemodal(id) {
 	var bid = id;
 	console.log(bid);
@@ -17,6 +17,8 @@ function placemodal(id) {
 			window.scrollTo(0, 0);
 			$('.modal_cArea').html(resultPage);
 			$('.modal').fadeIn();
+			$('.sliderimg').resize(); // 팝업 열때 슬라이드 깨짐 방지
+			map.relayout();
 			document.body.classList.add("stop-scrolling");
 			isRun = false;
 		},
