@@ -8,7 +8,7 @@
 <title>Mypage</title>
 <link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.7" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
-<script src="resources/gscript/pageMove2.js?ver=1.0"></script>
+<script src="resources/gscript/pageMove2.js"></script>
 <script>
 $(function(){
 	var menu = document.getElementsByClassName('thar');
@@ -51,6 +51,7 @@ $(function(){
 		<li><span id=""><a class="thar">예약 확인</a></span>  
 		<li><span id="pinsertbtn"><a class="thar">장소 등록</a></span>  
 		<li><span id="pdetailbtn"><a class="thar">장소 수정 및 삭제</a></span>  
+		<li><span id="pablebtn"><a class="thar">장소 이용 시간</a></span>  
 		</c:if>
 	</ul>
 </div>

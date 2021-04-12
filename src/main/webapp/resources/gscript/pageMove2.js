@@ -76,3 +76,22 @@ function pdetail(){
 		}	
 	}); //ajax
 }
+
+// 장소 이용 시간 등록 / 업데이트
+$(document).on('click', '#pablebtn', function() {
+	pablef();
+});
+function pablef(){
+	if(isRun == true) { return; } isRun = true;
+	$.ajax({
+		type:'Get',
+		url:'pablef',
+		success:function(resultPage){
+			$('#mypagebox').html(resultPage);
+			isRun=false;
+			},
+		error:function(){
+			alert("서버 오류 발생, 다시 시도해주세요.");
+		}	
+	}); //ajax
+}

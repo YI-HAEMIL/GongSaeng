@@ -27,7 +27,7 @@ public class PlaceinfoController {
 	@Autowired
 	PlaceinfoService service;
 	
-	@RequestMapping(value="/placemodal")
+	@RequestMapping(value="/placemodal") // 일반 회원 > 장소 보기
 	public ModelAndView placemodal(ModelAndView mv, PlaceinfoVO vo) {
 		vo=service.selectOne(vo);
 		if(vo != null) {
@@ -50,7 +50,7 @@ public class PlaceinfoController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/parea")
+	@RequestMapping(value="/parea")	// 지역 검색 결과 리스트
 	public ModelAndView parea(ModelAndView mv, PlaceinfoVO vo, SearchArea sa) {
 		mv.addObject("keyword", sa.getKeyword());
 		List<PlaceinfoVO> list = service.selectArea(sa);
@@ -73,7 +73,7 @@ public class PlaceinfoController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/pinsertf")
+	@RequestMapping(value="/pinsertf")	// 장소 등록 폼 불러오기
 	public ModelAndView pinsertf(HttpServletRequest request, ModelAndView mv, PlaceinfoVO vo, RedirectAttributes rttr) {
 		HttpSession session = request.getSession(false);
 		vo.setBizm_id((String)session.getAttribute("loginID"));
@@ -87,7 +87,7 @@ public class PlaceinfoController {
 		return mv;
 	} //pinsertf
 	
-	@RequestMapping(value="/pinsert")
+	@RequestMapping(value="/pinsert")	// 장소 등록
 	public ModelAndView pinsert(HttpServletRequest request, MultipartHttpServletRequest mhsq,
 			ModelAndView mv, PlaceinfoVO vo) throws IllegalStateException, IOException {
 		
@@ -141,7 +141,7 @@ public class PlaceinfoController {
 		
 	} //pinsert
 	
-	@RequestMapping(value="/pdetail")
+	@RequestMapping(value="/pdetail") // 비즈니스회원 my page > 장소 수정 페이지에 불러올 내용
 	public ModelAndView pdetail(HttpServletRequest request, ModelAndView mv, PlaceinfoVO vo) {
 		// 로그인 한 아이디 = bizm_id
 		HttpSession session = request.getSession(false);
@@ -169,7 +169,7 @@ public class PlaceinfoController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/pupdate")
+	@RequestMapping(value="/pupdate") // 장소 수정
 	public ModelAndView pupdate(HttpServletRequest request, MultipartHttpServletRequest mhsq,
 			ModelAndView mv, PlaceinfoVO vo, PlacefileVO fvo) throws IllegalStateException, IOException {
 
@@ -219,7 +219,7 @@ public class PlaceinfoController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/pdelete")
+	@RequestMapping(value="/pdelete")	// 장소 삭제
 	public ModelAndView pdelete(ModelAndView mv, PlaceinfoVO vo, PlacefileVO fvo) {
 		
 		List<PlacefileVO> prevImgList = service.getFileList(vo.getPlace_id());
@@ -236,6 +236,12 @@ public class PlaceinfoController {
 			mv.addObject("msg", "장소 정보 삭제에 실패하였습니다. 다시 시도해주세요");
 		}
 		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	@RequestMapping(value="/pablef") // 장소 이용 가능 시간 등록 폼
+	public ModelAndView pablef(ModelAndView mv) {
+		mv.setViewName("mybox/pableForm");
 		return mv;
 	}
 
