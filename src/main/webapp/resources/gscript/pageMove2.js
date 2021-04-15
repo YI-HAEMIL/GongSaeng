@@ -77,7 +77,7 @@ function pdetail(){
 	}); //ajax
 }
 
-// 장소 이용 시간 등록 / 업데이트
+// 장소 이용 시간 등록 폼
 $(document).on('click', '#pablebtn', function() {
 	pablef();
 });
@@ -88,6 +88,7 @@ function pablef(){
 		url:'pablef',
 		success:function(resultPage){
 			$('#mypagebox').html(resultPage);
+			$('#ableResult').load('abledetail');
 			isRun=false;
 			},
 		error:function(){

@@ -7,8 +7,11 @@
 <meta charset="UTF-8">
 <title>Mypage</title>
 <link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.7" type="text/css">
+<link rel="stylesheet" href="resources/datepicker/datepicker.min.css"  type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/pageMove2.js"></script>
+<script src="resources/datepicker/datepicker.min.js"></script>
+<script src="resources/datepicker/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
 <script>
 $(function(){
 	var menu = document.getElementsByClassName('thar');

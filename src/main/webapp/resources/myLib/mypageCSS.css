@@ -213,3 +213,12 @@ textarea{
 	border:0px solid #fff;
 	margin-left:45px;
 }
+
+#abletimet{
+	width: 500px;
+	border-collapse: collapse;
+	margin: 0 auto;
+	padding-top:15px;
+	border: 1px solid #c3cbe0;
+	font-family:AppleSDGothicNeoM00;
+}

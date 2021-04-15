@@ -95,8 +95,8 @@ public class PlaceinfoController {
 		HttpSession session = request.getSession(false);
 		vo.setBizm_id((String)session.getAttribute("loginID"));
 		
-		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
-//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 		
 		File f1 = new File(realPath);
 		if (!f1.exists())
@@ -129,6 +129,7 @@ public class PlaceinfoController {
 				// DB 업로드 > 서비스에서 처리
 			} //for
 			
+			mv.addObject("insertSuccess", "T");
 			mv.addObject("msg", "장소 등록이 정상적으로 처리되었습니다.");
 
 		} else {	// 정보 인서트 실패
@@ -173,8 +174,8 @@ public class PlaceinfoController {
 	public ModelAndView pupdate(HttpServletRequest request, MultipartHttpServletRequest mhsq,
 			ModelAndView mv, PlaceinfoVO vo, PlacefileVO fvo) throws IllegalStateException, IOException {
 
-		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
-//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 
 		File f1 = new File(realPath);
 		if (!f1.exists())
@@ -239,10 +240,20 @@ public class PlaceinfoController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/pablef") // 장소 이용 가능 시간 등록 폼
-	public ModelAndView pablef(ModelAndView mv) {
-		mv.setViewName("mybox/pableForm");
+	@RequestMapping(value = "/pablef") // 장소 이용 가능 시간 등록 폼
+	public ModelAndView pablef(HttpServletRequest request, ModelAndView mv, PlaceinfoVO vo) {
+		// 로그인 한 아이디 = bizm_id
+		HttpSession session = request.getSession(false);
+		vo.setBizm_id((String) session.getAttribute("loginID"));
+
+		vo = service.selectOne(vo);
+		if (vo != null) {
+			mv.addObject("pVO", vo);
+			mv.setViewName("mybox/pableForm");
+		} else {
+			mv.addObject("msg", "장소가 등록되어 있지 않습니다. 장소를 먼저 등록해주세요");
+			mv.setViewName("mybox/pinsertForm");
+		}
 		return mv;
 	}
-
 }

@@ -189,7 +189,7 @@ function pinsert() {
 		success:function(resultData){
 			if(resultData.insertSuccess=='T') {
 				alert(resultData.msg);
-				$('#mypagebox').load('pdetail');
+				$('#mypagebox').load('pablef');
 			} else {
 				alert(resultData.msg);
 				$('#mypagebox').load('pinsertf');
@@ -269,4 +269,47 @@ function pdelete(){
 			$('#mypagebox').load('pdetail');
 		}	
 	}); //ajax
+}
+
+
+// 장소 이용 시간 insert submit
+$(document).on('click','#able-submit', function(){
+	ableinsert();
+});
+function ableinsert(){
+	if(isRun == true) { return; } isRun = true;
+	var datepicker=$('#datepicker').val();
+	var date=datepicker.split(',');
+	
+	for(var i=0;i<date.length;i++){
+		console.log(date[i]);
+	}
+
+	for(var i=0;i<date.length;i++){
+		(function(i) {
+			$.ajax({
+				type:'Get',
+				url:'ableinsert',
+				data:{
+					place_id:$('#place_id').val(),
+					bizm_id:$('#bizm_id').val(),
+					able_date:date[i],
+					able_starttime:$('#startTime').val(),
+					able_endtime:$('#endTime').val()
+				},
+				success:function(resultData){
+					if(resultData.insertSuccess=='T') {
+						$('#ableResult').load('abledetail');
+					} else {
+						$('#mypagebox').load('pablef');
+					}
+					isRun=false;
+				},
+				error:function(){
+					alert("서버 오류 발생, 다시 시도해주세요.");
+					$('#mypagebox').load('pablef');
+				}	
+			}); //ajax
+		})(i);
+	}
 }
