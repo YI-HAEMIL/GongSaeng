@@ -273,7 +273,7 @@ function pdelete(){
 
 
 // 장소 이용 시간 insert submit
-$(document).on('click','#able-submit', function(){
+$(document).on('click','#ainsert-submit', function(){
 	ableinsert();
 });
 function ableinsert(){
@@ -312,4 +312,33 @@ function ableinsert(){
 			}); //ajax
 		})(i);
 	}
+}
+
+$(document).on('click','#adelete-submit', function(){
+	abledelete();
+});
+
+function abledelete() {
+	if(isRun == true) { return; } isRun = true;
+	$.ajax({
+		type:'Get',
+		url:'abledelete',
+		data:{
+			able_date:$('#abledate').val()
+		},
+		success:function(resultData){
+			if(resultData.deleteSuccess=='T') {
+				alert(resultData.msg);
+				$('#ableResult').load('abledetail');
+			} else {
+				alert(resultData.msg);
+				$('#ableResult').load('abledetail');
+			}
+			isRun=false;
+		},
+		error:function(){
+			alert("서버 오류 발생, 다시 시도해주세요.");
+			$('#mypagebox').load('pablef');
+		}	
+	}); //ajax
 }

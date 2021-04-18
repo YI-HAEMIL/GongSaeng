@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member Information</title>
+<title>Usable Timetable InsertForm</title>
 <link rel="stylesheet" href="resources/myLib/mypageCSS.css"  type="text/css">
 <link rel="stylesheet" href="resources/datepicker/datepicker.min.css"  type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
@@ -35,7 +35,6 @@ select{
 	대관이 '반드시' 가능한 시간만 등록을 해주시기 바랍니다.</span>
 	<br><br>
     <div>
-    	<form>
     	<input type="hidden" id="place_id" value="${pVO.place_id}">
     	<input type="hidden" id="bizm_id" value="${pVO.bizm_id}">
     	<input type="text"
@@ -49,12 +48,8 @@ select{
 		<select id="endTime" onchange="comparisonTime()">
 			<option>종료 시간</option>
 		</select>
-		<br><br>
-		<span id="able-submit">
-			<input type="button" class="button" style="text-align: center;" value="UPLOAD">
-		</span>&nbsp;&nbsp;
-		<input type="reset"  class="button" value="RESET">
-		</form>
+		&nbsp;&nbsp;&nbsp;
+		<span id="ainsert-submit"><button>REGISTER</button></span>
     </div><br>
     <script>
     // datepicker jQuery 이용, 달력 출력

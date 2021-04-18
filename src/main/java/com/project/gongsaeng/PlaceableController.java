@@ -44,4 +44,17 @@ public class PlaceableController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value="/abledelete")
+	public ModelAndView abledelete(ModelAndView mv, PlaceableVO vo) {
+		if(service.delete(vo)>0) {
+			mv.addObject("deleteSuccess", "T");
+			mv.addObject("msg", "삭제가 정상적으로 처리되었습니다");
+		} else {
+			mv.addObject("deleteSuccess", "F");
+			mv.addObject("msg", "삭제에 실패하였습니다. 다시 시도해주세요");
+		}
+		mv.setViewName("jsonView");
+		return mv;
+	}
 }
