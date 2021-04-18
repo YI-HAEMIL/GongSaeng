@@ -3,8 +3,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.PlaceableMapper">
 	<select id="selectList" resultType="vo.PlaceableVO">
-		SELECT * FROM place_able
+		SELECT place_id,bizm_id,TO_CHAR(able_date, 'yyyy-MM-dd') AS able_date,able_starttime,able_endtime
+		FROM place_able
 		WHERE bizm_id=#{bizm_id}
+		ORDER BY able_date ASC
 	</select>
 	<insert id="insert">
 		INSERT INTO place_able VALUES(

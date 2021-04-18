@@ -88,6 +88,7 @@
 			 &#183; ${parea[1]}</span><br>
 		<span>${psize[0]}평 &#183; ${psize[1]}㎡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;기본 ${ppVO.place_max}명</span><br>
 		<span style="font-size: larger;"><b>${ppVO.place_nm}</b>&nbsp;&nbsp; | </span><span style="font-size:medium;">&nbsp;&nbsp;${ppVO.bizm_id}</span><br>
+		
 	</div>
 	
 	

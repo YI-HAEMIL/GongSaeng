@@ -214,6 +214,12 @@ textarea{
 	margin-left:45px;
 }
 
+/* 장소 사용 시간 출력 테이블 */
+#ableResult{
+	width:100%;
+	height:100%;
+}
+
 #abletimet{
 	width: 500px;
 	border-collapse: collapse;
@@ -221,4 +227,12 @@ textarea{
 	padding-top:15px;
 	border: 1px solid #c3cbe0;
 	font-family:AppleSDGothicNeoM00;
+}
+.datetd{
+	width:100px;
+}
+
+#ableckbox {
+	width:20px;
+	height:20px;
 }

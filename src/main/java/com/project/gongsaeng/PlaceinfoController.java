@@ -18,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import search.SearchArea;
+import service.PlaceableService;
 import service.PlaceinfoService;
+import vo.PlaceableVO;
 import vo.PlacefileVO;
 import vo.PlaceinfoVO;
 
@@ -26,23 +28,30 @@ import vo.PlaceinfoVO;
 public class PlaceinfoController {
 	@Autowired
 	PlaceinfoService service;
+	@Autowired
+	PlaceableService aservice;
 	
 	@RequestMapping(value="/placemodal") // 일반 회원 > 장소 보기
-	public ModelAndView placemodal(ModelAndView mv, PlaceinfoVO vo) {
+	public ModelAndView placemodal(HttpServletRequest request, ModelAndView mv,
+			PlaceinfoVO vo, PlaceableVO avo) {
 		vo=service.selectOne(vo);
 		if(vo != null) {
 			int placeid=vo.getPlace_id();
-			
 			String[] area = vo.getPlace_area().split(",");
-			mv.addObject("parea", area);
-
+			mv.addObject("parea", area); // 지역
 			String[] size = vo.getPlace_size().split("/");
-			mv.addObject("psize", size);
-
+			mv.addObject("psize", size); // 평수,제곱미터
 			List<PlacefileVO> imgList = service.getFileList(placeid);
-			mv.addObject("pimgList", imgList);
+			mv.addObject("pimgList", imgList); // 이미지 리스트
+			mv.addObject("ppVO", vo); // 그 외 정보
 			
-			mv.addObject("ppVO", vo);
+			//---------------------------------------------------------
+			// 예약 가능한 시간
+			HttpSession session = request.getSession(false);
+			vo.setBizm_id((String)session.getAttribute("loginID"));
+			List<PlaceableVO> list=aservice.selectList(avo);
+			mv.addObject("avoList", list);
+			
 		} else {
 			mv.addObject("msg", "잘못된 접근입니다. 다시 시도해주세요");
 		}
@@ -95,8 +104,8 @@ public class PlaceinfoController {
 		HttpSession session = request.getSession(false);
 		vo.setBizm_id((String)session.getAttribute("loginID"));
 		
-//		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
-		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 		
 		File f1 = new File(realPath);
 		if (!f1.exists())
@@ -174,8 +183,8 @@ public class PlaceinfoController {
 	public ModelAndView pupdate(HttpServletRequest request, MultipartHttpServletRequest mhsq,
 			ModelAndView mv, PlaceinfoVO vo, PlacefileVO fvo) throws IllegalStateException, IOException {
 
-//		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
-		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
+		String realPath = "D:/MyTest/MyWork/Gongsaeng/src/main/webapp/resources/placeImg/";
+//		String realPath = "C:/Users/haechan/Desktop/MyTest/MyWork/GongSaeng/src/main/webapp/resources/placeImg/";
 
 		File f1 = new File(realPath);
 		if (!f1.exists())

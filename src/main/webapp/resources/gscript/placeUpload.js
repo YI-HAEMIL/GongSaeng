@@ -279,7 +279,7 @@ $(document).on('click','#able-submit', function(){
 function ableinsert(){
 	if(isRun == true) { return; } isRun = true;
 	var datepicker=$('#datepicker').val();
-	var date=datepicker.split(',');
+	var date=datepicker.split(', ');
 	
 	for(var i=0;i<date.length;i++){
 		console.log(date[i]);
