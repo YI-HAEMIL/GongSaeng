@@ -60,21 +60,15 @@ select{
     });
     
     // option 값 넣어주기
-    for (var i = 0; i < 49; i++) {
+    for (var i = 0; i < 25; i++) {
 		var hour = '';
 		var min = ':00';
-		if ((Math.ceil(i / 2)) < 13) {
-			hour = (Math.floor(i / 2));
-		} else {
-			hour = (Math.floor(i / 2));
-		}
-		hour = (Math.floor(i / 2));
+		
+		hour = i;
 		if (hour < 10) {
 			hour = '0' + hour;
 		}
-		if (i % 2 != 0) {
-			min = ':30';
-		}
+		
 		$('#startTime').append('<option value='+hour+min+'>'
 				+ hour + min
 				+ '</option>');

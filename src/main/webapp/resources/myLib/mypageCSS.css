@@ -270,3 +270,35 @@ button:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
+
+/* 달력 이벤트날짜 표시 */
+#showabletime{
+	display:inline-block;
+	direction:ltr;
+	width:633px;
+	height:285px;
+	border: 1px solid #c3cbe0;
+	margin-top:20px;
+	margin-bottom:20px;
+	padding:20px;
+	justify-content: center;
+}
+#custom-cells{
+	margin-left:30px;
+	margin-top:20px;
+}
+#custom-cells-events{
+	text-align:left;
+	margin-left:330px;
+	margin-top:-175px;
+}
+
+.dp-note,.nav{position:absolute}
+.dp-note{
+	background:#ccc;
+	width:4px;height:4px;
+	border-radius:50%;left:50%;
+	bottom:1px;-webkit-transform:translateX(-50%);
+	transform:translateX(-50%)
+	}
+.-selected- .dp-note{bottom:2px;background:#fff;opacity:.5}

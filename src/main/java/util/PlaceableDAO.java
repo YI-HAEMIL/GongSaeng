@@ -20,6 +20,11 @@ public class PlaceableDAO {
 		return sqlSession.selectList(NS+"selectList", vo);
 	}
 	
+	// ** selectOne
+	public PlaceableVO selectOne(PlaceableVO vo) {
+		return sqlSession.selectOne(NS+"selectOne", vo);
+	}
+	
 	// ** insert
 	public int insert(PlaceableVO vo) {
 		return sqlSession.insert(NS+"insert", vo);

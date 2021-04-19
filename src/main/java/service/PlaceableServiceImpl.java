@@ -18,6 +18,11 @@ public class PlaceableServiceImpl implements PlaceableService {
 		return dao.selectList(vo);
 	}
 	
+	// ** selectOne
+	public PlaceableVO selectOne(PlaceableVO vo) {
+		return dao.selectOne(vo);
+	}
+	
 	// ** insert
 	public int insert(PlaceableVO vo) {
 		return dao.insert(vo);

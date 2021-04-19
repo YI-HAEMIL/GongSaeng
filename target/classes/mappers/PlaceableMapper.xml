@@ -8,11 +8,16 @@
 		WHERE bizm_id=#{bizm_id}
 		ORDER BY able_date ASC
 	</select>
+	<select id="selectOne" resultType="vo.PlaceableVO">
+		SELECT place_id,bizm_id,TO_CHAR(able_date, 'yyyy-MM-dd') AS able_date,able_starttime,able_endtime
+		FROM place_able
+		WHERE bizm_id=#{bizm_id} AND TO_CHAR(able_date, 'yyyy-MM-dd')=#{able_date}
+	</select>
 	<insert id="insert">
 		INSERT INTO place_able VALUES(
 		#{place_id},#{bizm_id},#{able_date},#{able_starttime},#{able_endtime})
 	</insert>
 	<delete id="delete">
-		DELETE FROM place_able WHERE able_date=#{able_date}
+		DELETE FROM place_able WHERE TO_CHAR(able_date, 'yyyy-MM-dd')=#{able_date}
 	</delete>
 </mapper>

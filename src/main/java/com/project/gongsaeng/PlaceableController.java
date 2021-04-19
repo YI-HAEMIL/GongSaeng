@@ -57,4 +57,16 @@ public class PlaceableController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
+	
+
+	@RequestMapping(value="/reservf")
+	public ModelAndView reservf(ModelAndView mv, PlaceableVO vo) {
+		vo=service.selectOne(vo);
+		if(vo != null) {
+			mv.addObject("aVO", vo);
+		} 
+		mv.setViewName("placeReserv/reservationForm");
+		return mv;
+	}
+	
 }
