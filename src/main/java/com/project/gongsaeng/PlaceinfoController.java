@@ -31,7 +31,7 @@ public class PlaceinfoController {
 	@Autowired
 	PlaceableService aservice;
 	
-	@RequestMapping(value="/placemodal") // 일반 회원 > 장소 보기
+	@RequestMapping(value="/placemodal") // 일반 회원 > 장소 보기 (모달창)
 	public ModelAndView placemodal(HttpServletRequest request, ModelAndView mv,
 			PlaceinfoVO vo, PlaceableVO avo) {
 		vo=service.selectOne(vo);
@@ -49,7 +49,7 @@ public class PlaceinfoController {
 			// 예약 가능한 시간
 			HttpSession session = request.getSession(false);
 			vo.setBizm_id((String)session.getAttribute("loginID"));
-			List<PlaceableVO> list=aservice.selectList(avo);
+			List<PlaceableVO> list=aservice.selectList_M(avo);
 			mv.addObject("avoList", list);
 			
 		} else {

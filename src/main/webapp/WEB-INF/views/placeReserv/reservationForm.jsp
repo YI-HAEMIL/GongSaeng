@@ -8,7 +8,6 @@
 <title>JOIN PAGE</title>
 <link rel="stylesheet" href="resources/myLib/reservCSS.css" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
-<script src="resources/gscript/pageMove3.js"></script>
 <script>
 	var date = new Date();
 	var usedate=$('#usedate').val();
@@ -58,6 +57,40 @@
     		$('#endTime').val("종료 시간").attr("selected","selected");
     	}
     	return;
+    }
+    
+    $(document).on('click', '#reserv-submit', function(){
+    	rinsert();
+    });
+    function rinsert() {
+    	if(isRun == true) { return; } isRun = true;
+    	$.ajax({
+    		type: 'Post',
+    		url: 'rinsert',
+    		data: {
+    			reserv_id:reservid,
+    			place_id:$('#pid').val(),
+    			use_date:$('#usedate').val(),
+    			use_starttime:$('#sttime').val(),
+    			use_endtime:$('#edtime').val(),
+    			use_number:$('#usenum').val(),
+    			use_purpose:$('#purpose').val()
+    		},
+    		success: function(resultData) {
+    			if(resultData.insertSuccess=='T') {
+    				alert(resultData.msg);
+    				$('#mypagebox').load('rinfo_m');
+    			} else {
+    				alert(resultData.msg);
+    				location.reload();
+    			}
+    			isRun = false;
+    		},
+    		error: function() {
+    			alert("서버 오류 발생, 다시 시도해주세요.");
+    			location.reload();
+    		}
+    	});
     }
 </script>
 </head>

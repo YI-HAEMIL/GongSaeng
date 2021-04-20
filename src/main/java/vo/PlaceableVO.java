@@ -9,4 +9,5 @@ public class PlaceableVO {
 	private String able_date;
 	private String able_starttime;
 	private String able_endtime;
+	private int available;
 }

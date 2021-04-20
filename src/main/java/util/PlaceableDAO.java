@@ -20,6 +20,11 @@ public class PlaceableDAO {
 		return sqlSession.selectList(NS+"selectList", vo);
 	}
 	
+	// ** selectList_M
+	public List<PlaceableVO> selectList_M(PlaceableVO vo){
+		return sqlSession.selectList(NS+"selectList_M", vo);
+	}
+	
 	// ** selectOne
 	public PlaceableVO selectOne(PlaceableVO vo) {
 		return sqlSession.selectOne(NS+"selectOne", vo);
@@ -28,6 +33,16 @@ public class PlaceableDAO {
 	// ** insert
 	public int insert(PlaceableVO vo) {
 		return sqlSession.insert(NS+"insert", vo);
+	}
+	
+	// ** update_1
+	public int update_1(PlaceableVO vo) {
+		return sqlSession.insert(NS+"update_1", vo);
+	}
+
+	// ** update_0
+	public int update_0(PlaceableVO vo) {
+		return sqlSession.insert(NS+"update_0", vo);
 	}
 	
 	// ** delete

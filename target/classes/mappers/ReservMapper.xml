@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.ReservMapper">
+	<select id="selectList_M" resultType="vo.ReservVO">
+		SELECT reserv_id,basicm_id,place_id,TO_CHAR(use_date, 'yyyy-MM-dd') AS use_date,
+		use_starttime,use_endtime,use_number,use_purpose,TO_CHAR(reg_date, 'yyyy-MM-dd') AS reg_date,confirm
+		FROM reserv_log
+		WHERE basicm_id=#{basicm_id}
+		ORDER BY use_date ASC
+	</select>
+	<select id="selectList_B" resultType="vo.ReservVO">
+		SELECT reserv_id,basicm_id,place_id,TO_CHAR(use_date, 'yyyy-MM-dd') AS use_date,
+		use_starttime,use_endtime,use_number,use_purpose,TO_CHAR(reg_date, 'yyyy-MM-dd') AS reg_date,confirm
+		FROM reserv_log
+		WHERE place_id=#{place_id}
+		ORDER BY use_date ASC
+	</select>
+	<select id="selectOne" resultType="vo.ReservVO">
+		SELECT reserv_id,basicm_id,place_id,TO_CHAR(use_date, 'yyyy-MM-dd') AS use_date,
+		use_starttime,use_endtime,use_number,use_purpose,TO_CHAR(reg_date, 'yyyy-MM-dd') AS reg_date,confirm
+		FROM reserv_log
+		WHERE reserv_id=#{reserv_id}
+	</select>
+	<insert id="insert">
+		INSERT INTO reserv_log VALUES(
+		#{reserv_id},#{basicm_id},#{place_id},#{use_date},#{use_starttime},#{use_endtime},
+		#{use_number},#{use_purpose},SYSDATE,0)
+	</insert>
+	<delete id="delete">
+		DELETE FROM reserv_log WHERE reserv_id=#{reserv_id}
+	</delete>
+</mapper>

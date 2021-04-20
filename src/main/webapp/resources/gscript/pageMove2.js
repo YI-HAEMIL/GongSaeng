@@ -16,6 +16,7 @@ function minfo(){
 			},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}	
 	}); //ajax
 }
@@ -34,6 +35,7 @@ function binfo(){
 			},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}	
 	}); //ajax
 }
@@ -54,6 +56,7 @@ function pinsertf(){
 			},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}	
 	}); //ajax
 }
@@ -73,6 +76,7 @@ function pdetail(){
 			},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}	
 	}); //ajax
 }
@@ -93,6 +97,46 @@ function pablef(){
 			},
 		error:function(){
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
+		}	
+	}); //ajax
+}
+
+// 예약 확인 리스트
+$(document).on('click', '#mrinfobtn', function() {
+	rinfo_m();
+});
+function rinfo_m(){
+	if(isRun == true) { return; } isRun = true;
+	$.ajax({
+		type:'Get',
+		url:'rinfo_m',
+		success:function(resultPage){
+			$('#mypagebox').html(resultPage);
+			isRun=false;
+			},
+		error:function(){
+			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
+		}	
+	}); //ajax
+}
+
+$(document).on('click', '#brinfobtn', function() {
+	rinfo_b();
+});
+function rinfo_b(){
+	if(isRun == true) { return; } isRun = true;
+	$.ajax({
+		type:'Get',
+		url:'rinfo_b',
+		success:function(resultPage){
+			$('#mypagebox').html(resultPage);
+			isRun=false;
+			},
+		error:function(){
+			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}	
 	}); //ajax
 }

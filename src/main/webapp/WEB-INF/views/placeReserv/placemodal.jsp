@@ -176,6 +176,7 @@
 				},
 				error: function() {
 					alert("서버 오류 발생, 다시 시도해주세요.");
+					location.reload();
 				}
 			});
 		}

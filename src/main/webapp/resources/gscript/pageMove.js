@@ -48,6 +48,7 @@ function menuMove(innerText) {
 		},
 		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}
 	}); //ajax
 }
@@ -69,6 +70,7 @@ function submenuMove(innerText) {
 		},
 		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}
 	}); //ajax
 }
@@ -86,6 +88,7 @@ $(document).on('click', '#mypage', function() {
 		},
 		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}
 	}); //ajax
 });
@@ -105,6 +108,7 @@ function mloginf() {
 		},
 		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}
 	}); //ajax
 }
@@ -121,6 +125,7 @@ $(document).on('click', '#mjoinf', function() {
 		},
 		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}
 	}); //ajax
 });
@@ -138,6 +143,7 @@ $(document).on('click', '#logout', function() {
 		},
 		error: function() {
 			alert("서버 오류 발생, 다시 시도해주세요.");
+			location.reload();
 		}
 	}); //ajax
 });

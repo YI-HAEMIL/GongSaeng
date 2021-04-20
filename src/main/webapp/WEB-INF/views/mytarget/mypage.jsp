@@ -45,13 +45,13 @@ $(function(){
 	<ul>
 		<c:if test="${group eq 'basic'}">
 		<li><span id="minfobtn"><a class="thar">개인정보수정</a></span>
-		<li><span id=""><a class="thar">예약 확인</a></span> 
+		<li><span id="mrinfobtn"><a class="thar">예약 확인</a></span> 
 		<li><span><a class="thar">내가 쓴 글</a></span>
 		<li><span><a class="thar">북마크 관리</a></span>
 		</c:if>
 		<c:if test="${group eq 'business'}">
 		<li><span id="binfobtn"><a class="thar">개인정보수정</a></span>  
-		<li><span id=""><a class="thar">예약 확인</a></span>  
+		<li><span id="brinfobtn"><a class="thar">예약 확인</a></span>  
 		<li><span id="pinsertbtn"><a class="thar">장소 등록</a></span>  
 		<li><span id="pdetailbtn"><a class="thar">장소 수정 및 삭제</a></span>  
 		<li><span id="pablebtn"><a class="thar">장소 이용 시간</a></span>  
