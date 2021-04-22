@@ -78,7 +78,7 @@ public class PlaceableController {
 	}
 	
 	@RequestMapping(value="/rinsert") // 예약 접수
-	public ModelAndView rinsert(HttpServletRequest request, ModelAndView mv, ReservVO rvo, PlaceableVO pvo) {
+	public ModelAndView rinsert(HttpServletRequest request,	ModelAndView mv, ReservVO rvo, PlaceableVO pvo) {
 		HttpSession session = request.getSession(false);
 		rvo.setBasicm_id((String)session.getAttribute("loginID"));
 		
@@ -86,11 +86,11 @@ public class PlaceableController {
 			pvo.setPlace_id(rvo.getPlace_id());
 			pvo.setAble_date(rvo.getUse_date());
 			aservice.update_1(pvo);
-			mv.addObject("insertSuccess","T");
-			mv.addObject("msg","예약이 정상적으로 처리되었습니다. 예약 확인 페이지로 이동합니다");
+			mv.addObject("insertSuccess", "T");
+			mv.addObject("msg", "예약이 정상적으로 처리되었습니다. 예약 내역은 마이페이지에서 확인 가능합니다");
 		} else {
-			mv.addObject("insertSuccess","F");
-			mv.addObject("msg","예약에 실패하였습니다. 다시 시도해주세요");
+			mv.addObject("insertSuccess", "F");
+			mv.addObject("msg", "예약에 실패하였습니다. 다시 시도해주세요");
 		}
 		mv.setViewName("jsonView");
 		return mv;

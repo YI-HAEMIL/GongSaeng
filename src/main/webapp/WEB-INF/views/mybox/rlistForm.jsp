@@ -18,67 +18,67 @@
 	<span>전체 예약 내역</span>
 	<hr class="reserv_hr">
 	<br>
+	<table>
+		<tr>
+			<td>예약 번호</td>
+			<td>대관 장소번호</td>
+			<td>대관 날짜</td>
+			<td>대관 시간</td>
+		</tr>
 		<c:forEach var="li" items="${rvoList}">
-		<table>
-			<tr>
-				<td>예약 번호</td>
-				<td>대관 장소번호</td>
-				<td>대관 날짜</td>
-				<td>대관 시간</td>
-			</tr>
 			<tr>
 				<td>${li.reserv_id}</td>
 				<td>${li.place_id}</td>
 				<td>${li.use_date}</td>
 				<td>${li.use_starttime}&nbsp;-&nbsp;${li.use_endtime}</td>
 			<tr>
-		</table>
 		</c:forEach>
+	</table>
 	<br>
 
 	<span>다가오는 예약 내역</span>
 	<hr class="reserv_hr">
 	<br>
-	<c:forEach var="li" items="${rvoList}">
-		<c:if test="${0 eq li.confirm}">
-			<table>
-				<tr>
-					<td>예약 번호</td>
-					<td>대관 장소번호</td>
-					<td>대관 날짜</td>
-					<td>대관 시간</td>
-				</tr>
+	<table>
+		<tr>
+			<td>예약 번호</td>
+			<td>대관 장소번호</td>
+			<td>대관 날짜</td>
+			<td>대관 시간</td>
+		</tr>
+		<c:forEach var="li" items="${rvoList}">
+			<c:if test="${0 eq li.confirm}">
 				<tr>
 					<td>${li.reserv_id}</td>
 					<td>${li.place_id}</td>
 					<td>${li.use_date}</td>
 					<td>${li.use_starttime}&nbsp;-&nbsp;${li.use_endtime}</td>
 				<tr>
-			</table>
-		</c:if>
-	</c:forEach>
+			</c:if>
+		</c:forEach>
+	</table>
 	<br>
 
 	<span>지난 예약 내역</span>
 	<hr class="reserv_hr">
 	<br>
-	<c:forEach var="li" items="${rvoList}">
-		<c:if test="${li.confirm > 0 }">
-			<table>
-				<tr>
-					<td>예약 번호</td>
-					<td>대관 장소번호</td>
-					<td>대관 날짜</td>
-					<td>대관 시간</td>
-				</tr>
+	<table>
+		<tr>
+			<td>예약 번호</td>
+			<td>대관 장소번호</td>
+			<td>대관 날짜</td>
+			<td>대관 시간</td>
+		</tr>
+		<c:forEach var="li" items="${rvoList}">
+			<c:if test="${li.confirm > 0 }">
 				<tr>
 					<td>${li.reserv_id}</td>
 					<td>${li.place_id}</td>
 					<td>${li.use_date}</td>
 					<td>${li.use_starttime}&nbsp;-&nbsp;${li.use_endtime}</td>
 				<tr>
-			</table>
-		</c:if>
-	</c:forEach>
+			</c:if>
+		</c:forEach>
+	</table>
 </body>
 </html>
