@@ -138,6 +138,14 @@ public class PlaceableController {
 	
 	@RequestMapping(value="/rdetail") // 예약 리스트에서 selectOne 했을 때 보여지는 예약 상세내용
 	public ModelAndView rdetail(HttpServletRequest request, ModelAndView mv, ReservVO rvo) {
+		rvo=rservice.selectOne(rvo);
+		if(rvo != null) {
+			mv.addObject("content", "예약자 ID: "+rvo.getBasicm_id()+
+									"<br>예약 목적: "+rvo.getUse_purpose()+
+									"<br>사용 인원: "+rvo.getUse_number()+
+									"<br>예약 날짜: "+rvo.getReg_date());
+		} 
+		mv.setViewName("jsonView");
 		return mv;
 	}
 	

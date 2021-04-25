@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+/* 에약 확인 폼 */
+.reserv_hr{
+	width:140px;
+}
+.reserview{
+	width: 800px;
+	border-collapse: collapse;
+	margin: 0 auto;
+	font-family:AppleSDGothicNeoM00;
+	padding:0px;
+	border-bottom: 1px solid #abb3cc;
+	border-top: 1px solid #abb3cc;
+}
+.rtd {
+	border-collapse: collapse;
+	text-align: center;
+	border-bottom: 1px solid #abb3cc;
+}
+.rth {
+	border-collapse: collapse;
+	text-align: center;
+	border-bottom: 1px solid #abb3cc;
+	padding:6px;
+}
+.rdetail{
+	padding:0px;
+}

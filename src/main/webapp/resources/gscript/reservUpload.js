@@ -1,7 +1,7 @@
 var isRun = false;
 
 $(document).on('click', '#reserv-submit', function(){
-    	rinsert();
+    rinsert();
 });
 function rinsert() {
    	if(isRun == true) { return; } isRun = true;
@@ -32,4 +32,27 @@ function rinsert() {
    			location.reload();
    		}	
 	});
-}	
+}
+
+
+function rdetail(rid) {
+	var reservid=rid;
+	if($('.content').html()==''){
+		$.ajax({
+			type:'Get',
+			url: rdetail,
+			data:{
+				reserv_id:reservid
+			},
+			success:function(resultData) {
+				$('.content').html(''); // result span clear
+				$('.content').html(resultData.content);
+			},
+			error: function() {
+				alert('서버 오류, 잠시 후 다시 시도해주세요');
+			}
+		}); //ajax
+	} else {
+		$('.content').html('');
+	}
+}
