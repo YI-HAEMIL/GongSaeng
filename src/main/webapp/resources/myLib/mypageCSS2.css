@@ -17,6 +17,7 @@
 	border-collapse: collapse;
 	text-align: center;
 	border-bottom: 1px solid #abb3cc;
+	padding:6px;
 }
 .rth {
 	border-collapse: collapse;
@@ -33,6 +34,13 @@
 .rdetailpd{
 	padding:10px;
 }
-#rid, #rdelete{
+
+#rid, #pid, #rdelete{
 	cursor: pointer;
+}
+#rid, #pid{
+	color:#6375a6;
+}
+#rdelete{
+	color:#eb4034;
 }

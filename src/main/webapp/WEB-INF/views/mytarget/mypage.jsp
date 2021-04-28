@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypage</title>
+<link rel="stylesheet" href="resources/myLib/placeCSS.css?ver=2.1" type="text/css">
 <link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.7" type="text/css">
 <link rel="stylesheet" href="resources/datepicker/datepicker.min.css"  type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
@@ -62,6 +63,12 @@ $(function(){
 <div id="mypagebox">
 	<c:if test="${group eq 'basic'}"><script>onload=minfo()</script></c:if>
 	<c:if test="${group eq 'business'}"><script>onload=binfo();</script></c:if>
+</div>
+
+<!-- 모달창(장소 디테일 페이지) -->
+<div class="modal">
+	<div class="modal_cArea">
+	</div>
 </div>
 <br>
 </body>

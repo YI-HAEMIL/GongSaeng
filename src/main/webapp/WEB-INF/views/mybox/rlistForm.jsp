@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Member Information</title>
-<link rel="stylesheet" href="resources/myLib/mypageCSS2.css?ver=1.1"  type="text/css">
+<link rel="stylesheet" href="resources/myLib/mypageCSS2.css?ver=1.3"  type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/reservUpload.js"></script>
 </head>
@@ -17,7 +17,7 @@
 <br><br>
 	<span>전체 예약 내역</span>
 	<hr class="reserv_hr">
-	<span style="font-size: small;">예약번호 클릭 시 예약 상세내용이 보여집니다</span>
+	<span style="font-size: small;">예약번호 클릭 시 예약 상세 내용이, 장소번호 클릭 시 장소 정보가 보여집니다</span>
 	<br><br>
 	<table class="reserview">
 		<tr>
@@ -30,7 +30,7 @@
 		<c:forEach var="li" items="${rvoList}">
 			<tr>
 				<td class="rtd" id="rid" onclick="rdetail('${li.reserv_id}')">${li.reserv_id}</td>
-				<td class="rtd" id="pid" onclick="">${li.place_id}</td>
+				<td class="rtd" id="pid" onclick="placemodal2('${li.place_id}')">${li.place_id}</td>
 				<td class="rtd">${li.use_date}</td>
 				<td class="rtd">${li.use_starttime}&nbsp;-&nbsp;${li.use_endtime}</td>
 				<td class="rtd" id="rdelete"

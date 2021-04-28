@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Member Information</title>
-<link rel="stylesheet" href="resources/myLib/mypageCSS.css"  type="text/css">
+<link rel="stylesheet" href="resources/myLib/mypageCSS1.css"  type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/gsCheck.js"></script>
 <script>

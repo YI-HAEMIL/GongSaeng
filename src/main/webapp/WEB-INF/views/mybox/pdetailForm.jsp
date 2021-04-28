@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Place Information</title>
-<link rel="stylesheet" href="resources/myLib/mypageCSS.css?ver=1.3" type="text/css">
+<link rel="stylesheet" href="resources/myLib/mypageCSS1.css?ver=1.3" type="text/css">
 <script src="resources/gscript/jquery-3.2.1.min.js"></script>
 <script src="resources/gscript/placeUpload.js"></script>
 <script src="resources/gscript/placeCheck.js"></script>

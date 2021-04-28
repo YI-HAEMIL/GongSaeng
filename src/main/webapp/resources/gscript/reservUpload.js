@@ -92,3 +92,29 @@ function rdelete(rid,pid,udate) {
 		}
 	}); //ajax
 }
+
+function placemodal2(id) {
+	var pid = id;
+	console.log(pid);
+
+	$.ajax({
+		type: 'Get',
+		url: 'placemodal2',
+		data: {
+			place_id: pid
+		},
+		success: function(resultPage) {
+			window.scrollTo(0, 0);
+			$('.modal_cArea').html(resultPage);
+			$('.modal').fadeIn();
+			$('.sliderimg').resize(); // 팝업 열때 슬라이드 깨짐 방지
+			map.relayout();
+			document.body.classList.add("stop-scrolling");
+			isRun = false;
+		},
+		error: function() {
+			alert("서버 오류 발생, 다시 시도해주세요.");
+		}
+	});//ajax
+}
+

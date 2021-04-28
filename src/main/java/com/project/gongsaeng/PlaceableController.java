@@ -15,6 +15,7 @@ import service.PlaceableService;
 import service.PlaceinfoService;
 import service.ReservService;
 import vo.PlaceableVO;
+import vo.PlacefileVO;
 import vo.PlaceinfoVO;
 import vo.ReservVO;
 
@@ -164,6 +165,32 @@ public class PlaceableController {
 			mv.addObject("msg", "예약 취소가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요");
 		}
 		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	@RequestMapping(value="/placemodal2") // 일반 회원 > 장소 보기 (모달창)
+	public ModelAndView placemodal2(ModelAndView mv, PlaceinfoVO vo, PlaceableVO avo) {
+		vo=service.selectOne2(vo);
+		if(vo != null) {
+			int placeid=vo.getPlace_id();
+			String[] area = vo.getPlace_area().split(",");
+			mv.addObject("parea", area); // 지역
+			String[] size = vo.getPlace_size().split("/");
+			mv.addObject("psize", size); // 평수,제곱미터
+			List<PlacefileVO> imgList = service.getFileList(placeid);
+			mv.addObject("pimgList", imgList); // 이미지 리스트
+			mv.addObject("ppVO", vo); // 그 외 정보
+			
+			//---------------------------------------------------------
+			// 예약 가능한 시간
+			avo.setBizm_id(vo.getBizm_id());
+			List<PlaceableVO> list=aservice.selectList_M(avo);
+			mv.addObject("avoList", list);
+			
+		} else {
+			mv.addObject("msg", "잘못된 접근입니다. 다시 시도해주세요");
+		}
+		mv.setViewName("placeReserv/placemodal");
 		return mv;
 	}
 }
