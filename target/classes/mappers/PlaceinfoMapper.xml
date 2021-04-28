@@ -23,6 +23,10 @@
 		SELECT * FROM place_info
 		WHERE bizm_id=#{bizm_id}
 	</select>
+	<select id="selectOne2" resultType="vo.PlaceinfoVO">
+		SELECT * FROM place_info
+		WHERE place_id=#{place_id}
+	</select>
 	<select id="selectfileList" resultType="vo.PlacefileVO">
 		SELECT * FROM place_file
 		WHERE place_id=#{place_id}

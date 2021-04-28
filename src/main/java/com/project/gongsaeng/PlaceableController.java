@@ -141,9 +141,9 @@ public class PlaceableController {
 		rvo=rservice.selectOne(rvo);
 		if(rvo != null) {
 			mv.addObject("content", "예약자 ID: "+rvo.getBasicm_id()+
-									"<br>예약 목적: "+rvo.getUse_purpose()+
-									"<br>사용 인원: "+rvo.getUse_number()+
-									"<br>예약 날짜: "+rvo.getReg_date());
+									"&nbsp;&nbsp;|&nbsp;&nbsp; 예약 목적: "+rvo.getUse_purpose()+
+									"&nbsp;&nbsp;|&nbsp;&nbsp; 사용 인원: "+rvo.getUse_number()+
+									"&nbsp;&nbsp;|&nbsp;&nbsp; 예약 날짜: "+rvo.getReg_date());
 		} 
 		mv.setViewName("jsonView");
 		return mv;
@@ -151,7 +151,19 @@ public class PlaceableController {
 	
 	@RequestMapping(value="/rdelete") // 예약 취소 시 삭제
 	public ModelAndView rdelete(HttpServletRequest request, ModelAndView mv, ReservVO rvo, PlaceableVO pvo) {
+		HttpSession session = request.getSession(false);
+		String group=(String)session.getAttribute("group");
+		
+		if(rservice.delete(rvo)>0) {
+			aservice.update_0(pvo);
+			mv.addObject("deleteSuccess", "T");
+			mv.addObject("group", group);
+			mv.addObject("msg", "예약이 정상적으로 취소되었습니다");
+		} else {
+			mv.addObject("deleteSuccess", "F");
+			mv.addObject("msg", "예약 취소가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요");
+		}
+		mv.setViewName("jsonView");
 		return mv;
 	}
-	
 }

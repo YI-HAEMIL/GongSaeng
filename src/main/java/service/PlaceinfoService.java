@@ -16,6 +16,8 @@ public interface PlaceinfoService {
 
 	// ** selectOne
 	public PlaceinfoVO selectOne(PlaceinfoVO vo);
+	// ** selectOne
+	public PlaceinfoVO selectOne2(PlaceinfoVO vo);
 	// ** 파일 리스트 출력
 	public List<PlacefileVO> getFileList(int placeid);
 

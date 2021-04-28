@@ -33,6 +33,10 @@ public class PlaceinfoServiceImpl implements PlaceinfoService {
 	public PlaceinfoVO selectOne(PlaceinfoVO vo){
 		return dao.selectOne(vo);
 	}
+	// ** selectOne2
+	public PlaceinfoVO selectOne2(PlaceinfoVO vo){
+		return dao.selectOne2(vo);
+	}
 	// ** 파일 리스트 출력
 	public List<PlacefileVO> getFileList(int placeid) {
 		return dao.getFileList(placeid);

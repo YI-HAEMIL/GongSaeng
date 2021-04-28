@@ -17,23 +17,27 @@
 <br><br>
 	<span>전체 예약 내역</span>
 	<hr class="reserv_hr">
-	<br>
+	<span style="font-size: small;">예약번호 클릭 시 예약 상세내용이 보여집니다</span>
+	<br><br>
 	<table class="reserview">
 		<tr>
 			<td class="rth">예약 번호</td>
 			<td class="rth">대관 장소번호</td>
 			<td class="rth">대관 날짜</td>
 			<td class="rth">대관 시간</td>
+			<td class="rth">예약 취소</td>
 		</tr>
 		<c:forEach var="li" items="${rvoList}">
 			<tr>
-				<td class="rtd" id="rid" onclick="rdetail($('#rid').innerText)">${li.reserv_id}</td>
-				<td class="rtd">${li.place_id}</td>
+				<td class="rtd" id="rid" onclick="rdetail('${li.reserv_id}')">${li.reserv_id}</td>
+				<td class="rtd" id="pid" onclick="">${li.place_id}</td>
 				<td class="rtd">${li.use_date}</td>
 				<td class="rtd">${li.use_starttime}&nbsp;-&nbsp;${li.use_endtime}</td>
+				<td class="rtd" id="rdelete"
+					onclick="rdelete('${li.reserv_id}','${li.place_id}','${li.use_date}')">취소하기</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="text-align:left;" class="rdetail">
+				<td colspan="5" id="r${li.reserv_id}" class="rdetail">
 					<span id="c${li.reserv_id}" class="content"></span>
 				</td>
 			</tr>
@@ -60,7 +64,7 @@
 					<td class="rtd">${li.use_starttime}&nbsp;-&nbsp;${li.use_endtime}</td>
 				</tr>
 				<tr>
-				<td colspan="4" style="text-align:left;" class="rdetail">
+				<td colspan="4" class="rdetail">
 					<span class="content"></span>
 				</td>
 			</tr>
@@ -88,7 +92,7 @@
 					<td class="rtd">${li.use_starttime}&nbsp;-&nbsp;${li.use_endtime}</td>
 				</tr>
 				<tr>
-				<td colspan="4" style="text-align:left;" class="rdetail">
+				<td colspan="4" class="rdetail">
 					<span class="content"></span>
 				</td>
 			</tr>

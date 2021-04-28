@@ -26,4 +26,13 @@
 }
 .rdetail{
 	padding:0px;
+	text-align:center;
+	background-color: #abb3cc;
+	color:#fff;
+}
+.rdetailpd{
+	padding:10px;
+}
+#rid, #rdelete{
+	cursor: pointer;
 }

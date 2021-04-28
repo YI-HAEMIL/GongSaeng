@@ -37,6 +37,6 @@ public class ReservDAO {
 	
 	// ** delete
 	public int delete(ReservVO vo) {
-		return sqlSession.insert(NS+"insert", vo);
+		return sqlSession.delete(NS+"delete", vo);
 	}
 }

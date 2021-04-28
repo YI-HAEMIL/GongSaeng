@@ -36,6 +36,10 @@ public class PlaceinfoDAO {
 	public PlaceinfoVO selectOne(PlaceinfoVO vo) {
 		return sqlSession.selectOne(NS + "selectOne", vo);
 	}
+	// ** selectOne2
+	public PlaceinfoVO selectOne2(PlaceinfoVO vo) {
+		return sqlSession.selectOne(NS + "selectOne2", vo);
+	}
 	// ** 파일 리스트 출력
 	public List<PlacefileVO> getFileList(int placeid) {
 		return sqlSession.selectList(NS + "selectfileList", placeid);
